@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Supabase Test</title>
+</head>
+<body>
+  <div id="result">Loading...</div>
+  <script>
+    const apiKey = "sb_publishable_c5dx2Tfhg4txFrd2lnlNwA_H-KF1eHr";
+    const headers = {
+      "apikey": apiKey,
+      "Authorization": "Bearer " + apiKey
+    };
+
+    Promise.all([
+      fetch("https://ywcpngjpbowhbwacdiic.supabase.co/rest/v1/properties", { headers }).then(res => res.json()),
+      fetch("https://ywcpngjpbowhbwacdiic.supabase.co/rest/v1/branches", { headers }).then(res => res.json()),
+      fetch("https://ywcpngjpbowhbwacdiic.supabase.co/rest/v1/staff_users", { headers }).then(res => res.json())
+    ])
+    .then(([properties, branches, staff_users]) => {
+      document.getElementById('result').innerText = JSON.stringify({ properties, branches, staff_users }, null, 2);
+    })
+    .catch(err => {
+      document.getElementById('result').innerText = "Error: " + err.message;
+    });
+  </script>
+</body>
+</html>

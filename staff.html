@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff &amp; Branch Management — Hilltop Properties Zambia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="staff.css" />
+</head>
+<body>
+
+  <!-- MOBILE SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MODAL OVERLAY -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <div class="brand-text">
+        <span class="brand-name">Hilltop</span>
+        <span class="brand-sub">Properties Zambia</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="nav-item" data-page="dashboard">
+          <a href="admin-dashboard.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="properties">
+          <a href="properties.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="nav-label">Properties</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="leads">
+          <a href="leads.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <span class="nav-label">Leads</span>
+          </a>
+        </li>
+        <li class="nav-item active" data-page="staff">
+          <a href="staff.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <span class="nav-label">Staff &amp; Branches</span>
+          </a>
+          <span class="nav-active-bar"></span>
+        </li>
+        <li class="nav-item" data-page="team">
+          <a href="admin-team.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            </span>
+            <span class="nav-label">Team Members</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="cms">
+          <a href="cms.html" class="nav-link">
+            <span class="nav-label">Website CMS</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="settings">
+          <a href="settings.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            </span>
+            <span class="nav-label">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-avatar">A</div>
+      <div class="admin-info">
+        <span class="admin-name">Admin User</span>
+        <span class="admin-role">Super Admin</span>
+      </div>
+      <button class="logout-btn" type="button" data-logout-button>Logout</button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="header-titles">
+          <h1 class="page-title">Staff &amp; Branch Management</h1>
+          <p class="page-subtitle">Manage branches, agents, managers, and access roles</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <p class="welcome-msg">Welcome back, <strong>Admin</strong></p>
+        <div class="branch-filter" id="branchFilter">
+          <button class="branch-btn active" data-branch="all">All Branches</button>
+          <button class="branch-btn" data-branch="harare">Harare</button>
+          <button class="branch-btn" data-branch="bulawayo">Bulawayo</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-body">
+
+      <!-- STAFF STATS -->
+      <section class="stats-grid staff-stats" id="staffStatsGrid">
+        <div class="stat-card" data-accent="blue">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Total Staff</p>
+            <p class="stat-number" id="statTotalStaff">0</p>
+            <p class="stat-helper">All roles combined</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="green">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Active Agents</p>
+            <p class="stat-number" id="statActiveAgents">0</p>
+            <p class="stat-helper">Currently active</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="gold">
+          <div class="stat-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Branch Managers</p>
+            <p class="stat-number" id="statManagers">0</p>
+            <p class="stat-helper">Across all branches</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="teal">
+          <div class="stat-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Branches</p>
+            <p class="stat-number" id="statBranches">2</p>
+            <p class="stat-helper">Harare &amp; Bulawayo</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BRANCH MANAGEMENT SECTION ── -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Branch Management</h2>
+            <p class="section-sub">Overview of all Hilltop Properties branches</p>
+          </div>
+          <button class="action-btn primary" id="btnAddBranch">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add New Branch
+          </button>
+        </div>
+        <div class="branch-cards-grid" id="branchCardsGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- ── ROLE PERMISSIONS SECTION ── -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Role Permissions</h2>
+            <p class="section-sub">Access levels assigned by role — for reference only</p>
+          </div>
+        </div>
+        <div class="role-cards-grid">
+
+          <div class="role-card role-superadmin">
+            <div class="role-card-header">
+              <div class="role-icon-wrap superadmin">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="role-name">Super Admin</div>
+                <div class="role-scope">All Branches</div>
+              </div>
+            </div>
+            <ul class="role-perms">
+              <li><span class="perm-dot allow"></span>Full access across all branches</li>
+              <li><span class="perm-dot allow"></span>Manage properties, leads, staff</li>
+              <li><span class="perm-dot allow"></span>Manage branches &amp; settings</li>
+              <li><span class="perm-dot allow"></span>Access Website CMS</li>
+              <li><span class="perm-dot allow"></span>Create and deactivate accounts</li>
+            </ul>
+          </div>
+
+          <div class="role-card role-manager">
+            <div class="role-card-header">
+              <div class="role-icon-wrap manager">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="role-name">Branch Manager</div>
+                <div class="role-scope">Assigned Branch Only</div>
+              </div>
+            </div>
+            <ul class="role-perms">
+              <li><span class="perm-dot allow"></span>Manage branch properties &amp; leads</li>
+              <li><span class="perm-dot allow"></span>Assign leads to agents</li>
+              <li><span class="perm-dot allow"></span>View branch staff records</li>
+              <li><span class="perm-dot deny"></span>Cannot access other branches</li>
+              <li><span class="perm-dot deny"></span>No CMS or settings access</li>
+            </ul>
+          </div>
+
+          <div class="role-card role-agent">
+            <div class="role-card-header">
+              <div class="role-icon-wrap agent">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="role-name">Agent</div>
+                <div class="role-scope">Assigned Leads &amp; Properties</div>
+              </div>
+            </div>
+            <ul class="role-perms">
+              <li><span class="perm-dot allow"></span>View assigned properties</li>
+              <li><span class="perm-dot allow"></span>Update lead follow-ups &amp; logs</li>
+              <li><span class="perm-dot allow"></span>Log communication history</li>
+              <li><span class="perm-dot deny"></span>Cannot manage staff or branches</li>
+              <li><span class="perm-dot deny"></span>No admin settings access</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── LEAD ASSIGNMENT PREVIEW ── -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Lead Assignment</h2>
+            <p class="section-sub">Quickly reassign open leads to agents — demo only</p>
+          </div>
+        </div>
+        <div class="assignment-panel">
+          <div class="assignment-form">
+            <div class="assignment-field">
+              <label for="assignLead">Select Lead</label>
+              <select id="assignLead">
+                <option value="">Choose a lead…</option>
+              </select>
+            </div>
+            <div class="assignment-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="assignment-field">
+              <label for="assignAgent">Select Agent</label>
+              <select id="assignAgent">
+                <option value="">Choose an agent…</option>
+              </select>
+            </div>
+            <button class="action-btn primary" id="btnAssign">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+              Assign Lead
+            </button>
+          </div>
+          <p class="assignment-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            This panel updates demo data only. Supabase assignment logic will be wired in a future release.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── STAFF MANAGEMENT SECTION ── -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Staff Directory</h2>
+            <p class="section-sub">All staff members across both branches</p>
+          </div>
+          <button class="action-btn primary" id="btnAddStaff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add New Staff
+          </button>
+        </div>
+
+        <!-- STAFF FILTERS -->
+        <div class="staff-toolbar">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="staffSearch" class="search-input" placeholder="Search by name, email, phone or role…" />
+          </div>
+          <select id="roleFilter" class="filter-select">
+            <option value="all">All Roles</option>
+            <option value="Super Admin">Super Admin</option>
+            <option value="Branch Manager">Branch Manager</option>
+            <option value="Agent">Agent</option>
+          </select>
+          <select id="staffBranchFilter" class="filter-select">
+            <option value="all">All Branches</option>
+              <option value="Harare">Harare</option>
+              <option value="Bulawayo">Bulawayo</option>
+          </select>
+          <select id="statusFilter" class="filter-select">
+            <option value="all">All Statuses</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+
+        <!-- STAFF TABLE -->
+        <div class="staff-table-wrap">
+          <table class="staff-table" id="staffTable">
+            <thead>
+              <tr>
+                <th>Staff Member</th>
+                <th>Contact</th>
+                <th>Role</th>
+                <th>Branch</th>
+                <th>Status</th>
+                <th>Properties</th>
+                <th>Leads</th>
+                <th>Last Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="staffTableBody">
+            </tbody>
+          </table>
+          <div class="empty-state" id="staffEmptyState" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <h3>No staff found</h3>
+            <p>Try adjusting your filters or add a new staff member.</p>
+            <button class="action-btn primary" id="emptyAddStaffBtn">Add New Staff</button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- end page-body -->
+  </main>
+
+  <!-- ===================================================================
+       STAFF DETAILS SIDE PANEL
+  ==================================================================== -->
+  <div class="details-panel" id="staffDetailsPanel" role="dialog" aria-modal="true" aria-labelledby="staffDetailsPanelTitle">
+    <div class="details-inner">
+      <div class="details-header">
+        <div>
+          <p class="details-label">Staff Member</p>
+          <h2 class="details-title" id="staffDetailsPanelTitle">Name</h2>
+        </div>
+        <div class="details-header-actions">
+          <button class="action-btn outline small" id="btnEditFromPanel">Edit</button>
+          <button class="details-close" id="staffDetailsClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="details-body" id="staffDetailsBody"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       BRANCH DETAILS MODAL
+  ==================================================================== -->
+  <div class="staff-modal" id="branchDetailsModal" role="dialog" aria-modal="true" aria-labelledby="branchModalTitle">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="branchModalTitle">Branch Details</h2>
+          <p class="modal-subtitle" id="branchModalSubtitle">Branch information</p>
+        </div>
+        <button class="modal-close" id="branchModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="branchModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       ADD / EDIT BRANCH MODAL
+  ==================================================================== -->
+  <div class="staff-modal" id="branchFormModal" role="dialog" aria-modal="true" aria-labelledby="branchFormModalTitle">
+    <div class="modal-inner">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="branchFormModalTitle">Add New Branch</h2>
+          <p class="modal-subtitle">Manage branch profile details. Branch managers are assigned through staff roles.</p>
+        </div>
+        <button class="modal-close" id="branchFormModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <form id="branchForm" novalidate>
+        <input type="hidden" id="editBranchId" value="" />
+        <div class="tab-panel active">
+          <div class="form-section-label">Branch Information</div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fBranchName">Branch Name <span class="req">*</span></label>
+              <input type="text" id="fBranchName" placeholder="e.g. Harare" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fBranchAddress">Address</label>
+              <input type="text" id="fBranchAddress" placeholder="e.g. Borrowdale, Harare, Zimbabwe" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fBranchContact">Contact Number</label>
+              <input type="tel" id="fBranchContact" placeholder="e.g. +260 211 000 001" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="action-btn outline" id="branchFormCancelBtn">Cancel</button>
+          <button type="submit" class="action-btn primary" id="branchFormSaveBtn">Save Branch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       ADD / EDIT STAFF MODAL
+  ==================================================================== -->
+  <div class="staff-modal" id="staffModal" role="dialog" aria-modal="true" aria-labelledby="staffModalTitle">
+    <div class="modal-inner">
+
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="staffModalTitle">Add New Staff Member</h2>
+          <p class="modal-subtitle">Fill in staff details and access settings below.</p>
+        </div>
+        <button class="modal-close" id="staffModalClose" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- AUTH NOTE -->
+      <div class="auth-notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Actual login accounts will be created through <strong>Supabase Authentication</strong> by the system administrator. This form manages staff profile data only.</span>
+      </div>
+
+      <!-- MODAL TABS -->
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="staffdetails">Staff Details</button>
+        <button class="modal-tab" data-tab="access">Access &amp; Role</button>
+        <button class="modal-tab" data-tab="notes">Notes</button>
+      </div>
+
+      <form id="staffForm" novalidate>
+        <input type="hidden" id="editStaffId" value="" />
+
+        <!-- TAB: STAFF DETAILS -->
+        <div class="tab-panel active" id="tab-staffdetails">
+          <div class="form-section-label">Personal Information</div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fStaffName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fStaffName" placeholder="e.g. John Phiri" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="fStaffEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="fStaffEmail" placeholder="e.g. john@hilltop.co.zm" required />
+            </div>
+            <div class="form-group half">
+              <label for="fStaffPhone">Phone Number</label>
+              <input type="tel" id="fStaffPhone" placeholder="e.g. +260 977 000 111" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fJobTitle">Job Title</label>
+              <input type="text" id="fJobTitle" placeholder="e.g. Senior Property Agent" />
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: ACCESS & ROLE -->
+        <div class="tab-panel" id="tab-access">
+          <div class="form-section-label">Role &amp; Access</div>
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="fRole">Role <span class="req">*</span></label>
+              <select id="fRole" required>
+                <option value="">Select role…</option>
+                <option value="Super Admin">Super Admin</option>
+                <option value="Branch Manager">Branch Manager</option>
+                <option value="Agent">Agent</option>
+              </select>
+            </div>
+            <div class="form-group half">
+              <label for="fBranch">Branch</label>
+              <select id="fBranch">
+                <option value="">Select branch…</option>
+                <option value="Harare">Harare</option>
+                <option value="Bulawayo">Bulawayo</option>
+                <option value="Both">Both (Super Admin)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="fStatus">Status <span class="req">*</span></label>
+              <select id="fStatus" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: NOTES -->
+        <div class="tab-panel" id="tab-notes">
+          <div class="form-section-label">Additional Notes</div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="fStaffNotes">Notes</label>
+              <textarea id="fStaffNotes" rows="5" placeholder="Any additional information about this staff member…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="action-btn outline" id="staffModalCancelBtn">Cancel</button>
+          <button type="submit" class="action-btn primary" id="staffModalSaveBtn">Save Staff Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="staff.js"></script>
+</body>
+</html>

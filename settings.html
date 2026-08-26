@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Hilltop Properties Zambia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="modal-overlay" id="settingsModalOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <div class="brand-text">
+        <span class="brand-name">Hilltop</span>
+        <span class="brand-sub">Properties Zambia</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="nav-item" data-page="dashboard">
+          <a href="admin-dashboard.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="properties">
+          <a href="properties.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+            <span class="nav-label">Properties</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="leads">
+          <a href="leads.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+            <span class="nav-label">Leads</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="staff">
+          <a href="staff.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4"/></svg></span>
+            <span class="nav-label">Staff &amp; Branches</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="cms">
+          <a href="cms.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+            <span class="nav-label">Website CMS</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="team">
+          <a href="admin-team.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            </span>
+            <span class="nav-label">Team Members</span>
+          </a>
+        </li>
+        <li class="nav-item active" data-page="settings">
+          <a href="settings.html" class="nav-link">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
+            <span class="nav-label">Settings</span>
+          </a>
+          <span class="nav-active-bar"></span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-avatar">A</div>
+      <div class="admin-info">
+        <span class="admin-name">Admin User</span>
+        <span class="admin-role">Super Admin</span>
+      </div>
+      <button class="logout-btn" type="button" data-logout-button>Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <header class="top-header">
+      <div class="header-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="header-titles">
+          <h1 class="page-title">Settings &amp; System Configuration</h1>
+          <p class="page-subtitle">Manage company details, website preferences, notifications, SEO, and platform defaults</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <p class="welcome-msg">Welcome back, <strong>Admin</strong></p>
+        <div class="branch-filter" id="branchFilter">
+          <button class="branch-btn active" data-branch="all">All Branches</button>
+          <button class="branch-btn" data-branch="harare">Harare</button>
+          <button class="branch-btn" data-branch="bulawayo">Bulawayo</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <section class="stats-grid settings-stats">
+        <div class="stat-card" data-accent="blue">
+          <div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/></svg></div>
+          <div class="stat-body"><p class="stat-label">Company Profile</p><p class="stat-number" id="statCompany">Ready</p><p class="stat-helper">Core business details configured</p></div>
+        </div>
+        <div class="stat-card" data-accent="green">
+          <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4"/></svg></div>
+          <div class="stat-body"><p class="stat-label">Branch Settings</p><p class="stat-number" id="statBranches">2</p><p class="stat-helper">Harare and Bulawayo active</p></div>
+        </div>
+        <div class="stat-card" data-accent="gold">
+          <div class="stat-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 00-12 0c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+          <div class="stat-body"><p class="stat-label">Notifications</p><p class="stat-number" id="statNotifications">On</p><p class="stat-helper">Lead and enquiry alerts enabled</p></div>
+        </div>
+        <div class="stat-card" data-accent="teal">
+          <div class="stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+          <div class="stat-body"><p class="stat-label">SEO Status</p><p class="stat-number" id="statSeo">Live</p><p class="stat-helper">Website metadata configured</p></div>
+        </div>
+      </section>
+
+      <div class="settings-tabs-bar">
+        <button class="settings-tab active" data-section="company">Company Profile</button>
+        <button class="settings-tab" data-section="branches">Branch &amp; Contact</button>
+        <button class="settings-tab" data-section="website">Website Preferences</button>
+        <button class="settings-tab" data-section="notifications">Notifications</button>
+        <button class="settings-tab" data-section="seo">SEO &amp; Metadata</button>
+        <button class="settings-tab" data-section="property">Property Defaults</button>
+        <button class="settings-tab" data-section="workflow">Lead Workflow</button>
+        <button class="settings-tab" data-section="security">Security &amp; Access</button>
+      </div>
+
+      <section class="settings-panel active" id="panel-company">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Company Profile</h2><p>Company-level identity and core contact details.</p></div>
+          <form id="companyForm" class="settings-form">
+            <div class="form-grid">
+              <label>Company name shown on website<input id="companyName" type="text" required maxlength="100" /><small class="field-help">Updates the public website header, footer, page titles, and company references.</small></label>
+              <label>Short / trading name<input id="tradingName" type="text" maxlength="100" /><small class="field-help">Optional. It follows the company name until you edit it separately.</small></label>
+              <label>Registration / TPIN placeholder<input id="registrationNumber" type="text" /></label>
+              <label>Main phone number<input id="mainPhone" type="tel" /></label>
+              <label>Main WhatsApp number<input id="mainWhatsapp" type="tel" /></label>
+              <label>Main email<input id="mainEmail" type="email" /></label>
+              <label>Website URL<input id="websiteUrl" type="url" /></label>
+              <label>Currency<input id="currency" type="text" readonly /></label>
+              <label>Country<input id="country" type="text" readonly /></label>
+              <label class="wide">Business address<textarea id="businessAddress" rows="2"></textarea></label>
+              <label class="wide">About company short description<textarea id="aboutCompany" rows="4"></textarea></label>
+            </div>
+            <div class="settings-actions">
+              <button type="button" class="action-btn outline" data-save="company-draft">Save Draft</button>
+              <button type="button" class="action-btn secondary" data-preview="company">Preview</button>
+              <button type="button" class="action-btn primary" data-save="company">Save Settings</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-branches">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Branch &amp; Contact Settings</h2><p>Branch contact blocks can respond to the branch filter above.</p></div>
+          <div class="branch-settings-grid" id="branchSettingsGrid"></div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-website">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Website Preferences</h2><p>Public website display defaults and labels.</p></div>
+          <div class="form-grid theme-preferences-grid">
+            <label>Primary color<input id="primaryColor" type="color" /><small class="field-help">Main navy/background color.</small></label>
+            <label>Secondary color<input id="secondaryColor" type="color" /><small class="field-help">Buttons and green highlights.</small></label>
+            <label>Accent color<input id="accentColor" type="color" /><small class="field-help">Gold labels and decorative accents.</small></label>
+          </div>
+          <div class="toggle-grid">
+            <label class="toggle-row"><span>Show featured properties on homepage</span><input id="showFeatured" type="checkbox" /></label>
+            <label class="toggle-row"><span>Show testimonials on homepage</span><input id="showTestimonials" type="checkbox" /></label>
+            <label class="toggle-row"><span>Show team section</span><input id="showTeam" type="checkbox" /></label>
+            <label class="toggle-row"><span>Show branch filter on public website</span><input id="showPublicBranchFilter" type="checkbox" /></label>
+            <label class="toggle-row"><span>Show prices publicly</span><input id="showPrices" type="checkbox" /></label>
+            <label class="toggle-row"><span>Show sold/rented properties publicly</span><input id="showClosedProperties" type="checkbox" /></label>
+          </div>
+          <div class="form-grid">
+            <label>Default homepage branch filter<select id="defaultPublicBranch"><option>All</option><option>Harare</option><option>Bulawayo</option></select></label>
+            <label>Property card display style<select id="propertyCardStyle"><option>Compact</option><option>Detailed</option></select></label>
+            <label>Enquiry button label<input id="enquiryButtonLabel" type="text" /></label>
+            <label>WhatsApp enquiry button label<input id="whatsappButtonLabel" type="text" /></label>
+          </div>
+          <div class="settings-actions">
+            <button type="button" class="action-btn primary" data-save="website">Save Website Preferences</button>
+            <button type="button" class="action-btn secondary" data-preview="website">Preview Website Settings</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-notifications">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Notifications</h2><p>UI/demo preferences only. Real email and WhatsApp notifications will be connected in a later backend phase.</p></div>
+          <div class="settings-columns">
+            <div><h3>Lead notifications</h3><div id="leadNotificationList" class="check-list"></div></div>
+            <div><h3>Property notifications</h3><div id="propertyNotificationList" class="check-list"></div></div>
+          </div>
+          <div class="settings-columns">
+            <div><h3>Notification channels</h3><div id="notificationChannels" class="check-list"></div></div>
+            <div>
+              <h3>Branch-specific recipients</h3>
+              <div class="form-grid single">
+                <label>Harare branch email<input id="notifyLusaka" type="email" /></label>
+                <label>Bulawayo branch email<input id="notifyLivingstone" type="email" /></label>
+                <label>Head office email<input id="notifyHeadOffice" type="email" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="settings-note">No real email or WhatsApp sending is implemented in this frontend module.</div>
+          <div class="settings-actions"><button type="button" class="action-btn primary" data-save="notifications">Save Notification Settings</button></div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-seo">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>SEO &amp; Metadata</h2><p>Public website search metadata. Do not add analytics scripts or secret keys here.</p></div>
+          <div class="settings-columns">
+            <div class="form-grid single">
+              <label>Default site title<input id="seoSiteTitle" type="text" /></label>
+              <label>Default meta description<textarea id="seoMetaDescription" rows="3"></textarea></label>
+              <label>Default keywords<input id="seoKeywords" type="text" /></label>
+              <label>Homepage SEO title<input id="seoHomepageTitle" type="text" /></label>
+              <label>Homepage SEO description<textarea id="seoHomepageDescription" rows="3"></textarea></label>
+            </div>
+            <div>
+              <div class="form-grid single">
+                <label>Property page title template<input id="seoPropertyTitle" type="text" /></label>
+                <label>Property page description template<textarea id="seoPropertyDescription" rows="3"></textarea></label>
+                <label>Social sharing image placeholder<input id="seoSocialImage" type="text" /></label>
+                <label>Google Search Console placeholder<input id="seoSearchConsole" type="text" /></label>
+                <label>Google Analytics placeholder<input id="seoAnalytics" type="text" /></label>
+                <label class="toggle-row inline"><span>Schema markup enabled</span><input id="schemaEnabled" type="checkbox" /></label>
+              </div>
+              <div class="seo-preview" id="seoPreview"></div>
+            </div>
+          </div>
+          <div class="settings-actions">
+            <button type="button" class="action-btn primary" data-save="seo">Save SEO Settings</button>
+            <button type="button" class="action-btn secondary" data-preview="seo">Preview Search Result</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-property">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Property Defaults</h2><p>Standard rules for property listing quality before publishing.</p></div>
+          <div class="form-grid">
+            <label>Default property purpose<select id="defaultPurpose"><option>For Sale</option><option>For Rent</option></select></label>
+            <label>Default property type<select id="defaultPropertyType"><option>House</option><option>Apartment</option><option>Commercial</option><option>Land</option></select></label>
+            <label>Default currency<input id="defaultCurrency" type="text" readonly /></label>
+            <label>Default property status<select id="defaultPropertyStatus"><option>Draft</option><option>Active</option></select></label>
+            <label>Default image placeholder text<input id="defaultImageText" type="text" /></label>
+          </div>
+          <div class="toggle-grid">
+            <label class="toggle-row"><span>Require property reference number</span><input id="requireReference" type="checkbox" /></label>
+            <label class="toggle-row"><span>Require property images before publishing</span><input id="requireImages" type="checkbox" /></label>
+            <label class="toggle-row"><span>Require ownership/legal status before publishing</span><input id="requireLegalStatus" type="checkbox" /></label>
+            <label class="toggle-row"><span>Require branch assignment</span><input id="requireBranch" type="checkbox" /></label>
+          </div>
+          <h3>Allowed property types</h3>
+          <div class="check-list" id="allowedPropertyTypes"></div>
+          <div class="settings-actions">
+            <button type="button" class="action-btn primary" data-save="property">Save Property Defaults</button>
+            <button type="button" class="action-btn outline" id="btnResetPropertyDefaults">Reset to Recommended Defaults</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-workflow">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Lead Workflow</h2><p>CRM defaults for statuses, sources, and follow-up rules.</p></div>
+          <div class="settings-columns">
+            <div><h3>Lead statuses</h3><div class="pill-list" id="leadStatuses"></div><button type="button" class="action-btn outline small" id="btnAddStatus">Add Custom Status</button></div>
+            <div><h3>Lead sources</h3><div class="pill-list" id="leadSources"></div><button type="button" class="action-btn outline small" id="btnAddSource">Add Custom Source</button></div>
+          </div>
+          <div class="form-grid">
+            <label>Default lead status<select id="defaultLeadStatus"><option>New</option><option>Contacted</option><option>Follow-up</option><option>Closed</option></select></label>
+            <label>Default lead source<select id="defaultLeadSource"><option>Website</option><option>WhatsApp</option><option>Phone Call</option><option>Facebook</option><option>Referral</option><option>Walk-in</option></select></label>
+            <label>Default follow-up days after new enquiry<input id="defaultFollowUpDays" type="number" min="1" /></label>
+            <label>Overdue warning days<input id="overdueWarningDays" type="number" min="1" /></label>
+          </div>
+          <div class="toggle-grid">
+            <label class="toggle-row"><span>Auto-assign new leads</span><input id="autoAssignLeads" type="checkbox" /></label>
+            <label class="toggle-row"><span>Require assigned agent</span><input id="requireAssignedAgent" type="checkbox" /></label>
+            <label class="toggle-row"><span>Require communication log before closing lead</span><input id="requireClosingLog" type="checkbox" /></label>
+          </div>
+          <div class="settings-actions"><button type="button" class="action-btn primary" data-save="workflow">Save Workflow Settings</button></div>
+        </div>
+      </section>
+
+      <section class="settings-panel" id="panel-security">
+        <div class="settings-card">
+          <div class="settings-card-header"><h2>Security &amp; Access</h2><p>Current authentication posture and planned access rules.</p></div>
+          <div class="security-grid">
+            <div class="security-card"><h3>Authentication Status</h3><ul><li>Supabase Authentication enabled</li><li>Login page protected</li><li>Admin pages protected by auth-guard.js</li><li>Public sign-up disabled / manual staff creation only</li></ul></div>
+            <div class="security-card"><h3>Role Access Preview</h3><div class="role-preview"><strong>Super Admin</strong><span>All modules and branches</span></div><div class="role-preview"><strong>Branch Manager</strong><span>Assigned branch management</span></div><div class="role-preview"><strong>Agent</strong><span>Assigned properties and leads</span></div></div>
+            <div class="security-card"><h3>Security Checklist</h3><div class="check-list" id="securityChecklist"></div></div>
+          </div>
+          <h3>Saved Access Configuration</h3>
+          <div class="toggle-grid">
+            <label class="toggle-row"><span>Require active staff profile</span><input id="requireActiveStaffProfile" type="checkbox" /></label>
+            <label class="toggle-row"><span>Allow agents to update lead status</span><input id="allowAgentsToUpdateLeadStatus" type="checkbox" /></label>
+            <label class="toggle-row"><span>Allow branch managers to manage own branch</span><input id="allowBranchManagersToManageOwnBranch" type="checkbox" /></label>
+          </div>
+          <div class="settings-actions">
+            <button type="button" class="action-btn outline" data-modal="auth">View Auth Notes</button>
+            <button type="button" class="action-btn outline" data-modal="rls">View RLS Notes</button>
+            <button type="button" class="action-btn primary" id="btnSafetyCheck">Run Frontend Safety Check</button>
+            <button type="button" class="action-btn primary" data-save="security">Save Security Settings</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="settings-modal" id="settingsModal" role="dialog" aria-modal="true">
+    <div class="settings-modal-inner">
+      <button class="modal-close" id="settingsModalClose" aria-label="Close">x</button>
+      <h2 id="settingsModalTitle">Settings Note</h2>
+      <div id="settingsModalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=20260825-zimbabwe-contact-1"></script>
+  <script src="auth-guard.js"></script>
+  <script src="settings.js?v=20260825-zimbabwe-contact-1"></script>
+</body>
+</html>

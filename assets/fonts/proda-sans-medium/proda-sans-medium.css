@@ -1,0 +1,24 @@
+/*
+Font: 		Proda Sans Med
+Style: 		Regular
+URL: 		https://youworkforthem.com/font/T12630/proda-sans
+Foundry: 	Nasir Udin
+Foundry: 	https://youworkforthem.com/designer/931/nasir-udin
+Copyright:	All rights reserved ©2020 Nasir Udin.
+Version: 	18
+Created:	April 10, 2026
+License: 	https://www.youworkforthem.com/font-license 
+License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
+			WebFont license rules. All other parties are strictly restricted 
+			from using the WebFonts(s) listed without a purchased license. 
+			All details above must always remain unaltered and visible in your CSS.
+*/
+
+@font-face {
+	font-family: 'ProdaSans-Medium';
+	src: url('proda-sans-medium.woff2') format('woff2'),
+	     url('proda-sans-medium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

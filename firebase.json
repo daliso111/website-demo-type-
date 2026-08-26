@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "site": "iproperties-zimbabwe-demo",
+    "public": "firebase-public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "test-db.html"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

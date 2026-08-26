@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="public-site-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View public property details from Hilltop Properties Zambia." />
+  <title>Loading website…</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/fonts/proda-sans-medium/proda-sans-medium.css" />
+  <link rel="stylesheet" href="website.css?v=20260825-skeleton-1" />
+  <link rel="stylesheet" href="property-details.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html#home">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="listings.html">Listings</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Hilltop Properties Zambia home">
+      HILLTOP
+    </a>
+    <div class="header-actions">
+      <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+        aria-label="Open menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </header>
+
+  <main>
+    <div class="site-status" id="detailsStatus">Loading property details...</div>
+
+    <section class="details-hero hidden" id="detailsContent">
+      <div class="details-gallery">
+        <div class="main-image" id="mainImage">
+          <span>Hilltop Property</span>
+        </div>
+        <div class="thumbnail-row" id="thumbnailRow"></div>
+      </div>
+
+      <article class="details-summary">
+        <p class="eyebrow" id="propertyReference">Property</p>
+        <div class="details-title-row">
+          <h1 id="propertyTitle">Property Details</h1>
+          <span class="badge" id="propertyStatus">Active</span>
+        </div>
+        <p class="details-price" id="propertyPrice" aria-live="polite">Loading price…</p>
+        <div class="details-tags">
+          <span id="propertyPurpose">Purpose</span>
+          <span id="propertyType">Type</span>
+          <span id="propertyArea">Area</span>
+        </div>
+        <div class="details-actions">
+          <button class="btn primary" type="button" id="detailsEnquiryButton">Enquire About This Property</button>
+          <a class="btn secondary detail-contact-link" href="index.html#contact">Contact Office</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section details-body hidden" id="detailsBody">
+      <article class="details-panel">
+        <h2>Description</h2>
+        <p id="propertyDescription">Details available on request.</p>
+        <div class="media-links" id="mediaLinks"></div>
+      </article>
+
+      <article class="details-panel facts-panel">
+        <h2>Property Facts</h2>
+        <div class="facts-grid" id="factsGrid"></div>
+      </article>
+
+      <article class="details-panel amenities-panel">
+        <h2>Amenities</h2>
+        <ul class="amenities-list" id="amenitiesList"></ul>
+      </article>
+
+      <article class="details-panel branch-panel">
+        <h2>Branch Contact</h2>
+        <div id="branchContact"></div>
+      </article>
+    </section>
+
+    <section class="section similar-section hidden" id="similarSection">
+      <div class="section-heading">
+        <p class="eyebrow">More Listings</p>
+        <h2>Similar Properties</h2>
+      </div>
+      <div class="similar-grid" id="similarGrid"></div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="enquiryModal" aria-hidden="true">
+    <div class="modal-card enquiry-modal-card" role="dialog" aria-modal="true" aria-labelledby="enquiryModalTitle">
+      <button class="modal-close" type="button" id="enquiryModalClose" aria-label="Close enquiry form">&times;</button>
+      <div class="modal-heading">
+        <p class="eyebrow">Enquiry</p>
+        <h2 id="enquiryModalTitle">Send Property Enquiry</h2>
+        <p id="enquiryPropertyDisplay">Tell us what you are looking for and our team will contact you.</p>
+      </div>
+
+      <form class="enquiry-form" id="enquiryForm" novalidate>
+        <input type="hidden" id="enquiryPropertyId" />
+        <input type="hidden" id="enquiryBranchId" />
+        <label class="honeypot-field" for="enquiryWebsiteUrl">Website URL</label>
+        <input class="honeypot-field" type="text" id="enquiryWebsiteUrl" name="website_url" tabindex="-1" autocomplete="off" />
+
+        <div class="form-grid">
+          <label>
+            <span>Full Name</span>
+            <input type="text" id="enquiryName" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Phone</span>
+            <input type="tel" id="enquiryPhone" autocomplete="tel" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="enquiryEmail" autocomplete="email" />
+          </label>
+        </div>
+
+        <label>
+          <span>Message</span>
+          <textarea id="enquiryNotes" rows="5" maxlength="1000"></textarea>
+        </label>
+
+        <div class="enquiry-message" id="enquiryMessage" role="status" aria-live="polite"></div>
+        <a class="whatsapp-fallback hidden" id="enquiryWhatsappFallback" href="#" target="_blank" rel="noopener">Contact us on WhatsApp</a>
+
+        <button class="btn primary enquiry-submit" type="submit" id="enquirySubmit">Submit Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Hilltop Properties Zambia. Public website preview.</p>
+    <a href="login.html">Admin Login</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=20260825-zimbabwe-contact-1"></script>
+  <script src="website-theme.js?v=20260825-theme-2"></script>
+  <script src="company-branding.js?v=20260825-skeleton-1"></script>
+  <script src="currency.js"></script>
+  <script src="property-details.js?v=20260825-skeleton-1"></script>
+</body>
+</html>

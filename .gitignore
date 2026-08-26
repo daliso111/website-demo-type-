@@ -1,0 +1,8 @@
+.env
+node_modules/
+.DS_Store
+firebase-public/
+.firebase/
+firebase-debug.log
+.chrome-*/
+.codex-artifacts/

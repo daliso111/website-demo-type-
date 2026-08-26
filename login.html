@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Hilltop Properties Zambia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-brand-panel">
+      <div class="login-brand">
+        <div class="brand-icon">H</div>
+        <div>
+          <p class="login-kicker">Hilltop Properties Zambia</p>
+          <h1>Admin Portal</h1>
+        </div>
+      </div>
+      <p class="login-copy">
+        Secure access for managing property listings, leads, branches, and staff operations.
+      </p>
+    </section>
+
+    <section class="login-card" aria-labelledby="loginTitle">
+      <div class="login-card-header">
+        <h2 id="loginTitle">Admin Sign In</h2>
+        <p>Use your admin email and password to continue.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="login-error" id="loginError" role="alert" aria-live="polite"></div>
+
+        <div class="login-field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" autocomplete="email" placeholder="admin@hilltopproperties.co.zm" required />
+        </div>
+
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit" class="login-submit" id="loginSubmit">
+          <span class="btn-label">Sign In</span>
+          <span class="btn-loading">Signing in...</span>
+        </button>
+        <p class="login-staff-note">Authorized Hilltop Properties staff only.</p>
+        <p class="login-access-note">Don't have access? Contact the system administrator.</p>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
