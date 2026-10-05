@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(52);
+select plan(55);
 
 select ok(
   (select count(*) = 1 from public.demo_workspaces where is_public_default = true and slug = 'hilltop-template'),
@@ -267,6 +267,14 @@ select hasnt_table_privilege(
   'authenticated', 'public.activity_logs', 'DELETE',
   'authenticated role has no activity-log DELETE privilege'
 );
+select has_table_privilege(
+  'authenticated', 'public.activity_logs', 'SELECT',
+  'authenticated role retains activity-log SELECT privilege'
+);
+select has_table_privilege(
+  'authenticated', 'public.activity_logs', 'INSERT',
+  'authenticated role retains activity-log INSERT privilege'
+);
 
 select throws_ok(
   $$update public.activity_logs
@@ -346,17 +354,13 @@ select is(
   (select id from public.demo_workspaces where slug = 'prime-legacy-properties-test'),
   'workspace creation switches to the new active workspace'
 );
-select is(
-  (
-    select count(*)
-    from pg_proc p
-    join pg_namespace n on n.oid = p.pronamespace
-    where n.nspname = 'public'
-      and p.proname = 'create_demo_workspace'
-      and p.pronargs = 3
-  ),
-  0::bigint,
+select ok(
+  to_regprocedure('public.create_demo_workspace(text,text,text)') is null,
   'workspace creation does not expose an archived-status argument'
+);
+select ok(
+  to_regprocedure('public.create_demo_workspace(text,text)') is not null,
+  'workspace creation exposes the authoritative name-and-slug signature'
 );
 select throws_ok(
   $$select public.create_demo_workspace('Duplicate', 'prime-legacy-properties-test')$$,

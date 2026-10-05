@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MIGRATION = ROOT / "supabase" / "migrations" / "20261003134629_demo_workspaces_phase_1.sql"
+HARDENING_MIGRATION = ROOT / "supabase" / "migrations" / "20261005125811_demo_workspaces_phase_1_hardening.sql"
 ADMIN_PAGES = [
     "admin-dashboard.html", "properties.html", "leads.html", "staff.html",
     "settings.html", "cms.html", "admin-team.html",
@@ -25,6 +26,8 @@ def require(condition, message):
 
 
 sql = MIGRATION.read_text(encoding="utf-8").lower()
+require(HARDENING_MIGRATION.is_file(), "forward hardening migration missing")
+hardening_sql = HARDENING_MIGRATION.read_text(encoding="utf-8").lower()
 workspace_js = (ROOT / "workspace.js").read_text(encoding="utf-8")
 
 require("create table if not exists public.demo_workspaces" in sql, "workspace table missing")
@@ -75,6 +78,32 @@ require("revoke update, delete on public.activity_logs from authenticated" in sq
 require("create policy workspace_update on public.activity_logs" not in sql, "audit logs must not have an UPDATE policy")
 require("create policy workspace_insert on public.activity_logs" in sql, "audit log append policy missing")
 require("p_status" not in workspace_js, "shared frontend workspace creation must not expose status")
+
+require(
+    "revoke execute on function public.create_demo_workspace(text, text, text)" in hardening_sql,
+    "legacy workspace RPC execution is not revoked before removal",
+)
+require(
+    "drop function if exists public.create_demo_workspace(text, text, text)" in hardening_sql,
+    "legacy three-argument workspace RPC is not safely removed",
+)
+require(
+    "create or replace function public.create_demo_workspace" in hardening_sql
+    and "public.create_demo_workspace(text, text)" in hardening_sql,
+    "forward migration does not reassert the two-argument workspace RPC",
+)
+require("private.is_current_workspace_super_admin()" in hardening_sql, "forward RPC authorization check missing")
+require("values (clean_name, clean_slug, 'active', caller_id)" in hardening_sql, "forward RPC can create a non-active workspace")
+require("perform public.switch_demo_workspace(created_workspace.id)" in hardening_sql, "forward RPC does not auto-switch")
+require("exception when unique_violation" in hardening_sql, "forward RPC duplicate-slug protection missing")
+require("security definer" in hardening_sql and "set search_path = ''" in hardening_sql, "forward RPC security settings missing")
+require("policy.polcmd in ('w', 'd')" in hardening_sql, "forward migration does not remove audit mutation policies")
+require("drop policy if exists workspace_select on public.activity_logs" in hardening_sql, "audit SELECT policy is not repeatably replaced")
+require("drop policy if exists workspace_insert on public.activity_logs" in hardening_sql, "audit INSERT policy is not repeatably replaced")
+require("create policy workspace_select on public.activity_logs" in hardening_sql, "workspace-scoped audit SELECT missing")
+require("create policy workspace_insert on public.activity_logs" in hardening_sql, "workspace-scoped audit INSERT missing")
+require("revoke all privileges on table public.activity_logs from authenticated" in hardening_sql, "audit privileges are not reset")
+require("grant select, insert on table public.activity_logs to authenticated" in hardening_sql, "required audit privileges are not restored")
 
 for page in ADMIN_PAGES:
     html = (ROOT / page).read_text(encoding="utf-8")
