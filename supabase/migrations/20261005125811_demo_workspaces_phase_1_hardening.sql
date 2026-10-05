@@ -111,7 +111,15 @@ create policy workspace_insert on public.activity_logs
 for insert to authenticated
 with check (workspace_id = (select private.current_demo_workspace_id()));
 
+revoke update, delete on table public.activity_logs from public, anon;
 revoke all privileges on table public.activity_logs from authenticated;
 grant select, insert on table public.activity_logs to authenticated;
+
+-- The pre-workspace Services Showcase policy used FOR ALL. Restore its DELETE
+-- capability without reopening cross-workspace access on already-migrated DBs.
+drop policy if exists workspace_delete on public.cms_service_showcase_items;
+create policy workspace_delete on public.cms_service_showcase_items
+for delete to authenticated
+using (workspace_id = (select private.current_demo_workspace_id()));
 
 commit;

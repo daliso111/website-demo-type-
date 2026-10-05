@@ -74,9 +74,16 @@ require("archive_demo_workspace" in workspace_js, "shared context does not suppo
 require("workspace.status === 'active'" in workspace_js, "archived workspaces are not filtered")
 require("withWorkspace" in workspace_js and "scope" in workspace_js, "shared query/mutation utilities missing")
 require("'workspace public media reads','workspace authenticated media reads'" in sql, "workspace storage policies are not repeatably replaced")
-require("revoke update, delete on public.activity_logs from authenticated" in sql, "audit mutation privileges remain enabled")
+require(
+    "revoke update, delete on public.activity_logs from public, anon, authenticated" in sql,
+    "audit mutation privileges remain enabled",
+)
 require("create policy workspace_update on public.activity_logs" not in sql, "audit logs must not have an UPDATE policy")
 require("create policy workspace_insert on public.activity_logs" in sql, "audit log append policy missing")
+require(
+    "create policy workspace_delete on public.cms_service_showcase_items" in sql,
+    "existing service showcase delete capability was not workspace-scoped",
+)
 require("p_status" not in workspace_js, "shared frontend workspace creation must not expose status")
 
 require(
@@ -104,6 +111,10 @@ require("create policy workspace_select on public.activity_logs" in hardening_sq
 require("create policy workspace_insert on public.activity_logs" in hardening_sql, "workspace-scoped audit INSERT missing")
 require("revoke all privileges on table public.activity_logs from authenticated" in hardening_sql, "audit privileges are not reset")
 require("grant select, insert on table public.activity_logs to authenticated" in hardening_sql, "required audit privileges are not restored")
+require(
+    "create policy workspace_delete on public.cms_service_showcase_items" in hardening_sql,
+    "forward migration does not restore workspace-scoped service showcase deletes",
+)
 
 for page in ADMIN_PAGES:
     html = (ROOT / page).read_text(encoding="utf-8")

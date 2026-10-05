@@ -861,11 +861,14 @@ using (workspace_id = (select private.current_demo_workspace_id()));
 create policy workspace_insert on public.activity_logs
 for insert to authenticated
 with check (workspace_id = (select private.current_demo_workspace_id()));
-revoke update, delete on public.activity_logs from authenticated;
+revoke update, delete on public.activity_logs from public, anon, authenticated;
 grant select, insert on public.activity_logs to authenticated;
 
--- Preserve the existing delete capability only where it already existed.
+-- Preserve existing delete capabilities only where they already existed.
 create policy workspace_delete on public.team_members
+for delete to authenticated
+using (workspace_id = (select private.current_demo_workspace_id()));
+create policy workspace_delete on public.cms_service_showcase_items
 for delete to authenticated
 using (workspace_id = (select private.current_demo_workspace_id()));
 

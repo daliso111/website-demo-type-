@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(55);
+select plan(58);
 
 select ok(
   (select count(*) = 1 from public.demo_workspaces where is_public_default = true and slug = 'hilltop-template'),
@@ -117,6 +117,11 @@ values (
   'a5000000-0000-4000-8000-000000000001', 'Workspace A Team Member',
   'Agent', 'Workspace A Branch', '+260111111112', 'Workspace A test member'
 );
+insert into public.cms_service_showcase_items (id, title, description)
+values (
+  'a7000000-0000-4000-8000-000000000001',
+  'Workspace A Service Showcase', 'Workspace A test service'
+);
 
 select lives_ok(
   $$select public.switch_demo_workspace('bbbbbbbb-0000-4000-8000-000000000002')$$,
@@ -151,6 +156,11 @@ values (
   'b5000000-0000-4000-8000-000000000001', 'Workspace B Team Member',
   'Agent', 'Workspace B Branch', '+260222222223', 'Workspace B test member'
 );
+insert into public.cms_service_showcase_items (id, title, description)
+values (
+  'b7000000-0000-4000-8000-000000000001',
+  'Workspace B Service Showcase', 'Workspace B test service'
+);
 
 select public.switch_demo_workspace('aaaaaaaa-0000-4000-8000-000000000001');
 
@@ -184,12 +194,27 @@ select is_empty(
   'Workspace A cannot DELETE Workspace B where delete capability exists'
 );
 
+select is_empty(
+  $$delete from public.cms_service_showcase_items
+    where id = 'b7000000-0000-4000-8000-000000000001'
+    returning id$$,
+  'Workspace A cannot DELETE Workspace B service showcase items'
+);
+
 select results_eq(
   $$delete from public.team_members
     where id = 'a5000000-0000-4000-8000-000000000001'
     returning id$$,
   $$values ('a5000000-0000-4000-8000-000000000001'::uuid)$$,
   'same-workspace delete capability remains available where it existed previously'
+);
+
+select results_eq(
+  $$delete from public.cms_service_showcase_items
+    where id = 'a7000000-0000-4000-8000-000000000001'
+    returning id$$,
+  $$values ('a7000000-0000-4000-8000-000000000001'::uuid)$$,
+  'same-workspace service showcase delete remains available as before Phase 1'
 );
 
 select throws_ok(
@@ -417,6 +442,12 @@ select is(
   (select count(*) from public.team_members where id = 'b5000000-0000-4000-8000-000000000001'),
   1::bigint,
   'cross-workspace DELETE attempt leaves Workspace B unchanged'
+);
+select is(
+  (select count(*) from public.cms_service_showcase_items
+    where id = 'b7000000-0000-4000-8000-000000000001'),
+  1::bigint,
+  'cross-workspace service showcase DELETE leaves Workspace B unchanged'
 );
 select is(
   (select description from public.activity_logs where id = 'a6000000-0000-4000-8000-000000000001'),
