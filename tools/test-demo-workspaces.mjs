@@ -19,6 +19,7 @@ const storage = new Map();
 const events = [];
 const listeners = new Map();
 let profileRefreshes = 0;
+let createArgs = null;
 
 storage.set('ithaca.activeWorkspace.' + userId, workspaces[1].id);
 
@@ -55,6 +56,7 @@ const supabase = {
       return { data: target.demo_workspaces, error: null };
     }
     if (name === 'create_demo_workspace') {
+      createArgs = args;
       if (workspaces.some((item) => item.slug === args.p_slug)) {
         return { data: null, error: { code: '23505', message: 'A workspace with this slug already exists.' } };
       }
@@ -62,7 +64,7 @@ const supabase = {
         id: '44444444-4444-4444-8444-' + String(workspaces.length).padStart(12, '0'),
         name: args.p_name,
         slug: args.p_slug,
-        status: args.p_status
+        status: 'active'
       };
       workspaces.push(workspace);
       memberships.forEach((item) => { item.is_current = false; });
@@ -143,12 +145,17 @@ assert.equal(api.scope(query), query);
 assert.deepEqual(scopedCalls, [['workspace_id', workspaces[0].id]], 'queries are explicitly workspace scoped');
 assert.ok(api.storagePath('property/images/test.jpg').startsWith(workspaces[0].id + '/'));
 
-const created = await api.create({ name: 'Prime Legacy Properties', slug: 'prime-legacy-properties', status: 'active' });
+const created = await api.create({ name: 'Prime Legacy Properties', slug: 'prime-legacy-properties', status: 'archived' });
 assert.equal(api.getActive().id, created.id, 'creation automatically switches to the new workspace');
 assert.equal(api.getActive().slug, 'prime-legacy-properties', 'workspace creation works');
+assert.equal(created.status, 'active', 'workspace creation always produces an active workspace');
+assert.deepEqual(createArgs, {
+  p_name: 'Prime Legacy Properties',
+  p_slug: 'prime-legacy-properties'
+}, 'shared frontend API does not expose archived workspace creation');
 const eventCountBeforeDuplicate = events.length;
 await assert.rejects(
-  api.create({ name: 'Duplicate', slug: 'prime-legacy-properties', status: 'active' }),
+  api.create({ name: 'Duplicate', slug: 'prime-legacy-properties' }),
   /already exists/,
   'duplicate slugs are rejected'
 );

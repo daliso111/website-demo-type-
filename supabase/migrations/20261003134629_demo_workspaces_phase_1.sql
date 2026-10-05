@@ -641,8 +641,7 @@ $$;
 
 create or replace function public.create_demo_workspace(
   p_name text,
-  p_slug text,
-  p_status text default 'active'
+  p_slug text
 )
 returns public.demo_workspaces
 language plpgsql
@@ -664,13 +663,9 @@ begin
   if clean_slug is null or clean_slug !~ '^[a-z0-9]+(?:-[a-z0-9]+)*$' or char_length(clean_slug) > 80 then
     raise exception using errcode = '22023', message = 'Workspace slug must use lowercase letters, numbers, and single hyphens.';
   end if;
-  if p_status not in ('active', 'archived') then
-    raise exception using errcode = '22023', message = 'Workspace status must be active or archived.';
-  end if;
-
   begin
     insert into public.demo_workspaces (name, slug, status, created_by)
-    values (clean_name, clean_slug, p_status, caller_id)
+    values (clean_name, clean_slug, 'active', caller_id)
     returning * into created_workspace;
   exception when unique_violation then
     raise exception using errcode = '23505', message = 'A workspace with this slug already exists.';
@@ -682,9 +677,7 @@ begin
     created_workspace.id, caller_id, 'super_admin', 'active', false, caller_id
   );
 
-  if p_status = 'active' then
-    perform public.switch_demo_workspace(created_workspace.id);
-  end if;
+  perform public.switch_demo_workspace(created_workspace.id);
 
   return created_workspace;
 end;
@@ -769,10 +762,10 @@ end;
 $$;
 
 revoke all on function public.switch_demo_workspace(uuid) from public;
-revoke all on function public.create_demo_workspace(text, text, text) from public;
+revoke all on function public.create_demo_workspace(text, text) from public;
 revoke all on function public.archive_demo_workspace(uuid) from public;
 grant execute on function public.switch_demo_workspace(uuid) to authenticated;
-grant execute on function public.create_demo_workspace(text, text, text) to authenticated;
+grant execute on function public.create_demo_workspace(text, text) to authenticated;
 grant execute on function public.archive_demo_workspace(uuid) to authenticated;
 
 -- Workspace and membership tables expose only the caller's authorized list.
@@ -825,13 +818,14 @@ begin
 end;
 $$;
 
--- Common current-workspace SELECT/INSERT/UPDATE rules.
+-- Common current-workspace SELECT/INSERT/UPDATE rules. Activity logs are
+-- deliberately handled separately below because audit records are immutable.
 do $$
 declare
   table_name text;
   common_tables constant text[] := array[
     'branches','staff_users','properties','property_images','property_documents',
-    'leads','activity_logs','lead_communication_logs','app_settings',
+    'leads','lead_communication_logs','app_settings',
     'cms_homepage_content','cms_banners','cms_team_profiles','cms_testimonials',
     'cms_featured_properties','cms_service_showcase_items','team_members'
   ];
@@ -856,6 +850,19 @@ begin
   end loop;
 end;
 $$;
+
+-- Preserve the pre-workspace append-only audit model: authenticated users can
+-- read and append logs only inside their selected workspace. Table privileges
+-- also deny mutation even if a permissive policy is added accidentally later.
+alter table public.activity_logs enable row level security;
+create policy workspace_select on public.activity_logs
+for select to authenticated
+using (workspace_id = (select private.current_demo_workspace_id()));
+create policy workspace_insert on public.activity_logs
+for insert to authenticated
+with check (workspace_id = (select private.current_demo_workspace_id()));
+revoke update, delete on public.activity_logs from authenticated;
+grant select, insert on public.activity_logs to authenticated;
 
 -- Preserve the existing delete capability only where it already existed.
 create policy workspace_delete on public.team_members

@@ -33,6 +33,9 @@ require("constraint demo_workspaces_slug_key unique (slug)" in sql, "slug unique
 require("status in ('active', 'archived')" in sql, "archive status missing")
 require("on delete restrict" in sql, "safe workspace delete behavior missing")
 require("create or replace function public.create_demo_workspace" in sql, "atomic create function missing")
+require("public.create_demo_workspace(text, text)" in sql, "workspace creation must expose only name and slug")
+require("public.create_demo_workspace(text, text, text)" not in sql, "workspace creation must not accept status")
+require("values (clean_name, clean_slug, 'active', caller_id)" in sql, "new workspaces must be active")
 require("create or replace function public.switch_demo_workspace" in sql, "atomic switch function missing")
 require("create or replace function public.archive_demo_workspace" in sql, "archive function missing")
 require("perform public.switch_demo_workspace(created_workspace.id)" in sql, "new workspace does not auto-switch")
@@ -68,6 +71,10 @@ require("archive_demo_workspace" in workspace_js, "shared context does not suppo
 require("workspace.status === 'active'" in workspace_js, "archived workspaces are not filtered")
 require("withWorkspace" in workspace_js and "scope" in workspace_js, "shared query/mutation utilities missing")
 require("'workspace public media reads','workspace authenticated media reads'" in sql, "workspace storage policies are not repeatably replaced")
+require("revoke update, delete on public.activity_logs from authenticated" in sql, "audit mutation privileges remain enabled")
+require("create policy workspace_update on public.activity_logs" not in sql, "audit logs must not have an UPDATE policy")
+require("create policy workspace_insert on public.activity_logs" in sql, "audit log append policy missing")
+require("p_status" not in workspace_js, "shared frontend workspace creation must not expose status")
 
 for page in ADMIN_PAGES:
     html = (ROOT / page).read_text(encoding="utf-8")

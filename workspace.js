@@ -241,21 +241,16 @@
   async function createWorkspace(input) {
     var name = String(input && input.name || '').trim();
     var slug = String(input && input.slug || '').trim().toLowerCase();
-    var status = String(input && input.status || 'active').toLowerCase();
     var nameError = validateName(name);
     var slugError = validateSlug(slug);
     if (nameError || slugError) throw new Error(nameError || slugError);
-    if (status !== 'active' && status !== 'archived') {
-      throw new Error('Workspace status must be active or archived.');
-    }
     if (state.workspaces.some(function(item) { return item.slug === slug; })) {
       throw new Error('A workspace with this slug already exists.');
     }
 
     var response = await getClient().rpc('create_demo_workspace', {
       p_name: name,
-      p_slug: slug,
-      p_status: status
+      p_slug: slug
     });
     if (response.error) {
       if (response.error.code === '23505' || /already exists|duplicate/i.test(response.error.message || '')) {
@@ -403,7 +398,6 @@
         '<form id="workspaceCreateForm" novalidate>',
           '<label>Workspace Name<input id="workspaceName" name="name" maxlength="120" autocomplete="off" required></label>',
           '<label>Workspace Slug<input id="workspaceSlug" name="slug" maxlength="80" autocomplete="off" required><small>Lowercase letters, numbers, and hyphens.</small></label>',
-          '<label>Status<select id="workspaceCreateStatus" name="status"><option value="active">Active</option></select></label>',
           '<p class="workspace-dialog__error" id="workspaceCreateError" role="alert"></p>',
           '<div class="workspace-dialog__actions"><button type="button" class="workspace-button workspace-button--secondary" data-workspace-close>Cancel</button>',
           '<button type="submit" class="workspace-button workspace-button--primary" id="workspaceCreateSubmit">Create Workspace</button></div>',
@@ -437,8 +431,7 @@
       try {
         await createWorkspace({
           name: nameInput.value,
-          slug: slugInput.value,
-          status: dialog.querySelector('#workspaceCreateStatus').value
+          slug: slugInput.value
         });
       } catch (error) {
         errorNode.textContent = error.message || 'Workspace could not be created.';

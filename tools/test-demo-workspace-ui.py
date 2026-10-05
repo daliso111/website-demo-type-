@@ -47,9 +47,10 @@ with sync_playwright() as playwright:
             return {data:{id:args.p_workspace_id},error:null};
           }
           if(name==='create_demo_workspace'){
+            window.__createArgs=args;
             const id='44444444-4444-4444-8444-444444444444';
             window.__memberships.forEach(row=>row.is_current=false);
-            const workspace={id,name:args.p_name,slug:args.p_slug,status:args.p_status};
+            const workspace={id,name:args.p_name,slug:args.p_slug,status:'active'};
             window.__memberships.push({workspace_id:id,role:'super_admin',status:'active',is_current:true,demo_workspaces:workspace});
             return {data:workspace,error:null};
           }
@@ -71,11 +72,16 @@ with sync_playwright() as playwright:
     selector.select_option("__create_workspace__")
     dialog = page.locator("#workspaceCreateDialog")
     dialog.wait_for(state="visible")
+    assert page.get_by_label("Status").count() == 0
     page.get_by_label("Workspace Name").fill("Rocky Property Network")
     assert page.get_by_label("Workspace Slug").input_value() == "rocky-property-network"
     page.screenshot(path=str(OUT / "create-workspace-dialog.png"), full_page=True)
     page.get_by_role("button", name="Create Workspace", exact=True).click()
     page.wait_for_function("window.HilltopWorkspace.getActive().slug === 'rocky-property-network'")
+    assert page.evaluate("window.__createArgs") == {
+        "p_name": "Rocky Property Network",
+        "p_slug": "rocky-property-network",
+    }
     assert selector.input_value() == "44444444-4444-4444-8444-444444444444"
     assert not dialog.is_visible()
     assert errors == [], errors
@@ -88,6 +94,7 @@ report = {
         "archived workspace is excluded",
         "create option is available to super admins",
         "slug is suggested from the workspace name",
+        "creation status is not exposed",
         "creation switches the active selector",
         "no page errors",
     ],
@@ -95,4 +102,3 @@ report = {
 }
 (OUT / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 print(json.dumps(report, indent=2))
-
