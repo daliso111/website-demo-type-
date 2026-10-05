@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Menu icon">
+  <g fill="none" stroke="#ffffff" stroke-width="32" stroke-linejoin="round">
+    <rect x="27" y="31" width="177" height="177" rx="59" />
+    <rect x="300" y="31" width="177" height="177" rx="59" />
+    <rect x="27" y="303" width="177" height="177" rx="59" />
+    <rect x="300" y="303" width="177" height="177" rx="59" />
+  </g>
+</svg>

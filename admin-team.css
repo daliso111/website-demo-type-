@@ -1,0 +1,621 @@
+/* ============================================================
+   HILLTOP PROPERTIES ZAMBIA — TEAM MEMBERS DASHBOARD
+   admin-team.css
+   ============================================================ */
+
+/* ── SIDEBAR LINK STATE PROTECTION ───────────────────────────── */
+.sidebar-nav a,
+.sidebar-nav a:link,
+.sidebar-nav a:visited,
+.sidebar-nav a:hover,
+.sidebar-nav a:active,
+.sidebar-nav a:focus,
+.nav-link,
+.nav-link:link,
+.nav-link:visited,
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  text-decoration: none !important;
+  color: inherit !important;
+  outline: none;
+}
+
+/* ── STATS GRID ──────────────────────────────────────────────── */
+.team-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1100px) {
+  .team-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .team-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── TABLE VIEW ──────────────────────────────────────────────── */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.team-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.team-table th,
+.team-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.team-table th {
+  font-weight: 600;
+  color: var(--text-mid);
+  background: var(--surface);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.team-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.team-table tbody tr:hover {
+  background: rgba(234, 236, 240, 0.3);
+}
+
+.team-avatar-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.team-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-name-cell {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.team-contacts-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.team-contacts-cell a {
+  color: var(--text-mid);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.team-contacts-cell a:hover {
+  color: var(--army);
+}
+
+/* Branch & Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.badge-lusaka {
+  background: rgba(42, 127, 136, 0.06);
+  color: var(--teal);
+  border-color: rgba(42, 127, 136, 0.15);
+}
+
+.badge-livingstone {
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--gold);
+  border-color: rgba(201, 168, 76, 0.18);
+}
+
+.badge-headoffice {
+  background: rgba(74, 94, 58, 0.06);
+  color: var(--army);
+  border-color: rgba(74, 94, 58, 0.15);
+}
+
+.badge-other {
+  background: rgba(74, 85, 104, 0.06);
+  color: var(--text-mid);
+  border-color: rgba(74, 85, 104, 0.12);
+}
+
+.badge-active {
+  background: #ebfbee;
+  color: #2b8a3e;
+  border-color: #d3f9d8;
+}
+
+.badge-hidden {
+  background: #fff5f5;
+  color: #c92a2a;
+  border-color: #ffe3e3;
+}
+
+/* Order input display */
+.display-order-cell {
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* Row Action Buttons */
+.row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-row {
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text-mid);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-row:hover {
+  background: var(--surface-alt);
+  color: var(--navy);
+  border-color: var(--text-light);
+}
+
+.btn-row.btn-delete {
+  color: #c92a2a;
+  border-color: rgba(201, 42, 42, 0.2);
+}
+
+.btn-row.btn-delete:hover {
+  background: #fff5f5;
+  border-color: #c92a2a;
+}
+
+/* ── MODALS & OVERLAYS ───────────────────────────────────────── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 42, 0.55);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-card {
+  background: var(--white);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 32px;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--text-light);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--navy);
+}
+
+.modal-heading {
+  margin-bottom: 28px;
+}
+
+.modal-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.modal-heading p {
+  font-size: 14px;
+  color: var(--text-mid);
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+label.required span::after {
+  content: " *";
+  color: #c92a2a;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--army);
+  box-shadow: 0 0 0 3px rgba(74, 94, 58, 0.12);
+}
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+  border-color: #c92a2a;
+  box-shadow: 0 0 0 3px rgba(201, 42, 42, 0.12);
+}
+
+.field-error {
+  font-size: 11px;
+  color: #c92a2a;
+  margin-top: 4px;
+  min-height: 15px;
+  display: block;
+}
+
+.field-helper {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.char-counter-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.char-counter {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.char-counter.warning {
+  color: #c92a2a;
+}
+
+/* Image upload controls */
+.image-upload-block {
+  display: flex;
+  gap: 20px;
+  background: var(--surface);
+  padding: 18px;
+  border-radius: 2px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 480px) {
+  .image-upload-block {
+    flex-direction: column-reverse;
+  }
+}
+
+.image-fields {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.file-picker-label input {
+  margin-top: 4px;
+}
+
+.image-upload-preview {
+  width: 90px;
+  height: 90px;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--white);
+  flex-shrink: 0;
+}
+
+.image-upload-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.form-checkbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.form-checkbox label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 20px;
+}
+
+/* ── PUBLIC PREVIEW BLOCK ────────────────────────────────────── */
+.preview-modal-card {
+  max-width: 460px;
+}
+
+.preview-stage {
+  padding: 24px 0 10px;
+  display: flex;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: 2px;
+  border: 1px solid var(--border-light);
+}
+
+/* Replicate public site team card styles in preview modal */
+.preview-stage .team-card {
+  width: 320px;
+  background: var(--white);
+  border: 1px solid rgba(13, 27, 42, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(13, 27, 42, 0.02);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.preview-stage .team-card-image-wrapper {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-alt);
+  position: relative;
+}
+
+.preview-stage .team-card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-stage .team-card-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.preview-stage .team-card-branch-badge {
+  align-self: flex-start;
+  background: rgba(74, 94, 58, 0.06);
+  color: var(--army);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(74, 94, 58, 0.12);
+}
+
+.preview-stage .team-card-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.preview-stage .team-card-role {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--army-light);
+  margin-bottom: 16px;
+}
+
+.preview-stage .team-card-bio {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-mid);
+  margin-bottom: 24px;
+}
+
+.preview-stage .team-card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.preview-stage .team-card-btn {
+  flex: 1;
+  text-align: center;
+  padding: 11px 14px;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.preview-stage .team-card-btn--call {
+  border: 1px solid rgba(13, 27, 42, 0.15);
+  color: var(--navy);
+  background: transparent;
+}
+
+.preview-stage .team-card-btn--whatsapp {
+  background: var(--army);
+  color: var(--white);
+  border: 1px solid var(--army);
+}
+
+/* ── EMPTY STATE & TOAST ─────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+/* Toast styling matching the main panel style */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  z-index: 2000;
+  border-left: 4px solid var(--army);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}

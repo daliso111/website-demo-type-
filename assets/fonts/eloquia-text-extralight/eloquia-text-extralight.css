@@ -1,0 +1,24 @@
+/*
+Font: 		Eloquia Text ExtLt
+Style: 		Regular
+URL: 		https://youworkforthem.com/font/T13514/eloquia
+Foundry: 	Typekiln
+Foundry: 	https://youworkforthem.com/designer/1491/typekiln
+Copyright:	©2020 Typekiln.
+Version: 	18
+Created:	April 02, 2026
+License: 	https://www.youworkforthem.com/font-license 
+License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
+			WebFont license rules. All other parties are strictly restricted 
+			from using the WebFonts(s) listed without a purchased license. 
+			All details above must always remain unaltered and visible in your CSS.
+*/
+
+@font-face {
+	font-family: 'EloquiaText-ExtraLight';
+	src: url('eloquia-text-extralight.woff2') format('woff2'),
+	     url('eloquia-text-extralight.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

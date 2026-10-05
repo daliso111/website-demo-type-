@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View public property details from Hilltop Properties Zambia." />
+  <title>Property Details | Hilltop Properties Zambia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/fonts/proda-sans-medium/proda-sans-medium.css" />
+  <link rel="stylesheet" href="assets/fonts/concise-regular-demo/concise-regular-demo.css" />
+  <link rel="stylesheet" href="assets/fonts/ywft-brooklyn-semi-bold-regular-demo/ywft-brooklyn-semi-bold-regular-demo.css" />
+  <link rel="stylesheet" href="website.css?v=20260909-property-card-type" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="property-details.css?v=20260909-property-card-type" />
+  <link rel="stylesheet" href="whatsapp-cta.css?v=20260922-position-1" />
+</head>
+<body class="property-details-page">
+  <header class="site-header">
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html#home">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="listings.html">Listings</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Hilltop Properties Zambia home">
+      HILLTOP
+    </a>
+    <div class="header-actions">
+      <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+        aria-label="Open menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <div class="nav-overlay" id="navOverlay"></div>
+  </header>
+
+  <main>
+    <div class="site-status" id="detailsStatus">Loading property details...</div>
+
+    <section class="details-hero hidden" id="detailsContent">
+      <div class="details-gallery">
+        <div class="main-image" id="mainImage">
+          <div class="main-image-media" id="mainImageMedia">
+            <span>Hilltop Property</span>
+          </div>
+          <button class="gallery-hero-nav gallery-hero-prev hidden" id="galleryPreviousButton" type="button" aria-label="View previous property photo">
+            <img src="assets/images/left-arrow-next.svg" alt="" aria-hidden="true">
+          </button>
+          <button class="gallery-hero-nav gallery-hero-next hidden" id="galleryNextButton" type="button" aria-label="View next property photo">
+            <img src="assets/images/left-arrow-next.svg" alt="" aria-hidden="true">
+          </button>
+          <div class="gallery-hero-dots hidden" id="galleryDots" aria-label="Choose a property photo"></div>
+          <div class="gallery-hero-count hidden" id="galleryCount" aria-live="polite"></div>
+        </div>
+        <div class="thumbnail-row" id="thumbnailRow"></div>
+        <div class="gallery-collapse-row hidden" id="galleryCollapseRow">
+          <button class="gallery-collapse-button" id="galleryCollapseButton" type="button">Show Fewer Photos</button>
+        </div>
+      </div>
+
+      <article class="details-summary">
+        <nav class="property-breadcrumb" aria-label="Breadcrumb">
+          <a href="listings.html">Properties</a>
+          <span class="property-breadcrumb-separator" aria-hidden="true">/</span>
+          <span id="propertyBreadcrumbArea">Area</span>
+          <span class="property-breadcrumb-separator" aria-hidden="true">/</span>
+          <span class="property-breadcrumb-current" id="propertyBreadcrumbTitle" aria-current="page">Property Details</span>
+        </nav>
+        <div class="details-title-row">
+          <h1 id="propertyTitle">Property Details</h1>
+        </div>
+        <div class="details-location-block hidden" id="propertyLocationText">
+          <p class="details-location-name" id="propertyLocationName"></p>
+        </div>
+        <p class="details-price" id="propertyPrice" aria-live="polite">Loading price…</p>
+        <div class="details-tags" id="propertyHighlights" aria-label="Property highlights"></div>
+      </article>
+    </section>
+
+    <section class="section details-body hidden" id="detailsBody">
+      <div class="property-detail-flow">
+        <section class="detail-flow-section description-section" aria-labelledby="descriptionTitle">
+          <h2 class="detail-section-label" id="descriptionTitle">Description</h2>
+          <div class="description-copy is-collapsed" id="propertyDescriptionWrap">
+            <p id="propertyDescription">Details available on request.</p>
+          </div>
+          <button class="description-toggle" id="descriptionToggle" type="button" aria-expanded="false"
+            aria-controls="propertyDescriptionWrap">Read more</button>
+          <div class="media-links" id="mediaLinks"></div>
+        </section>
+
+        <section class="detail-flow-section facts-section" aria-labelledby="propertyFactsTitle">
+          <h2 class="detail-section-label" id="propertyFactsTitle">Property Facts</h2>
+          <div class="facts-grid" id="factsGrid"></div>
+        </section>
+
+        <section class="detail-flow-section amenities-section" aria-labelledby="amenitiesTitle">
+          <h2 class="detail-section-label" id="amenitiesTitle">Amenities</h2>
+          <ul class="amenities-grid" id="amenitiesList"></ul>
+        </section>
+
+        <section class="detail-flow-section market-insights-section" id="marketInsightsSection"
+          aria-labelledby="marketInsightsTitle" hidden>
+          <div class="market-insights-block">
+            <h2 class="market-insights-heading" id="marketInsightsTitle">Average price by bedroom</h2>
+            <p class="market-insights-summary" id="marketInsightsAreaSummary"></p>
+
+            <div class="market-insights-table-frame">
+              <table class="market-insights-table">
+                <caption class="market-insights-caption">Average property prices by bedroom category</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody id="marketInsightsPriceBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="market-insights-block market-insights-trends">
+            <h2 class="market-insights-heading" id="marketInsightsTrendsTitle">Price Trends</h2>
+            <p class="market-insights-summary" id="marketInsightsTrendSummary"></p>
+
+            <div class="market-insights-chart-wrap">
+              <div class="market-price-chart" id="marketInsightsPriceChart" role="group"
+                aria-label="Historical average property price trend chart">
+                <p class="market-price-chart-fallback">Historical average property price trends will be available when market data is loaded.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </section>
+
+    <section class="section property-location-section hidden" id="propertyLocationSection"
+      aria-label="Property location map">
+      <div class="property-location-shell">
+        <div class="property-map" id="propertyMap" role="region"
+          aria-label="Interactive map showing the property location"></div>
+        <div class="property-map-instruction" id="propertyMapInstruction" role="status"
+          aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </section>
+
+    <section class="section property-contact-section hidden" id="propertyContactSection"
+      aria-labelledby="propertyContactTitle">
+      <div class="property-contact-shell">
+        <h2 class="detail-section-label" id="propertyContactTitle">Contact Us</h2>
+
+        <div class="property-contact-grid">
+          <div class="property-contact-intro">
+            <div class="property-agency-row">
+              <div class="property-agency-mark" aria-hidden="true">H</div>
+              <div class="property-agency-copy">
+                <p class="property-agency-name" id="propertyContactBranchName">Hilltop Properties Zambia</p>
+                <p class="property-agency-meta" id="propertyContactBranchAddress"></p>
+                <p class="property-agency-meta" id="propertyContactBranchPhone"></p>
+              </div>
+            </div>
+
+            <div class="property-contact-channels">
+              <a class="property-channel-btn property-channel-whatsapp" id="propertyWhatsappLink" href="#"
+                target="_blank" rel="noopener">
+                <img src="assets/images/whatsapp-contact.png" alt="" />
+                <span>WhatsApp</span>
+              </a>
+              <a class="property-channel-btn property-channel-call" id="propertyCallLink" href="#">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>Call</span>
+              </a>
+            </div>
+          </div>
+
+          <form class="enquiry-form property-contact-form" id="propertyContactForm" novalidate>
+            <input type="hidden" id="propertyContactPropertyId" />
+            <input type="hidden" id="propertyContactBranchId" />
+            <label class="honeypot-field" for="propertyContactWebsiteUrl">Website URL</label>
+            <input class="honeypot-field" type="text" id="propertyContactWebsiteUrl" name="website_url"
+              tabindex="-1" autocomplete="off" />
+
+            <div class="property-contact-field-grid">
+              <label>
+                <span>Your Name</span>
+                <input type="text" id="propertyContactName" placeholder="Enter your name" autocomplete="name" required />
+              </label>
+              <label>
+                <span>Email Address</span>
+                <input type="email" id="propertyContactEmail" placeholder="you@email.com" autocomplete="email" />
+              </label>
+            </div>
+
+            <div class="property-contact-phone-row">
+              <label class="property-contact-code-field">
+                <span>Code</span>
+                <input type="text" id="propertyContactCountryCode" value="+260" inputmode="tel"
+                  autocomplete="tel-country-code" aria-label="Country code" />
+              </label>
+              <label>
+                <span>Phone Number</span>
+                <input type="tel" id="propertyContactPhone" placeholder="Number (required)" inputmode="tel"
+                  autocomplete="tel-national" required />
+              </label>
+            </div>
+
+            <label>
+              <span>Message</span>
+              <textarea id="propertyContactNotes" rows="4" maxlength="1000"></textarea>
+            </label>
+
+            <div class="enquiry-message" id="propertyContactMessage" role="status" aria-live="polite"></div>
+            <button class="property-contact-submit" type="submit" id="propertyContactSubmit">
+              <img src="assets/images/send-message.svg" alt="" aria-hidden="true" />
+              <span>Connect with Hilltop</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section similar-section hidden" id="similarSection" aria-labelledby="similarPropertiesTitle">
+      <div class="section-heading">
+        <p class="eyebrow">More Listings</p>
+        <h2 id="similarPropertiesTitle">Similar Properties</h2>
+      </div>
+      <div class="similar-properties-track" id="similarGrid" aria-label="Similar property recommendations"></div>
+    </section>
+
+    <section class="section property-enquiry-section hidden" id="propertyEnquirySection"
+      aria-label="Property enquiry">
+      <button class="btn primary property-enquiry-cta" type="button" id="detailsEnquiryButton">Enquire About This Property</button>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="enquiryModal" aria-hidden="true">
+    <div class="modal-card enquiry-modal-card" role="dialog" aria-modal="true" aria-labelledby="enquiryModalTitle">
+      <button class="modal-close" type="button" id="enquiryModalClose" aria-label="Close enquiry form">&times;</button>
+      <div class="modal-heading">
+        <p class="eyebrow">Enquiry</p>
+        <h2 id="enquiryModalTitle">Send Property Enquiry</h2>
+        <p id="enquiryPropertyDisplay">Tell us what you are looking for and our team will contact you.</p>
+      </div>
+
+      <form class="enquiry-form" id="enquiryForm" novalidate>
+        <input type="hidden" id="enquiryPropertyId" />
+        <input type="hidden" id="enquiryBranchId" />
+        <label class="honeypot-field" for="enquiryWebsiteUrl">Website URL</label>
+        <input class="honeypot-field" type="text" id="enquiryWebsiteUrl" name="website_url" tabindex="-1" autocomplete="off" />
+
+        <div class="form-grid">
+          <label>
+            <span>Full Name</span>
+            <input type="text" id="enquiryName" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Phone</span>
+            <input type="tel" id="enquiryPhone" autocomplete="tel" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="enquiryEmail" autocomplete="email" />
+          </label>
+        </div>
+
+        <label>
+          <span>Message</span>
+          <textarea id="enquiryNotes" rows="5" maxlength="1000"></textarea>
+        </label>
+
+        <div class="enquiry-message" id="enquiryMessage" role="status" aria-live="polite"></div>
+        <a class="whatsapp-fallback hidden" id="enquiryWhatsappFallback" href="#" target="_blank" rel="noopener">Contact us on WhatsApp</a>
+
+        <button class="btn primary enquiry-submit" type="submit" id="enquirySubmit">Submit Enquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Hilltop Properties Zambia. Public website preview.</p>
+    <a href="login.html">Admin Login</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="currency.js"></script>
+  <script src="market-insights.js?v=20260830-market1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="property-details.js?v=20260908-cooperative-map1"></script>
+  <script src="whatsapp-cta.js?v=20260921-1"></script>
+</body>
+</html>

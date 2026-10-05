@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Members Dashboard — Hilltop Properties Zambia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin-team.css" />
+  <link rel="stylesheet" href="workspace.css" />
+</head>
+<body>
+
+  <!-- MOBILE SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <div class="brand-text">
+        <span class="brand-name">Hilltop</span>
+        <span class="brand-sub">Properties Zambia</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="nav-item" data-page="dashboard">
+          <a href="admin-dashboard.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="properties">
+          <a href="properties.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="nav-label">Properties</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="leads">
+          <a href="leads.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <span class="nav-label">Leads</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="staff">
+          <a href="staff.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <span class="nav-label">Staff &amp; Branches</span>
+          </a>
+        </li>
+        <li class="nav-item active" data-page="team">
+          <a href="admin-team.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+            </span>
+            <span class="nav-label">Team Members</span>
+          </a>
+          <span class="nav-active-bar"></span>
+        </li>
+        <li class="nav-item" data-page="cms">
+          <a href="cms.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </span>
+            <span class="nav-label">Website CMS</span>
+          </a>
+        </li>
+        <li class="nav-item" data-page="settings">
+          <a href="settings.html" class="nav-link">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            </span>
+            <span class="nav-label">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-avatar">A</div>
+      <div class="admin-info">
+        <span class="admin-name">Admin User</span>
+        <span class="admin-role">Super Admin</span>
+      </div>
+      <button class="logout-btn" type="button" data-logout-button>Logout</button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="header-titles">
+          <h1 class="page-title">Team Members</h1>
+          <p class="page-subtitle">Manage the agents and staff displayed on the public website.</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="action-btn primary" id="btnAddTeamMember">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Team Member
+        </button>
+      </div>
+    </header>
+
+    <!-- PAGE BODY -->
+    <div class="page-body">
+
+      <!-- SUMMARY CARDS -->
+      <section class="stats-grid team-stats" id="teamStatsGrid">
+        <div class="stat-card" data-accent="blue">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Total Team Members</p>
+            <p class="stat-number" id="statTotalMembers">0</p>
+            <p class="stat-helper">All entries combined</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="green">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Active Members</p>
+            <p class="stat-number" id="statActiveMembers">0</p>
+            <p class="stat-helper">Visible on website</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="gold">
+          <div class="stat-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Lusaka Branch</p>
+            <p class="stat-number" id="statLusakaMembers">0</p>
+            <p class="stat-helper">Assigned to Lusaka</p>
+          </div>
+        </div>
+        <div class="stat-card" data-accent="teal">
+          <div class="stat-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="stat-body">
+            <p class="stat-label">Livingstone Branch</p>
+            <p class="stat-number" id="statLivingstoneMembers">0</p>
+            <p class="stat-helper">Assigned to Livingstone</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM MEMBERS TABLE BLOCK -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Website Directory List</h2>
+            <p class="section-sub">These team members will display inside the public 'Meet the Team' overlay sorted by display order.</p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="team-table" id="teamTable">
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Full Name</th>
+                <th>Role / Title</th>
+                <th>Branch</th>
+                <th>Contacts</th>
+                <th>Status</th>
+                <th>Display Order</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="teamTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+          <div class="empty-state" id="teamEmptyState" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <h3>No team members found</h3>
+            <p>Try adding a new member to get started.</p>
+            <button class="action-btn primary" id="emptyAddBtn">Add Team Member</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FORM MODAL OVERLAY -->
+  <div class="modal-overlay" id="formModalOverlay" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+    <div class="modal-card">
+      <button class="modal-close" type="button" id="btnCancelForm" aria-label="Close modal">&times;</button>
+      <div class="modal-heading">
+        <h2 id="formTitle">Add Team Member</h2>
+        <p>Enter the profile details for the staff member to show on the public website.</p>
+      </div>
+
+      <form id="teamMemberForm" novalidate>
+        <input type="hidden" id="memberId" />
+        <div class="form-grid">
+          <label class="required">
+            <span>Full Name</span>
+            <input type="text" id="fullName" required placeholder="e.g. Mwansa Kaunda" />
+            <span class="field-error" id="err_fullName"></span>
+          </label>
+
+          <label class="required">
+            <span>Role / Title</span>
+            <input type="text" id="role" required placeholder="e.g. Senior Property Agent" />
+            <span class="field-error" id="err_role"></span>
+          </label>
+
+          <label class="required">
+            <span>Branch</span>
+            <select id="branch" required>
+              <option value="">Select Branch...</option>
+              <option value="Lusaka">Lusaka Branch</option>
+              <option value="Livingstone">Livingstone Branch</option>
+              <option value="Head Office">Head Office</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="field-error" id="err_branch"></span>
+          </label>
+
+          <label class="required">
+            <span>Phone Number</span>
+            <input type="tel" id="phone" required placeholder="e.g. +260 97 789 0123" />
+            <span class="field-error" id="err_phone"></span>
+          </label>
+
+          <label>
+            <span>WhatsApp Link/Number</span>
+            <input type="text" id="whatsapp" placeholder="e.g. +260 97 789 0123 (or empty to fallback)" />
+            <span class="field-helper">If empty, fallback will use the phone number automatically.</span>
+            <span class="field-error" id="err_whatsapp"></span>
+          </label>
+
+          <label>
+            <span>Display Order</span>
+            <input type="number" id="displayOrder" min="0" value="0" />
+            <span class="field-error" id="err_displayOrder"></span>
+          </label>
+        </div>
+
+        <label class="required">
+          <span>Short Bio / Description</span>
+          <textarea id="bio" rows="3" required placeholder="Enter a brief background for the agent..."></textarea>
+          <div class="char-counter-wrap">
+            <span class="field-error" id="err_bio"></span>
+            <span class="char-counter" id="bioCharCounter">0 / 180</span>
+          </div>
+        </label>
+
+        <div class="image-upload-block">
+          <div class="image-fields">
+            <label>
+              <span>Profile Image URL</span>
+              <input type="text" id="imageUrl" placeholder="e.g. https://images.unsplash.com/..." />
+            </label>
+            
+            <label class="file-picker-label">
+              <span>Or Upload Photo File</span>
+              <input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp" />
+              <span class="field-error" id="err_imageFile"></span>
+            </label>
+          </div>
+          <div class="image-upload-preview">
+            <img id="imagePreview" src="assets/avatar-placeholder.png" alt="Profile preview" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80'" />
+          </div>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="isActive" checked />
+          <label for="isActive">Display as Active on public website</label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn outline" id="btnCancelFormAlt">Cancel</button>
+          <button type="submit" class="btn primary" id="btnSaveMember">Save Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PREVIEW MODAL OVERLAY -->
+  <div class="modal-overlay" id="previewModalOverlay" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="modal-card preview-modal-card">
+      <button class="modal-close" type="button" id="btnPrevClose" aria-label="Close preview">&times;</button>
+      <div class="modal-heading">
+        <h2 id="previewTitle">Public Card Preview</h2>
+        <p>This is exactly how this team member's profile will look in the public 'Meet the Team' overlay.</p>
+      </div>
+      
+      <div class="preview-stage">
+        <!-- Inside here we will render the exact same public card structure -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth-guard.js"></script>
+  <script src="workspace.js"></script>
+  <script src="admin-team.js"></script>
+</body>
+</html>

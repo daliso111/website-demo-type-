@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>Hilltop</title>
+  <link rel="stylesheet" href="/construction/admin/admin.css?v=20260828-password-recovery1">
+</head>
+<body>
+  <main class="auth-gate" id="authGate" aria-live="polite">
+    <section class="auth-card">
+      <a href="/construction/" class="auth-card__logo">HILLTOP</a>
+      <div id="authLoading">
+        <p class="eyebrow">Secure administration</p>
+        <h1>Checking your session</h1>
+        <div class="loading-skeleton" aria-label="Checking administrator session"><span></span><span></span></div>
+      </div>
+      <div id="authConfiguration" hidden>
+        <p class="eyebrow">Configuration required</p>
+        <h1>Connect Supabase</h1>
+        <p>Copy <code>supabase-env.example.js</code> to <code>supabase-env.js</code>, then add the project URL and public anonymous key.</p>
+        <p class="auth-error" id="authConfigurationError"></p>
+      </div>
+      <div id="authFailure" hidden>
+        <p class="eyebrow">Session verification</p>
+        <h1>We could not verify your session</h1>
+        <p class="auth-error" id="authFailureMessage" role="alert"></p>
+        <div class="auth-error-actions">
+          <button class="button button--primary" type="button" id="retryAuth">Retry</button>
+          <button class="button button--quiet" type="button" id="errorSignOut">Sign out</button>
+          <button class="button button--text" type="button" id="returnToLogin">Return to login</button>
+        </div>
+      </div>
+      <form id="loginForm" class="auth-form" hidden novalidate>
+        <p class="eyebrow">Homepage administration</p>
+        <h1>Sign in to Hilltop Construction</h1>
+        <p>Use an active administrator or editor account.</p>
+        <div class="field">
+          <label for="loginEmail">Email address</label>
+          <input id="loginEmail" name="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <p class="auth-error" id="loginError" role="alert"></p>
+        <p class="auth-status" id="loginStatus" role="status" aria-live="polite"></p>
+        <button class="button button--primary" type="submit">Sign in</button>
+        <button class="button button--text auth-link" type="button" id="showPasswordRecovery">Forgot password?</button>
+      </form>
+      <form id="passwordRecoveryForm" class="auth-form" hidden novalidate>
+        <p class="eyebrow">Account recovery</p>
+        <h1>Reset your password</h1>
+        <p>Enter the email address connected to your administrator or editor account.</p>
+        <div class="field">
+          <label for="recoveryEmail">Email address</label>
+          <input id="recoveryEmail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <p class="auth-error" id="recoveryError" role="alert"></p>
+        <p class="auth-status" id="recoveryStatus" role="status" aria-live="polite"></p>
+        <button class="button button--primary" type="submit">Send reset link</button>
+        <button class="button button--quiet" type="button" id="cancelPasswordRecovery">Back to sign in</button>
+      </form>
+      <form id="passwordUpdateForm" class="auth-form" hidden novalidate>
+        <p class="eyebrow">Secure account recovery</p>
+        <h1>Choose a new password</h1>
+        <p id="passwordUpdateAccount">Enter a new password for your Hilltop Construction account.</p>
+        <div class="field">
+          <label for="newPassword">New password</label>
+          <input id="newPassword" name="password" type="password" autocomplete="new-password" minlength="12" required>
+        </div>
+        <div class="field">
+          <label for="confirmNewPassword">Confirm new password</label>
+          <input id="confirmNewPassword" name="passwordConfirmation" type="password" autocomplete="new-password" minlength="12" required>
+        </div>
+        <p class="password-requirements">Use at least 12 characters, including uppercase and lowercase letters and a number.</p>
+        <p class="auth-error" id="passwordUpdateError" role="alert"></p>
+        <button class="button button--primary" type="submit">Update password</button>
+      </form>
+    </section>
+  </main>
+
+  <div class="admin-shell" id="adminShell" hidden>
+    <aside class="sidebar" id="sidebar" aria-label="Homepage administration">
+      <div class="sidebar__brand">
+        <a href="#overview" class="sidebar__logo" aria-label="Hilltop Construction admin overview">HILLTOP</a>
+        <button class="icon-button sidebar__collapse" id="sidebarCollapse" type="button" aria-label="Collapse sidebar" aria-expanded="true">←</button>
+      </div>
+      <nav class="sidebar__nav" id="sidebarNav"></nav>
+      <div class="sidebar__footer">
+        <span class="connection-dot" aria-hidden="true"></span>
+        <span class="sidebar__label">Hybrid data · Discovery live</span>
+        <button class="sidebar__signout" type="button" data-action="sign-out">Sign out</button>
+      </div>
+    </aside>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+    <div class="admin-main">
+      <header class="topbar">
+        <div class="topbar__start">
+          <button class="icon-button mobile-menu" id="mobileMenu" type="button" aria-label="Open sidebar" aria-expanded="false">☰</button>
+          <div>
+            <p class="topbar__eyebrow">Homepage content</p>
+            <p class="topbar__crumb" id="breadcrumb">Overview</p>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <span class="save-state" id="saveState">All changes saved</span>
+          <button class="button button--quiet" type="button" data-action="preview">Preview</button>
+          <button class="button button--quiet" type="button" data-action="sign-out">Sign out</button>
+          <button class="button button--primary" type="button" data-action="publish-page">Publish</button>
+        </div>
+      </header>
+
+      <main class="workspace" id="workspace" tabindex="-1">
+        <div class="loading-skeleton" aria-label="Loading dashboard">
+          <span></span><span></span><span></span>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="notification-region" id="notifications" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog class="modal" id="confirmationModal" aria-labelledby="confirmationTitle">
+    <form method="dialog" class="modal__panel">
+      <p class="eyebrow">Please confirm</p>
+      <h2 id="confirmationTitle">Delete this item?</h2>
+      <p id="confirmationMessage">This change is stored only in your local mock data.</p>
+      <div class="modal__actions">
+        <button class="button button--quiet" value="cancel">Cancel</button>
+        <button class="button button--danger" id="confirmAction" value="confirm">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="media-picker-modal" id="projectMediaPicker" aria-labelledby="projectMediaPickerTitle">
+    <div class="media-picker-modal__panel">
+      <header class="media-picker-modal__header">
+        <div>
+          <p class="eyebrow">Homepage media</p>
+          <h2 id="projectMediaPickerTitle">Choose a project image</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-project-media-picker" aria-label="Close media library">×</button>
+      </header>
+      <div class="media-picker-modal__tools">
+        <label class="field field--full">
+          <span class="field__label">Search images</span>
+          <input type="search" id="projectMediaSearch" placeholder="Search filename or alt text" autocomplete="off">
+        </label>
+        <div class="segmented" aria-label="Filter project images">
+          <button type="button" class="is-active" data-project-media-filter="featured">Featured Projects</button>
+          <button type="button" data-project-media-filter="all">All images</button>
+        </div>
+      </div>
+      <p class="media-picker-modal__status" id="projectMediaStatus" aria-live="polite">Loading images…</p>
+      <div class="media-picker-grid" id="projectMediaGrid" role="listbox" aria-label="Available project images"></div>
+      <footer class="media-picker-modal__actions">
+        <button class="button button--quiet" type="button" data-action="close-project-media-picker">Cancel</button>
+        <button class="button button--primary" type="button" data-action="use-project-media" disabled>Use selected image</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="media-picker-modal" id="snapshotMediaPicker" aria-labelledby="snapshotMediaPickerTitle">
+    <div class="media-picker-modal__panel">
+      <header class="media-picker-modal__header">
+        <div>
+          <p class="eyebrow">Business Snapshot media</p>
+          <h2 id="snapshotMediaPickerTitle">Choose background media</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-snapshot-media-picker" aria-label="Close media library">×</button>
+      </header>
+      <div class="media-picker-modal__tools">
+        <label class="field field--full">
+          <span class="field__label">Search media</span>
+          <input type="search" id="snapshotMediaSearch" placeholder="Search filename" autocomplete="off">
+        </label>
+      </div>
+      <p class="media-picker-modal__status" id="snapshotMediaStatus" aria-live="polite">Loading media…</p>
+      <div class="media-picker-grid" id="snapshotMediaGrid" role="listbox" aria-label="Available Business Snapshot media"></div>
+      <footer class="media-picker-modal__actions">
+        <button class="button button--quiet" type="button" data-action="close-snapshot-media-picker">Cancel</button>
+        <button class="button button--primary" type="button" data-action="use-snapshot-media" disabled>Use selected media</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="media-picker-modal" id="expertiseMediaPicker" aria-labelledby="expertiseMediaPickerTitle">
+    <div class="media-picker-modal__panel">
+      <header class="media-picker-modal__header">
+        <div>
+          <p class="eyebrow">Homepage media</p>
+          <h2 id="expertiseMediaPickerTitle">Choose an Expertise image</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-expertise-media-picker" aria-label="Close media library">×</button>
+      </header>
+      <div class="media-picker-modal__tools">
+        <label class="field field--full">
+          <span class="field__label">Search images</span>
+          <input type="search" id="expertiseMediaSearch" placeholder="Search filename or alt text" autocomplete="off">
+        </label>
+        <div class="segmented" aria-label="Filter Expertise images">
+          <button type="button" class="is-active" data-expertise-media-filter="expertise">Expertise</button>
+          <button type="button" data-expertise-media-filter="all">All images</button>
+        </div>
+      </div>
+      <p class="media-picker-modal__status" id="expertiseMediaStatus" aria-live="polite">Loading images…</p>
+      <div class="media-picker-grid" id="expertiseMediaGrid" role="listbox" aria-label="Available Expertise images"></div>
+      <footer class="media-picker-modal__actions">
+        <button class="button button--quiet" type="button" data-action="close-expertise-media-picker">Cancel</button>
+        <button class="button button--primary" type="button" data-action="use-expertise-media" disabled>Use selected image</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="media-picker-modal" id="newsMediaPicker" aria-labelledby="newsMediaPickerTitle">
+    <div class="media-picker-modal__panel">
+      <header class="media-picker-modal__header">
+        <div>
+          <p class="eyebrow">Homepage media</p>
+          <h2 id="newsMediaPickerTitle">Choose a News &amp; Foresight image</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-news-media-picker" aria-label="Close media library">×</button>
+      </header>
+      <div class="media-picker-modal__tools">
+        <label class="field field--full">
+          <span class="field__label">Search images</span>
+          <input type="search" id="newsMediaSearch" placeholder="Search filename or alt text" autocomplete="off">
+        </label>
+        <div class="segmented" aria-label="Filter News images">
+          <button type="button" class="is-active" data-news-media-filter="news">News &amp; Foresight</button>
+          <button type="button" data-news-media-filter="all">All images</button>
+        </div>
+      </div>
+      <p class="media-picker-modal__status" id="newsMediaStatus" aria-live="polite">Loading images…</p>
+      <div class="media-picker-grid" id="newsMediaGrid" role="listbox" aria-label="Available News &amp; Foresight images"></div>
+      <footer class="media-picker-modal__actions">
+        <button class="button button--quiet" type="button" data-action="close-news-media-picker">Cancel</button>
+        <button class="button button--primary" type="button" data-action="use-news-media" disabled>Use selected image</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="media-picker-modal" id="logoMediaPicker" aria-labelledby="logoMediaPickerTitle">
+    <div class="media-picker-modal__panel">
+      <header class="media-picker-modal__header">
+        <div>
+          <p class="eyebrow">Homepage media</p>
+          <h2 id="logoMediaPickerTitle">Choose a Logo Bridge image</h2>
+        </div>
+        <button class="icon-button" type="button" data-action="close-logo-media-picker" aria-label="Close media library">×</button>
+      </header>
+      <div class="media-picker-modal__tools">
+        <label class="field field--full">
+          <span class="field__label">Search logo images</span>
+          <input type="search" id="logoMediaSearch" placeholder="Search filename or alt text" autocomplete="off">
+        </label>
+        <div class="segmented" aria-label="Filter Logo Bridge images">
+          <button type="button" class="is-active" data-logo-media-filter="logos">Logo Bridge</button>
+          <button type="button" data-logo-media-filter="all">All images</button>
+        </div>
+      </div>
+      <p class="media-picker-modal__status" id="logoMediaStatus" aria-live="polite">Loading images…</p>
+      <div class="media-picker-grid" id="logoMediaGrid" role="listbox" aria-label="Available Logo Bridge images"></div>
+      <footer class="media-picker-modal__actions">
+        <button class="button button--quiet" type="button" data-action="close-logo-media-picker">Cancel</button>
+        <button class="button button--primary" type="button" data-action="use-logo-media" disabled>Use selected image</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="preview-modal" id="previewModal" aria-labelledby="previewTitle">
+    <div class="preview-modal__panel">
+      <header class="preview-toolbar">
+        <div>
+          <p class="eyebrow">Integrated preview</p>
+          <h2 id="previewTitle">Homepage draft</h2>
+        </div>
+        <div class="preview-toolbar__actions">
+          <div class="segmented" aria-label="Preview content state">
+            <button type="button" data-preview-mode="draft" class="is-active">Preview draft</button>
+            <button type="button" data-preview-mode="published">Preview published</button>
+          </div>
+          <div class="segmented" aria-label="Preview size">
+            <button type="button" data-preview-size="desktop" class="is-active">Desktop</button>
+            <button type="button" data-preview-size="tablet">Tablet</button>
+            <button type="button" data-preview-size="mobile">Mobile</button>
+          </div>
+          <button class="button button--quiet" type="button" id="openPreviewWindow">Open in new window</button>
+          <button class="icon-button" type="button" id="closePreview" aria-label="Return to editor">×</button>
+        </div>
+      </header>
+      <div class="preview-stage">
+        <div class="homepage-preview" id="homepagePreview"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="/construction/admin/admin.js?v=20260828-password-recovery1"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Local Supabase browser configuration generated from deployment environment variables.
+supabase-env.js
+
+
+.firebase/
+firebase-debug.log
+supabase/.temp/

@@ -1,0 +1,116 @@
+.workspace-switcher {
+  margin: 10px 14px 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.workspace-switcher__label {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.workspace-switcher__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.workspace-switcher__dot {
+  position: absolute;
+  left: 10px;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #62c68b;
+  box-shadow: 0 0 0 3px rgba(98, 198, 139, 0.14);
+  pointer-events: none;
+}
+
+.workspace-switcher__select {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 28px 9px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  outline: none;
+  background: #102c42;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.workspace-switcher__select:focus {
+  border-color: rgba(98, 198, 139, 0.7);
+  box-shadow: 0 0 0 3px rgba(98, 198, 139, 0.12);
+}
+
+.workspace-switcher__select:disabled { cursor: wait; opacity: 0.65; }
+.workspace-switcher__status { margin: 6px 0 0; color: #b8d2e3; font-size: 10px; line-height: 1.4; }
+.workspace-switcher__status:empty { display: none; }
+.workspace-switcher__status.is-error { color: #ffb3b3; }
+
+.workspace-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(4, 15, 25, 0.68);
+  backdrop-filter: blur(4px);
+}
+
+.workspace-dialog.is-open { display: flex; }
+.workspace-dialog-open { overflow: hidden; }
+
+.workspace-dialog__card {
+  width: min(100%, 480px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.workspace-dialog__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid #e8edf1;
+}
+
+.workspace-dialog__eyebrow { margin: 0 0 5px; color: #2e8b62; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.workspace-dialog__header h2 { margin: 0; color: #10283b; font-size: 22px; }
+.workspace-dialog__header p:not(.workspace-dialog__eyebrow) { margin: 5px 0 0; color: #687b89; font-size: 13px; }
+.workspace-dialog__close { width: 34px; height: 34px; border: 0; border-radius: 8px; background: #f2f5f7; color: #385064; font-size: 24px; line-height: 1; cursor: pointer; }
+
+#workspaceCreateForm { display: grid; gap: 16px; padding: 22px 26px 26px; }
+#workspaceCreateForm label { display: grid; gap: 7px; color: #31495b; font-size: 12px; font-weight: 700; }
+#workspaceCreateForm input,
+#workspaceCreateForm select { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #cfd9df; border-radius: 8px; outline: none; background: #fff; color: #152f43; font: inherit; font-size: 14px; }
+#workspaceCreateForm input:focus,
+#workspaceCreateForm select:focus { border-color: #2e8b62; box-shadow: 0 0 0 3px rgba(46, 139, 98, 0.1); }
+#workspaceCreateForm small { color: #7c8d98; font-size: 11px; font-weight: 400; }
+.workspace-dialog__error { min-height: 18px; margin: -4px 0 0; color: #b42318; font-size: 12px; }
+.workspace-dialog__actions { display: flex; justify-content: flex-end; gap: 10px; padding-top: 4px; }
+.workspace-button { padding: 10px 16px; border: 1px solid transparent; border-radius: 8px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.workspace-button:disabled { cursor: wait; opacity: 0.65; }
+.workspace-button--secondary { border-color: #ccd7dd; background: #fff; color: #3b5262; }
+.workspace-button--primary { background: #0f6548; color: #fff; }
+
+@media (max-width: 768px) {
+  .workspace-switcher { margin: 8px 12px 12px; }
+  .workspace-dialog__header, #workspaceCreateForm { padding-left: 20px; padding-right: 20px; }
+}

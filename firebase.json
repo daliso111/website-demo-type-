@@ -1,0 +1,54 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "construction/**"
+    ],
+    "redirects": [
+      {
+        "regex": "^/construction(?:/.*)?$",
+        "destination": "/",
+        "type": 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/property-for-sale",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/property-for-sale/**",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/property-for-rent",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/property-for-rent/**",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/properties-for-sale",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/properties-for-sale/**",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/properties-for-rent",
+        "destination": "/listings.html"
+      },
+      {
+        "source": "/properties-for-rent/**",
+        "destination": "/listings.html"
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}

@@ -1,0 +1,3835 @@
+
+============================================================
+FILE: admin-dashboard.html
+============================================================
+
+============================================================
+FILE: script.js
+============================================================
+
+============================================================
+FILE: properties.html
+============================================================
+
+--- MATCH: fBranch | LINES 471-531 ---
+471:                 <option value="For Sale">For Sale</option>
+472:                 <option value="For Rent">For Rent</option>
+473:               </select>
+474:             </div>
+475:             <div class="form-group half">
+476:               <label for="fType">Property Type <span class="req">*</span></label>
+477:               <select id="fType" required>
+478:                 <option value="">Select…</option>
+479:                 <option value="House">House</option>
+480:                 <option value="Apartment">Apartment</option>
+481:                 <option value="Commercial">Commercial</option>
+482:                 <option value="Land">Land</option>
+483:               </select>
+484:             </div>
+485:           </div>
+486: 
+487:           <div class="form-section-label">Property Geography</div>
+488: 
+489:           <div class="form-row">
+490:             <div class="form-group half">
+491:               <label for="fBranch">Branch <span class="req">*</span></label>
+492:               <select id="fBranch" required>
+493:                 <option value="">Select…</option>
+494:                 <option value="Lusaka">Lusaka</option>
+495:                 <option value="Livingstone">Livingstone</option>
+496:               </select>
+497:             </div>
+498: 
+499:             <div class="form-group half">
+500:               <label for="fAgent">Assigned Agent</label>
+501:               <select id="fAgent">
+502:                 <option value="">Unassigned</option>
+503:               </select>
+504:             </div>
+505:           </div>
+506: 
+507:           <div class="form-row">
+508:             <div class="form-group full property-location-field">
+509: 
+510:               <label for="fPropertyLocation">
+511:                 Property Location <span class="req">*</span>
+512:               </label>
+513: 
+514:               <div class="property-location-control">
+515:                 <input
+516:                   type="text"
+517:                   id="fPropertyLocation"
+518:                   placeholder="Search province, city or suburb..."
+519:                   autocomplete="off"
+520:                   role="combobox"
+521:                   aria-autocomplete="list"
+522:                   aria-expanded="false"
+523:                   aria-controls="fPropertyLocationResults"
+524:                   aria-describedby="fPropertyLocationSummary propertyLocationValidationMessage"
+525:                 />
+526: 
+527:                 <button
+528:                   type="button"
+529:                   class="property-location-clear"
+530:                   id="fPropertyLocationClear"
+531:                   aria-label="Clear property location"
+
+--- MATCH: fBranch | LINES 472-532 ---
+472:                 <option value="For Rent">For Rent</option>
+473:               </select>
+474:             </div>
+475:             <div class="form-group half">
+476:               <label for="fType">Property Type <span class="req">*</span></label>
+477:               <select id="fType" required>
+478:                 <option value="">Select…</option>
+479:                 <option value="House">House</option>
+480:                 <option value="Apartment">Apartment</option>
+481:                 <option value="Commercial">Commercial</option>
+482:                 <option value="Land">Land</option>
+483:               </select>
+484:             </div>
+485:           </div>
+486: 
+487:           <div class="form-section-label">Property Geography</div>
+488: 
+489:           <div class="form-row">
+490:             <div class="form-group half">
+491:               <label for="fBranch">Branch <span class="req">*</span></label>
+492:               <select id="fBranch" required>
+493:                 <option value="">Select…</option>
+494:                 <option value="Lusaka">Lusaka</option>
+495:                 <option value="Livingstone">Livingstone</option>
+496:               </select>
+497:             </div>
+498: 
+499:             <div class="form-group half">
+500:               <label for="fAgent">Assigned Agent</label>
+501:               <select id="fAgent">
+502:                 <option value="">Unassigned</option>
+503:               </select>
+504:             </div>
+505:           </div>
+506: 
+507:           <div class="form-row">
+508:             <div class="form-group full property-location-field">
+509: 
+510:               <label for="fPropertyLocation">
+511:                 Property Location <span class="req">*</span>
+512:               </label>
+513: 
+514:               <div class="property-location-control">
+515:                 <input
+516:                   type="text"
+517:                   id="fPropertyLocation"
+518:                   placeholder="Search province, city or suburb..."
+519:                   autocomplete="off"
+520:                   role="combobox"
+521:                   aria-autocomplete="list"
+522:                   aria-expanded="false"
+523:                   aria-controls="fPropertyLocationResults"
+524:                   aria-describedby="fPropertyLocationSummary propertyLocationValidationMessage"
+525:                 />
+526: 
+527:                 <button
+528:                   type="button"
+529:                   class="property-location-clear"
+530:                   id="fPropertyLocationClear"
+531:                   aria-label="Clear property location"
+532:                   hidden
+
+--- MATCH: fArea | LINES 540-600 ---
+540:                 id="fPropertyLocationResults"
+541:                 role="listbox"
+542:                 hidden
+543:               ></div>
+544: 
+545:               <p class="form-help" id="fPropertyLocationSummary">
+546:                 Search and select a city or suburb from the normalized location list.
+547:               </p>
+548: 
+549:               <p class="form-help property-location-not-listed">
+550:                 Location not listed? A controlled location-management flow will be added later.
+551:               </p>
+552: 
+553:               <p
+554:                 class="property-location-validation-message"
+555:                 id="propertyLocationValidationMessage"
+556:                 role="alert"
+557:                 hidden
+558:               ></p>
+559: 
+560:               <input type="hidden" id="fArea" value="" />
+561:             </div>
+562:           </div>
+563: 
+564:           <div class="form-row">
+565:             <div class="form-group full">
+566:               <label for="fAddress">Full Address</label>
+567:               <input
+568:                 type="text"
+569:                 id="fAddress"
+570:                 placeholder="e.g. Plot 42, Addis Ababa Drive, Lusaka"
+571:               />
+572:             </div>
+573:           </div>
+574: 
+575:           <div class="form-section-label">Map Location</div>
+576:           <p class="form-section-help">
+577:             Optional. These details place the property on its public website map without replacing the area or full address above.
+578:           </p>
+579:           <div class="form-row">
+580:             <div class="form-group half">
+581:               <label for="fLocationLabel">Location Label</label>
+582:               <input type="text" id="fLocationLabel" placeholder="e.g. Ibex Hill, Lusaka" />
+583:               <p class="form-help">The visitor-friendly location shown above the map.</p>
+584:             </div>
+585:             <div class="form-group half">
+586:               <label for="fMapAddress">Map Address</label>
+587:               <input type="text" id="fMapAddress" placeholder="e.g. Plot 42, Twin Palm Road, Ibex Hill, Lusaka" />
+588:               <p class="form-help">An optional, more specific address shown with the map.</p>
+589:             </div>
+590:           </div>
+591:           <div class="form-row">
+592:             <div class="form-group half">
+593:               <label for="fLatitude">Latitude</label>
+594:               <input type="number" id="fLatitude" inputmode="decimal" step="0.000001" min="-90" max="90"
+595:                 placeholder="e.g. -15.416700" aria-describedby="coordinateHelp coordinateValidationMessage" />
+596:             </div>
+597:             <div class="form-group half">
+598:               <label for="fLongitude">Longitude</label>
+599:               <input type="number" id="fLongitude" inputmode="decimal" step="0.000001" min="-180" max="180"
+600:                 placeholder="e.g. 28.283300" aria-describedby="coordinateHelp coordinateValidationMessage" />
+
+============================================================
+FILE: properties.js
+============================================================
+
+--- MATCH: fBranch | LINES 948-1008 ---
+948: }
+949: 
+950: function shouldDisplayForCurrentUser(property) {
+951:   var profile = window.hilltopCurrentUser || {};
+952:   var role = profile.role;
+953: 
+954:   if (!profile.id || role === 'super_admin' || role === 'Super Admin') return true;
+955:   if (!profile.branch_id) return true;
+956: 
+957:   return String(property.branchId) === String(profile.branch_id);
+958: }
+959: 
+960: function showPropertiesLoadingState() {
+961:   emptyState.style.display = 'none';
+962:   propTable.style.display = 'table';
+963:   propTableBody.innerHTML = '<tr><td colspan="11" style="padding:18px;color:var(--text-light);">Loading properties from Supabase...</td></tr>';
+964:   propCards.innerHTML = '<div class="prop-card" style="padding:18px;color:var(--text-light);">Loading properties from Supabase...</div>';
+965: }
+966: 
+967: function populatePropertyBranchSelect() {
+968:   var branchSelect = document.getElementById('fBranch');
+969:   if (!branchSelect || propertyBranches.length === 0) return;
+970: 
+971:   var selectedValue = branchSelect.value;
+972:   var profile = window.hilltopCurrentUser || {};
+973:   branchSelect.innerHTML = '<option value="">Select...</option>';
+974: 
+975:   propertyBranches.forEach(function(branch) {
+976:     var cleanName = cleanBranchName(branch.name);
+977:     var opt = document.createElement('option');
+978:     opt.value = branch.id;
+979:     opt.textContent = cleanName;
+980:     branchSelect.appendChild(opt);
+981:   });
+982: 
+983:   if (isCurrentUserBranchManager() && profile.branch_id) {
+984:     branchSelect.value = profile.branch_id;
+985:     branchSelect.disabled = true;
+986:     return;
+987:   }
+988: 
+989:   branchSelect.disabled = false;
+990:   branchSelect.value = selectedValue;
+991:   if (selectedValue && branchSelect.value !== selectedValue) {
+992:     branchSelect.value = findPropertyBranchId(selectedValue) || '';
+993:   }
+994: }
+995: 
+996: function populatePropertyAgentSelect() {
+997:   var agentSelect = document.getElementById('fAgent');
+998:   if (!agentSelect) return;
+999: 
+1000:   var selectedValue = agentSelect.value;
+1001:   var profile = window.hilltopCurrentUser || {};
+1002:   var selectedBranchId = isCurrentUserBranchManager()
+1003:     ? profile.branch_id
+1004:     : findPropertyBranchId(document.getElementById('fBranch').value);
+1005:   agentSelect.innerHTML = '<option value="">Unassigned</option>';
+1006: 
+1007:   propertyStaff
+1008:     .filter(function(staff) {
+
+--- MATCH: fBranch | LINES 984-1044 ---
+984:     branchSelect.value = profile.branch_id;
+985:     branchSelect.disabled = true;
+986:     return;
+987:   }
+988: 
+989:   branchSelect.disabled = false;
+990:   branchSelect.value = selectedValue;
+991:   if (selectedValue && branchSelect.value !== selectedValue) {
+992:     branchSelect.value = findPropertyBranchId(selectedValue) || '';
+993:   }
+994: }
+995: 
+996: function populatePropertyAgentSelect() {
+997:   var agentSelect = document.getElementById('fAgent');
+998:   if (!agentSelect) return;
+999: 
+1000:   var selectedValue = agentSelect.value;
+1001:   var profile = window.hilltopCurrentUser || {};
+1002:   var selectedBranchId = isCurrentUserBranchManager()
+1003:     ? profile.branch_id
+1004:     : findPropertyBranchId(document.getElementById('fBranch').value);
+1005:   agentSelect.innerHTML = '<option value="">Unassigned</option>';
+1006: 
+1007:   propertyStaff
+1008:     .filter(function(staff) {
+1009:       var role = staff.role;
+1010:       var canBeAssigned = role === 'agent' || role === 'branch_manager' || role === 'Agent' || role === 'Branch Manager';
+1011:       var isActive = staff.is_active !== false;
+1012:       var inManagerBranch = !isCurrentUserBranchManager() || String(staff.branch_id) === String(profile.branch_id);
+1013:       var inSelectedBranch = !selectedBranchId || String(staff.branch_id) === String(selectedBranchId);
+1014:       return canBeAssigned && isActive && inManagerBranch && inSelectedBranch;
+1015:     })
+1016:     .forEach(function(staff) {
+1017:       var opt = document.createElement('option');
+1018:       opt.value = staff.id;
+1019:       opt.textContent = staff.full_name;
+1020:       agentSelect.appendChild(opt);
+1021:     });
+1022: 
+1023:   agentSelect.value = selectedValue;
+1024: }
+1025: 
+1026: async function loadBranchesForProperties() {
+1027:   var response = await getSupabaseClient()
+1028:     .from('branches')
+1029:     .select('id, name')
+1030:     .order('name', { ascending: true });
+1031: 
+1032:   if (response.error) {
+1033:     throw new Error('Unable to load branches for properties: ' + response.error.message);
+1034:   }
+1035: 
+1036:   return response.data || [];
+1037: }
+1038: 
+1039: async function loadStaffForProperties() {
+1040:   var response = await getSupabaseClient()
+1041:     .from('staff_users')
+1042:     .select('id, full_name, role, branch_id, is_active')
+1043:     .order('full_name', { ascending: true });
+1044: 
+
+--- MATCH: loadBranchesForProperties | LINES 1006-1066 ---
+1006: 
+1007:   propertyStaff
+1008:     .filter(function(staff) {
+1009:       var role = staff.role;
+1010:       var canBeAssigned = role === 'agent' || role === 'branch_manager' || role === 'Agent' || role === 'Branch Manager';
+1011:       var isActive = staff.is_active !== false;
+1012:       var inManagerBranch = !isCurrentUserBranchManager() || String(staff.branch_id) === String(profile.branch_id);
+1013:       var inSelectedBranch = !selectedBranchId || String(staff.branch_id) === String(selectedBranchId);
+1014:       return canBeAssigned && isActive && inManagerBranch && inSelectedBranch;
+1015:     })
+1016:     .forEach(function(staff) {
+1017:       var opt = document.createElement('option');
+1018:       opt.value = staff.id;
+1019:       opt.textContent = staff.full_name;
+1020:       agentSelect.appendChild(opt);
+1021:     });
+1022: 
+1023:   agentSelect.value = selectedValue;
+1024: }
+1025: 
+1026: async function loadBranchesForProperties() {
+1027:   var response = await getSupabaseClient()
+1028:     .from('branches')
+1029:     .select('id, name')
+1030:     .order('name', { ascending: true });
+1031: 
+1032:   if (response.error) {
+1033:     throw new Error('Unable to load branches for properties: ' + response.error.message);
+1034:   }
+1035: 
+1036:   return response.data || [];
+1037: }
+1038: 
+1039: async function loadStaffForProperties() {
+1040:   var response = await getSupabaseClient()
+1041:     .from('staff_users')
+1042:     .select('id, full_name, role, branch_id, is_active')
+1043:     .order('full_name', { ascending: true });
+1044: 
+1045:   if (response.error) {
+1046:     throw new Error('Unable to load staff for properties: ' + response.error.message);
+1047:   }
+1048: 
+1049:   return response.data || [];
+1050: }
+1051: 
+1052: async function loadPropertiesFromSupabase() {
+1053:   var response = await selectAdminPropertyRows(PROPERTY_ADMIN_FIELDS);
+1054: 
+1055:   if (isMissingPropertyLocationColumnError(response.error)) {
+1056:     console.warn('Property location columns are not available yet. Loading the legacy property fields.');
+1057:     response = await selectAdminPropertyRows(LEGACY_PROPERTY_ADMIN_FIELDS);
+1058:   }
+1059: 
+1060:   if (response.error) {
+1061:     throw new Error('Unable to load properties from Supabase: ' + response.error.message);
+1062:   }
+1063: 
+1064:   return response.data || [];
+1065: }
+1066: 
+
+--- MATCH: loadBranchesForProperties | LINES 1091-1151 ---
+1091: }
+1092: 
+1093: async function loadPropertyModuleData() {
+1094:   if (!getSupabaseClient()) {
+1095:     showToast('Supabase is not available. Showing development sample property data.', 'error');
+1096:     renderProperties();
+1097:     return;
+1098:   }
+1099: 
+1100:   showPropertiesLoadingState();
+1101: 
+1102:   try {
+1103:     var currentStaffProfile = await waitForCurrentStaffProfile();
+1104: 
+1105:     if (!currentStaffProfile) {
+1106:       showToast('Staff profile is still being verified. Please refresh after login completes.', 'error');
+1107:       renderProperties();
+1108:       return;
+1109:     }
+1110: 
+1111:     var branchRows = await loadBranchesForProperties();
+1112:     var staffRows = await loadStaffForProperties();
+1113:     var propertyRows = await loadPropertiesFromSupabase();
+1114:     var imageRows = await loadPropertyImagesFromSupabase();
+1115:     var documentRows = await loadPropertyDocumentsFromSupabase();
+1116:     var branchLookup = {};
+1117:     var staffLookup = {};
+1118: 
+1119:     branchRows.forEach(function(branch) {
+1120:       branchLookup[String(branch.id)] = branch;
+1121:     });
+1122:     propertyBranches = branchRows;
+1123: 
+1124:     staffRows.forEach(function(staff) {
+1125:       staffLookup[String(staff.id)] = staff;
+1126:     });
+1127:     propertyStaff = staffRows;
+1128: 
+1129:     var imagesByProperty = groupRowsByPropertyId(imageRows);
+1130:     var documentsByProperty = groupRowsByPropertyId(documentRows);
+1131:     var unresolvedBranchCount = propertyRows.filter(function(row) {
+1132:       return row.branch_id && !branchLookup[String(row.branch_id)];
+1133:     }).length;
+1134: 
+1135:     properties = propertyRows
+1136:       .map(function(record) {
+1137:         return mapSupabaseProperty(record, branchLookup, staffLookup, imagesByProperty, documentsByProperty);
+1138:       })
+1139:       .filter(shouldDisplayForCurrentUser);
+1140: 
+1141:     isUsingSupabaseProperties = true;
+1142: 
+1143:     if (unresolvedBranchCount > 0) {
+1144:       showToast('Properties loaded, but branch names could not be resolved.', 'error');
+1145:     } else {
+1146:       showToast('Properties loaded from Supabase.', 'success');
+1147:     }
+1148: 
+1149:     renderProperties();
+1150:   } catch (error) {
+1151:     console.warn('Properties Supabase loading failed.', error);
+
+--- MATCH: getPropertyPayloadFromForm | LINES 1137-1197 ---
+1137:         return mapSupabaseProperty(record, branchLookup, staffLookup, imagesByProperty, documentsByProperty);
+1138:       })
+1139:       .filter(shouldDisplayForCurrentUser);
+1140: 
+1141:     isUsingSupabaseProperties = true;
+1142: 
+1143:     if (unresolvedBranchCount > 0) {
+1144:       showToast('Properties loaded, but branch names could not be resolved.', 'error');
+1145:     } else {
+1146:       showToast('Properties loaded from Supabase.', 'success');
+1147:     }
+1148: 
+1149:     renderProperties();
+1150:   } catch (error) {
+1151:     console.warn('Properties Supabase loading failed.', error);
+1152:     showToast(error.message || 'Unable to load properties from Supabase. Showing development sample data.', 'error');
+1153:     renderProperties();
+1154:   }
+1155: }
+1156: 
+1157: function getPropertyPayloadFromForm() {
+1158:   var title = document.getElementById('fTitle').value.trim();
+1159:   var referenceNumber = document.getElementById('fRef').value.trim();
+1160:   var priceInput = document.getElementById('fPrice');
+1161:   var priceResult = parsePriceInput(priceInput.value);
+1162:   var currencyInput = document.getElementById('fCurrency');
+1163:   var currencyCode = String(currencyInput.value || '').trim().toUpperCase();
+1164:   var purpose = document.getElementById('fPurpose').value;
+1165:   var propertyType = canonicalPropertyTypeForForm(document.getElementById('fType').value);
+1166:   var branchId = getCurrentBranchIdForWrite(document.getElementById('fBranch').value);
+1167:   var status = document.getElementById('fStatus').value;
+1168:   var assignedAgentId = document.getElementById('fAgent') ? document.getElementById('fAgent').value : '';
+1169:   var propertyLocation = getPropertyLocationValuesFromForm();
+1170:   var geography = window.HilltopAdminLocation.getSaveValues();
+1171: 
+1172:   if (!title) throw new Error('Property title is required.');
+1173:   if (!referenceNumber) throw new Error('Reference number is required.');
+1174:   if (priceResult.empty) {
+1175:     priceInput.classList.add('error');
+1176:     throw new Error('Price is required.');
+1177:   }
+1178:   if (priceResult.invalid) {
+1179:     priceInput.classList.add('error');
+1180:     throw new Error('Enter a positive numeric price without commas, letters, or currency symbols.');
+1181:   }
+1182:   priceInput.classList.remove('error');
+1183:   if (!window.HilltopCurrency.isSupportedCurrency(currencyCode)) {
+1184:     currencyInput.classList.add('error');
+1185:     throw new Error('Please select ZMW or USD as the listing currency.');
+1186:   }
+1187:   currencyInput.classList.remove('error');
+1188:   if (!purpose) throw new Error('Purpose is required.');
+1189:   if (!propertyType) throw new Error('Property type is required.');
+1190:   if (['House', 'Apartment', 'Commercial', 'Land'].indexOf(propertyType) === -1) {
+1191:     throw new Error('Please select a supported property type.');
+1192:   }
+1193:   if (!branchId) throw new Error('Branch is required.');
+1194:   if (!status) throw new Error('Status is required.');
+1195: 
+1196:   return {
+1197:     reference_number: referenceNumber,
+
+--- MATCH: fBranch | LINES 1146-1206 ---
+1146:       showToast('Properties loaded from Supabase.', 'success');
+1147:     }
+1148: 
+1149:     renderProperties();
+1150:   } catch (error) {
+1151:     console.warn('Properties Supabase loading failed.', error);
+1152:     showToast(error.message || 'Unable to load properties from Supabase. Showing development sample data.', 'error');
+1153:     renderProperties();
+1154:   }
+1155: }
+1156: 
+1157: function getPropertyPayloadFromForm() {
+1158:   var title = document.getElementById('fTitle').value.trim();
+1159:   var referenceNumber = document.getElementById('fRef').value.trim();
+1160:   var priceInput = document.getElementById('fPrice');
+1161:   var priceResult = parsePriceInput(priceInput.value);
+1162:   var currencyInput = document.getElementById('fCurrency');
+1163:   var currencyCode = String(currencyInput.value || '').trim().toUpperCase();
+1164:   var purpose = document.getElementById('fPurpose').value;
+1165:   var propertyType = canonicalPropertyTypeForForm(document.getElementById('fType').value);
+1166:   var branchId = getCurrentBranchIdForWrite(document.getElementById('fBranch').value);
+1167:   var status = document.getElementById('fStatus').value;
+1168:   var assignedAgentId = document.getElementById('fAgent') ? document.getElementById('fAgent').value : '';
+1169:   var propertyLocation = getPropertyLocationValuesFromForm();
+1170:   var geography = window.HilltopAdminLocation.getSaveValues();
+1171: 
+1172:   if (!title) throw new Error('Property title is required.');
+1173:   if (!referenceNumber) throw new Error('Reference number is required.');
+1174:   if (priceResult.empty) {
+1175:     priceInput.classList.add('error');
+1176:     throw new Error('Price is required.');
+1177:   }
+1178:   if (priceResult.invalid) {
+1179:     priceInput.classList.add('error');
+1180:     throw new Error('Enter a positive numeric price without commas, letters, or currency symbols.');
+1181:   }
+1182:   priceInput.classList.remove('error');
+1183:   if (!window.HilltopCurrency.isSupportedCurrency(currencyCode)) {
+1184:     currencyInput.classList.add('error');
+1185:     throw new Error('Please select ZMW or USD as the listing currency.');
+1186:   }
+1187:   currencyInput.classList.remove('error');
+1188:   if (!purpose) throw new Error('Purpose is required.');
+1189:   if (!propertyType) throw new Error('Property type is required.');
+1190:   if (['House', 'Apartment', 'Commercial', 'Land'].indexOf(propertyType) === -1) {
+1191:     throw new Error('Please select a supported property type.');
+1192:   }
+1193:   if (!branchId) throw new Error('Branch is required.');
+1194:   if (!status) throw new Error('Status is required.');
+1195: 
+1196:   return {
+1197:     reference_number: referenceNumber,
+1198:     title: title,
+1199:     description: document.getElementById('fDesc').value.trim() || null,
+1200:     price: priceResult.value,
+1201:     currency_code: currencyCode,
+1202:     purpose: purpose,
+1203:     property_type: propertyType,
+1204:     branch_id: branchId,
+1205:     area: geography.area,
+1206:     province_id: geography.province_id,
+
+--- MATCH: fArea | LINES 1959-2019 ---
+1959:   strong.textContent = value;
+1960:   item.appendChild(strong);
+1961:   propertyMarketStatusMeta.appendChild(item);
+1962:   propertyMarketStatusMeta.hidden = false;
+1963: }
+1964: 
+1965: function canOpenMarketManagement() {
+1966:   return isCurrentUserSuperAdmin() && (window.hilltopCurrentUser || {}).is_active !== false;
+1967: }
+1968: 
+1969: function showMarketManagementAction(label, context) {
+1970:   if (!canOpenMarketManagement()) return;
+1971:   marketStatusContext = context;
+1972:   propertyMarketStatusAction.textContent = label;
+1973:   propertyMarketStatusAction.hidden = false;
+1974: }
+1975: 
+1976: function getPropertyMarketFormConfiguration() {
+1977:   var bedroomValue = document.getElementById('fBeds').value;
+1978:   return {
+1979:     area: document.getElementById('fArea').value.trim(),
+1980:     property_type: canonicalPropertyTypeForForm(document.getElementById('fType').value),
+1981:     purpose: document.getElementById('fPurpose').value,
+1982:     currency_code: document.getElementById('fCurrency').value,
+1983:     bedrooms: bedroomValue === '' ? null : Number(bedroomValue)
+1984:   };
+1985: }
+1986: 
+1987: function getPropertyMarketEligibility(configuration) {
+1988:   var registry = window.HilltopMarketInsights;
+1989:   if (!registry || typeof registry.buildMarketLookup !== 'function') {
+1990:     return { state: 'error', message: 'Market availability could not be checked. You can still save this property.' };
+1991:   }
+1992: 
+1993:   if (configuration.property_type && ['House', 'Apartment'].indexOf(configuration.property_type) === -1) {
+1994:     return { state: 'ineligible', message: 'Market Insights is not currently available for Land or Commercial properties.' };
+1995:   }
+1996:   if (configuration.purpose === 'For Rent') {
+1997:     return { state: 'ineligible', message: 'Market Insights is not currently available for rental properties.' };
+1998:   }
+1999:   if (configuration.bedrooms !== null && (!Number.isInteger(configuration.bedrooms) || configuration.bedrooms <= 0)) {
+2000:     return { state: 'ineligible', message: 'Market Insights requires a residential property with at least 1 bedroom.' };
+2001:   }
+2002:   if (!configuration.area || !configuration.property_type || !configuration.purpose || !configuration.currency_code || configuration.bedrooms === null) {
+2003:     return { state: 'idle', message: 'Enter area, property type, purpose, currency and bedrooms to check published market data.' };
+2004:   }
+2005: 
+2006:   var area = registry.resolveMarketArea(configuration.area);
+2007:   if (!area || area.areaKey === 'qa-market-test') {
+2008:     return { state: 'unsupported', message: 'This neighbourhood is not currently configured for Market Insights.' };
+2009:   }
+2010: 
+2011:   var lookup = registry.buildMarketLookup(configuration);
+2012:   if (!lookup) {
+2013:     return { state: 'ineligible', message: 'Market Insights is not currently available for this property configuration.' };
+2014:   }
+2015:   return { state: 'eligible', lookup: lookup };
+2016: }
+2017: 
+2018: function getMarketStatusCacheKey(lookup) {
+2019:   return [lookup.areaKey, lookup.propertyType, lookup.purpose, lookup.currencyCode].join('|');
+
+--- MATCH: fArea | LINES 2106-2166 ---
+2106:     renderPropertyMarketStatus('error', 'Market status unavailable', 'Market availability could not be checked. You can still save this property.');
+2107:   }
+2108: }
+2109: 
+2110: function schedulePropertyMarketStatus(immediate) {
+2111:   clearTimeout(marketStatusTimer);
+2112:   if (immediate) {
+2113:     evaluatePropertyMarketStatus();
+2114:     return;
+2115:   }
+2116:   marketStatusTimer = setTimeout(evaluatePropertyMarketStatus, 450);
+2117: }
+2118: 
+2119: propertyMarketStatusAction.addEventListener('click', function() {
+2120:   if (!marketStatusContext) return;
+2121:   var context = Object.assign({}, marketStatusContext);
+2122:   closeModal();
+2123:   setPropertyManagementView('market-insights', context);
+2124: });
+2125: 
+2126: ['fArea', 'fType', 'fPurpose', 'fCurrency', 'fBeds'].forEach(function(id) {
+2127:   var field = document.getElementById(id);
+2128:   if (!field) return;
+2129:   field.addEventListener(field.tagName === 'INPUT' ? 'input' : 'change', function() {
+2130:     schedulePropertyMarketStatus(false);
+2131:   });
+2132: });
+2133: 
+2134: window.addEventListener('hilltop:market-insights-updated', function() {
+2135:   marketStatusCache.clear();
+2136: });
+2137: 
+2138: /* ══════════════════════════════════════════════════════════════
+2139:    11. MODAL — OPEN / CLOSE
+2140: ══════════════════════════════════════════════════════════════ */
+2141: 
+2142: async function openModal(mode, id) {
+2143:   mode = mode || 'add';
+2144: 
+2145:   var existingProperty = id
+2146:     ? properties.find(function(x){ return String(x.id) === String(id); })
+2147:     : null;
+2148: 
+2149:   if (!requirePropertyManagePermission(existingProperty)) return;
+2150: 
+2151:   // Switch to details tab first
+2152:   switchTab('details');
+2153: 
+2154:   // Clear staged media for this modal session.
+2155:   clearPropertyMediaInputs();
+2156: 
+2157:   if (mode === 'edit' && id) {
+2158:     // Find the property to edit
+2159:     var p = existingProperty;
+2160:     if (!p) return;
+2161: 
+2162:     modalTitle.textContent = 'Edit Property';
+2163:     editIdField.value = p.id;
+2164: 
+2165:     // Fill in form fields
+2166:     document.getElementById('fTitle').value    = p.title;
+
+--- MATCH: fBranch | LINES 2154-2214 ---
+2154:   // Clear staged media for this modal session.
+2155:   clearPropertyMediaInputs();
+2156: 
+2157:   if (mode === 'edit' && id) {
+2158:     // Find the property to edit
+2159:     var p = existingProperty;
+2160:     if (!p) return;
+2161: 
+2162:     modalTitle.textContent = 'Edit Property';
+2163:     editIdField.value = p.id;
+2164: 
+2165:     // Fill in form fields
+2166:     document.getElementById('fTitle').value    = p.title;
+2167:     document.getElementById('fRef').value      = p.ref;
+2168:     document.getElementById('fPrice').value    = p.priceValue || parsePrice(p.price);
+2169:     document.getElementById('fCurrency').value = getPropertyCurrency(p);
+2170:     document.getElementById('fCurrency').dataset.originalCurrency = getPropertyCurrency(p);
+2171:     document.getElementById('fDesc').value     = p.description;
+2172:     document.getElementById('fPurpose').value  = p.purpose;
+2173:     document.getElementById('fType').value     = canonicalPropertyTypeForForm(p.type);
+2174:     document.getElementById('fBranch').value   = p.branchId || findPropertyBranchId(p.branch) || p.branch;
+2175:     populatePropertyAgentSelect();
+2176:     if (document.getElementById('fAgent')) {
+2177:       document.getElementById('fAgent').value = p.agentId || '';
+2178:     }
+2179:     document.getElementById('fArea').value     = p.area;
+2180:     document.getElementById('fAddress').value  = p.address;
+2181:     document.getElementById('fLocationLabel').value = p.locationLabel || '';
+2182:     document.getElementById('fMapAddress').value = p.mapAddress || '';
+2183:     document.getElementById('fLatitude').value = formatCoordinateForInput(p.latitude);
+2184:     document.getElementById('fLongitude').value = formatCoordinateForInput(p.longitude);
+2185:     document.getElementById('fBeds').value     = p.beds;
+2186:     document.getElementById('fBaths').value    = p.baths;
+2187:     document.getElementById('fGarages').value  = p.garages;
+2188:     document.getElementById('fSize').value     = p.size;
+2189:     document.getElementById('fFeatured').value = p.featured;
+2190:     document.getElementById('fExclusive').value = isExclusiveProperty(p) ? 'Yes' : 'No';
+2191:     document.getElementById('fAmenities').value = p.amenities;
+2192:     document.getElementById('fVirtualTour').value = p.virtualTour;
+2193:     document.getElementById('fYoutube').value  = p.youtube;
+2194:     document.getElementById('fStatus').value   = p.status;
+2195: 
+2196:     await window.HilltopAdminLocation.hydrate(p);
+2197: 
+2198:     highlightWorkflowStep(p.status);
+2199: 
+2200:   } else {
+2201:     // Add mode — clear the form
+2202:     modalTitle.textContent = 'Add New Property';
+2203:     editIdField.value = '';
+2204:     propForm.reset();
+2205:     document.getElementById('fCurrency').value = 'ZMW';
+2206:     document.getElementById('fCurrency').dataset.originalCurrency = 'ZMW';
+2207:     document.getElementById('fType').value = PROPERTY_CATEGORY_CONFIG[currentCategory].formType;
+2208:     document.getElementById('fExclusive').value = 'No';
+2209:     if (isCurrentUserBranchManager() && (window.hilltopCurrentUser || {}).branch_id) {
+2210:       document.getElementById('fBranch').value = window.hilltopCurrentUser.branch_id;
+2211:     }
+2212:     populatePropertyAgentSelect();
+2213:     window.HilltopAdminLocation.clear();
+2214:     highlightWorkflowStep('Draft');
+
+--- MATCH: fArea | LINES 2159-2219 ---
+2159:     var p = existingProperty;
+2160:     if (!p) return;
+2161: 
+2162:     modalTitle.textContent = 'Edit Property';
+2163:     editIdField.value = p.id;
+2164: 
+2165:     // Fill in form fields
+2166:     document.getElementById('fTitle').value    = p.title;
+2167:     document.getElementById('fRef').value      = p.ref;
+2168:     document.getElementById('fPrice').value    = p.priceValue || parsePrice(p.price);
+2169:     document.getElementById('fCurrency').value = getPropertyCurrency(p);
+2170:     document.getElementById('fCurrency').dataset.originalCurrency = getPropertyCurrency(p);
+2171:     document.getElementById('fDesc').value     = p.description;
+2172:     document.getElementById('fPurpose').value  = p.purpose;
+2173:     document.getElementById('fType').value     = canonicalPropertyTypeForForm(p.type);
+2174:     document.getElementById('fBranch').value   = p.branchId || findPropertyBranchId(p.branch) || p.branch;
+2175:     populatePropertyAgentSelect();
+2176:     if (document.getElementById('fAgent')) {
+2177:       document.getElementById('fAgent').value = p.agentId || '';
+2178:     }
+2179:     document.getElementById('fArea').value     = p.area;
+2180:     document.getElementById('fAddress').value  = p.address;
+2181:     document.getElementById('fLocationLabel').value = p.locationLabel || '';
+2182:     document.getElementById('fMapAddress').value = p.mapAddress || '';
+2183:     document.getElementById('fLatitude').value = formatCoordinateForInput(p.latitude);
+2184:     document.getElementById('fLongitude').value = formatCoordinateForInput(p.longitude);
+2185:     document.getElementById('fBeds').value     = p.beds;
+2186:     document.getElementById('fBaths').value    = p.baths;
+2187:     document.getElementById('fGarages').value  = p.garages;
+2188:     document.getElementById('fSize').value     = p.size;
+2189:     document.getElementById('fFeatured').value = p.featured;
+2190:     document.getElementById('fExclusive').value = isExclusiveProperty(p) ? 'Yes' : 'No';
+2191:     document.getElementById('fAmenities').value = p.amenities;
+2192:     document.getElementById('fVirtualTour').value = p.virtualTour;
+2193:     document.getElementById('fYoutube').value  = p.youtube;
+2194:     document.getElementById('fStatus').value   = p.status;
+2195: 
+2196:     await window.HilltopAdminLocation.hydrate(p);
+2197: 
+2198:     highlightWorkflowStep(p.status);
+2199: 
+2200:   } else {
+2201:     // Add mode — clear the form
+2202:     modalTitle.textContent = 'Add New Property';
+2203:     editIdField.value = '';
+2204:     propForm.reset();
+2205:     document.getElementById('fCurrency').value = 'ZMW';
+2206:     document.getElementById('fCurrency').dataset.originalCurrency = 'ZMW';
+2207:     document.getElementById('fType').value = PROPERTY_CATEGORY_CONFIG[currentCategory].formType;
+2208:     document.getElementById('fExclusive').value = 'No';
+2209:     if (isCurrentUserBranchManager() && (window.hilltopCurrentUser || {}).branch_id) {
+2210:       document.getElementById('fBranch').value = window.hilltopCurrentUser.branch_id;
+2211:     }
+2212:     populatePropertyAgentSelect();
+2213:     window.HilltopAdminLocation.clear();
+2214:     highlightWorkflowStep('Draft');
+2215:   }
+2216: 
+2217:   clearPropertyLocationValidation();
+2218:   document.getElementById('currencyChangeWarning').hidden = true;
+2219:   updatePriceCurrencyPrefix();
+
+--- MATCH: fBranch | LINES 2190-2250 ---
+2190:     document.getElementById('fExclusive').value = isExclusiveProperty(p) ? 'Yes' : 'No';
+2191:     document.getElementById('fAmenities').value = p.amenities;
+2192:     document.getElementById('fVirtualTour').value = p.virtualTour;
+2193:     document.getElementById('fYoutube').value  = p.youtube;
+2194:     document.getElementById('fStatus').value   = p.status;
+2195: 
+2196:     await window.HilltopAdminLocation.hydrate(p);
+2197: 
+2198:     highlightWorkflowStep(p.status);
+2199: 
+2200:   } else {
+2201:     // Add mode — clear the form
+2202:     modalTitle.textContent = 'Add New Property';
+2203:     editIdField.value = '';
+2204:     propForm.reset();
+2205:     document.getElementById('fCurrency').value = 'ZMW';
+2206:     document.getElementById('fCurrency').dataset.originalCurrency = 'ZMW';
+2207:     document.getElementById('fType').value = PROPERTY_CATEGORY_CONFIG[currentCategory].formType;
+2208:     document.getElementById('fExclusive').value = 'No';
+2209:     if (isCurrentUserBranchManager() && (window.hilltopCurrentUser || {}).branch_id) {
+2210:       document.getElementById('fBranch').value = window.hilltopCurrentUser.branch_id;
+2211:     }
+2212:     populatePropertyAgentSelect();
+2213:     window.HilltopAdminLocation.clear();
+2214:     highlightWorkflowStep('Draft');
+2215:   }
+2216: 
+2217:   clearPropertyLocationValidation();
+2218:   document.getElementById('currencyChangeWarning').hidden = true;
+2219:   updatePriceCurrencyPrefix();
+2220:   schedulePropertyMarketStatus(true);
+2221: 
+2222:   // Show modal
+2223:   propModal.style.display = 'flex';
+2224:   // Small delay lets display:flex paint before the CSS transition triggers
+2225:   requestAnimationFrame(function(){
+2226:     requestAnimationFrame(function(){
+2227:       propModal.classList.add('open');
+2228:     });
+2229:   });
+2230:   modalOverlay.classList.add('active');
+2231:   document.body.style.overflow = 'hidden';
+2232: }
+2233: 
+2234: function closeModal() {
+2235:   clearTimeout(marketStatusTimer);
+2236:   marketStatusRequestToken += 1;
+2237:   propModal.classList.remove('open');
+2238:   modalOverlay.classList.remove('active');
+2239:   document.body.style.overflow = '';
+2240:   // After transition completes, hide completely
+2241:   setTimeout(function() { propModal.style.display = 'none'; }, 320);
+2242: }
+2243: 
+2244: // Open handlers
+2245: btnAddProperty.addEventListener('click', function() { openModal('add'); });
+2246: document.querySelectorAll('[data-open-property-modal]').forEach(function(button) {
+2247:   button.addEventListener('click', function() { openModal('add'); });
+2248: });
+2249: modalClose.addEventListener('click', closeModal);
+2250: modalCancelBtn.addEventListener('click', closeModal);
+
+--- MATCH: fBranch | LINES 2275-2335 ---
+2275:   document.querySelectorAll('.tab-panel').forEach(function(panel) {
+2276:     panel.classList.toggle('active', panel.id === 'tab-' + tabName);
+2277:   });
+2278: }
+2279: 
+2280: 
+2281: /* ══════════════════════════════════════════════════════════════
+2282:    12. STATUS WORKFLOW HIGHLIGHT
+2283: ══════════════════════════════════════════════════════════════ */
+2284: 
+2285: function highlightWorkflowStep(statusValue) {
+2286:   document.querySelectorAll('.workflow-step').forEach(function(step) {
+2287:     step.classList.toggle('current', step.dataset.step === statusValue);
+2288:   });
+2289: }
+2290: 
+2291: document.getElementById('fStatus').addEventListener('change', function() {
+2292:   highlightWorkflowStep(this.value);
+2293: });
+2294: 
+2295: document.getElementById('fBranch').addEventListener('change', function() {
+2296:   populatePropertyAgentSelect();
+2297: });
+2298: 
+2299: document.getElementById('fCurrency').addEventListener('change', function() {
+2300:   var warning = document.getElementById('currencyChangeWarning');
+2301:   var isEditing = Boolean(editIdField.value);
+2302:   var originalCurrency = this.dataset.originalCurrency || 'ZMW';
+2303:   updatePriceCurrencyPrefix();
+2304:   warning.hidden = !isEditing || this.value === originalCurrency;
+2305: });
+2306: 
+2307: [latitudeField, longitudeField].forEach(function(field) {
+2308:   if (!field) return;
+2309:   field.addEventListener('input', clearPropertyLocationValidation);
+2310: });
+2311: 
+2312: updatePriceCurrencyPrefix();
+2313: 
+2314: 
+2315: /* ══════════════════════════════════════════════════════════════
+2316:    13. FORM SAVE (ADD OR EDIT)
+2317: ══════════════════════════════════════════════════════════════ */
+2318: 
+2319: propForm.addEventListener('submit', async function(e) {
+2320:   e.preventDefault();
+2321:   if (isPropertySavePending) return;
+2322: 
+2323:   // Basic validation
+2324:   var required = ['fTitle', 'fRef', 'fCurrency', 'fPrice', 'fPurpose', 'fType', 'fBranch', 'fStatus'];
+2325:   var valid = true;
+2326:   required.forEach(function(fieldId) {
+2327:     var el = document.getElementById(fieldId);
+2328:     if (!el.value.trim()) {
+2329:       el.classList.add('error');
+2330:       valid = false;
+2331:     } else {
+2332:       el.classList.remove('error');
+2333:     }
+2334:   });
+2335: 
+
+--- MATCH: fBranch | LINES 2304-2364 ---
+2304:   warning.hidden = !isEditing || this.value === originalCurrency;
+2305: });
+2306: 
+2307: [latitudeField, longitudeField].forEach(function(field) {
+2308:   if (!field) return;
+2309:   field.addEventListener('input', clearPropertyLocationValidation);
+2310: });
+2311: 
+2312: updatePriceCurrencyPrefix();
+2313: 
+2314: 
+2315: /* ══════════════════════════════════════════════════════════════
+2316:    13. FORM SAVE (ADD OR EDIT)
+2317: ══════════════════════════════════════════════════════════════ */
+2318: 
+2319: propForm.addEventListener('submit', async function(e) {
+2320:   e.preventDefault();
+2321:   if (isPropertySavePending) return;
+2322: 
+2323:   // Basic validation
+2324:   var required = ['fTitle', 'fRef', 'fCurrency', 'fPrice', 'fPurpose', 'fType', 'fBranch', 'fStatus'];
+2325:   var valid = true;
+2326:   required.forEach(function(fieldId) {
+2327:     var el = document.getElementById(fieldId);
+2328:     if (!el.value.trim()) {
+2329:       el.classList.add('error');
+2330:       valid = false;
+2331:     } else {
+2332:       el.classList.remove('error');
+2333:     }
+2334:   });
+2335: 
+2336:   var geographyValidation = window.HilltopAdminLocation
+2337:     ? window.HilltopAdminLocation.validateForSave()
+2338:     : { valid: false, message: 'Location suggestions are unavailable.' };
+2339: 
+2340:   if (!valid || !geographyValidation.valid) {
+2341:     switchTab('details');
+2342: 
+2343:     if (!geographyValidation.valid) {
+2344:       var locationInput = document.getElementById('fPropertyLocation');
+2345:       if (locationInput) locationInput.focus();
+2346:       showToast(geographyValidation.message, 'error');
+2347:     } else {
+2348:       showToast('Please fill in all required fields', 'error');
+2349:     }
+2350: 
+2351:     return;
+2352:   }
+2353: 
+2354:   var editId = editIdField.value;
+2355:   var existingProperty = editId
+2356:     ? properties.find(function(p){ return String(p.id) === String(editId); })
+2357:     : null;
+2358: 
+2359:   if (!requirePropertyManagePermission(existingProperty)) return;
+2360: 
+2361:   isPropertySavePending = true;
+2362:   modalSaveBtn.disabled = true;
+2363:   modalSaveBtn.setAttribute('aria-busy', 'true');
+2364:   modalSaveBtn.textContent = 'Saving...';
+
+--- MATCH: getPropertyPayloadFromForm | LINES 2351-2411 ---
+2351:     return;
+2352:   }
+2353: 
+2354:   var editId = editIdField.value;
+2355:   var existingProperty = editId
+2356:     ? properties.find(function(p){ return String(p.id) === String(editId); })
+2357:     : null;
+2358: 
+2359:   if (!requirePropertyManagePermission(existingProperty)) return;
+2360: 
+2361:   isPropertySavePending = true;
+2362:   modalSaveBtn.disabled = true;
+2363:   modalSaveBtn.setAttribute('aria-busy', 'true');
+2364:   modalSaveBtn.textContent = 'Saving...';
+2365: 
+2366:   try {
+2367:     if (!getSupabaseClient()) {
+2368:       throw new Error('Supabase is not available. Property changes cannot be saved.');
+2369:     }
+2370: 
+2371:     var payload = getPropertyPayloadFromForm();
+2372:     var savedPropertyId;
+2373:     var mediaPermissionProperty;
+2374:     var successMessage;
+2375: 
+2376:     if (editId) {
+2377:       savedPropertyId = await updateProperty(editId, payload);
+2378:       var propertyStatusChanged = existingProperty && existingProperty.status !== payload.status;
+2379:       var propertyTypeChanged = existingProperty && canonicalPropertyTypeForForm(existingProperty.type) !== payload.property_type;
+2380:       var exclusiveChanged = existingProperty && isExclusiveProperty(existingProperty) !== payload.exclusive_property;
+2381:       var previousCurrency = getPropertyCurrency(existingProperty);
+2382:       var currencyChanged = existingProperty && previousCurrency !== payload.currency_code;
+2383:       var priceChanged = existingProperty && Number(existingProperty.priceValue || 0) !== Number(payload.price);
+2384:       await logActivity({
+2385:         actionType: propertyStatusChanged ? 'PROPERTY_STATUS_UPDATED' : 'PROPERTY_UPDATED',
+2386:         description: propertyStatusChanged
+2387:           ? 'Changed property ' + payload.reference_number + ' status to ' + payload.status + '.'
+2388:           : 'Updated property ' + payload.reference_number + '.',
+2389:         branchId: payload.branch_id,
+2390:         propertyId: savedPropertyId
+2391:       });
+2392:       if (propertyTypeChanged) {
+2393:         await logActivity({
+2394:           actionType: 'PROPERTY_TYPE_UPDATED',
+2395:           description: 'Changed property ' + payload.reference_number + ' type to ' + payload.property_type + '.',
+2396:           branchId: payload.branch_id,
+2397:           propertyId: savedPropertyId
+2398:         });
+2399:       }
+2400:       if (currencyChanged) {
+2401:         await logActivity({
+2402:           actionType: 'PROPERTY_CURRENCY_UPDATED',
+2403:           description: 'Changed property ' + payload.reference_number + ' currency from ' + previousCurrency + ' to ' + payload.currency_code + '. The price amount was not converted.',
+2404:           branchId: payload.branch_id,
+2405:           propertyId: savedPropertyId
+2406:         });
+2407:       }
+2408:       if (priceChanged) {
+2409:         await logActivity({
+2410:           actionType: 'PROPERTY_PRICE_UPDATED',
+2411:           description: 'Changed property ' + payload.reference_number + ' price from ' + formatPrice(existingProperty.priceValue, existingProperty.purpose, previousCurrency) + ' to ' + formatPrice(payload.price, payload.purpose, payload.currency_code) + '.',
+
+============================================================
+FILE: website.js
+============================================================
+
+--- MATCH: PUBLIC_SETTING_KEYS | LINES 287-347 ---
+287:     background_color: '#071827'
+288:   },
+289:   {
+290:     client_name: 'Client Testimonial',
+291:     client_role: 'Landlord',
+292:     message: 'The team helped me understand the available options before making a decision.',
+293:     background_type: 'solid',
+294:     background_color: '#132c46'
+295:   },
+296:   {
+297:     client_name: 'Client Testimonial',
+298:     client_role: 'Property Client',
+299:     message: 'The branch support made it easier to connect with the right person.',
+300:     background_type: 'solid',
+301:     background_color: '#0b1f2f'
+302:   }
+303: ];
+304: 
+305: var enquirySubmitting = false;
+306: var activeEnquiryProperty = null;
+307: var PUBLIC_SETTING_KEYS = [
+308:   'company_profile',
+309:   'website_preferences',
+310:   'seo_metadata',
+311:   'homepage_hero_video_url',
+312:   'homepage_hero_poster_url',
+313:   'homepage_hero_video_updated_at',
+314:   'homepage_why_hero_video_url',
+315:   'homepage_why_hero_poster_url'
+316: ];
+317: 
+318: function prefersReducedMotion() {
+319:   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+320: }
+321: 
+322: function byId(id) {
+323:   return document.getElementById(id);
+324: }
+325: 
+326: function getSupabaseClient() {
+327:   return window.hilltopSupabase || null;
+328: }
+329: 
+330: function showStatus(message, type) {
+331:   var status = byId('siteStatus');
+332:   if (!status) return;
+333:   status.textContent = message;
+334:   status.className = 'site-status' + (type ? ' ' + type : '');
+335: }
+336: 
+337: function hideStatus() {
+338:   var status = byId('siteStatus');
+339:   if (status) status.className = 'site-status hidden';
+340: }
+341: 
+342: function escapeHtml(value) {
+343:   return String(value || '').replace(/[&<>"']/g, function (ch) {
+344:     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+345:   });
+346: }
+347: 
+
+--- MATCH: website_preferences | LINES 289-349 ---
+289:   {
+290:     client_name: 'Client Testimonial',
+291:     client_role: 'Landlord',
+292:     message: 'The team helped me understand the available options before making a decision.',
+293:     background_type: 'solid',
+294:     background_color: '#132c46'
+295:   },
+296:   {
+297:     client_name: 'Client Testimonial',
+298:     client_role: 'Property Client',
+299:     message: 'The branch support made it easier to connect with the right person.',
+300:     background_type: 'solid',
+301:     background_color: '#0b1f2f'
+302:   }
+303: ];
+304: 
+305: var enquirySubmitting = false;
+306: var activeEnquiryProperty = null;
+307: var PUBLIC_SETTING_KEYS = [
+308:   'company_profile',
+309:   'website_preferences',
+310:   'seo_metadata',
+311:   'homepage_hero_video_url',
+312:   'homepage_hero_poster_url',
+313:   'homepage_hero_video_updated_at',
+314:   'homepage_why_hero_video_url',
+315:   'homepage_why_hero_poster_url'
+316: ];
+317: 
+318: function prefersReducedMotion() {
+319:   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+320: }
+321: 
+322: function byId(id) {
+323:   return document.getElementById(id);
+324: }
+325: 
+326: function getSupabaseClient() {
+327:   return window.hilltopSupabase || null;
+328: }
+329: 
+330: function showStatus(message, type) {
+331:   var status = byId('siteStatus');
+332:   if (!status) return;
+333:   status.textContent = message;
+334:   status.className = 'site-status' + (type ? ' ' + type : '');
+335: }
+336: 
+337: function hideStatus() {
+338:   var status = byId('siteStatus');
+339:   if (status) status.className = 'site-status hidden';
+340: }
+341: 
+342: function escapeHtml(value) {
+343:   return String(value || '').replace(/[&<>"']/g, function (ch) {
+344:     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+345:   });
+346: }
+347: 
+348: function safeCssUrl(value) {
+349:   var url = String(value || '').trim();
+
+--- MATCH: homepage_hero | LINES 291-351 ---
+291:     client_role: 'Landlord',
+292:     message: 'The team helped me understand the available options before making a decision.',
+293:     background_type: 'solid',
+294:     background_color: '#132c46'
+295:   },
+296:   {
+297:     client_name: 'Client Testimonial',
+298:     client_role: 'Property Client',
+299:     message: 'The branch support made it easier to connect with the right person.',
+300:     background_type: 'solid',
+301:     background_color: '#0b1f2f'
+302:   }
+303: ];
+304: 
+305: var enquirySubmitting = false;
+306: var activeEnquiryProperty = null;
+307: var PUBLIC_SETTING_KEYS = [
+308:   'company_profile',
+309:   'website_preferences',
+310:   'seo_metadata',
+311:   'homepage_hero_video_url',
+312:   'homepage_hero_poster_url',
+313:   'homepage_hero_video_updated_at',
+314:   'homepage_why_hero_video_url',
+315:   'homepage_why_hero_poster_url'
+316: ];
+317: 
+318: function prefersReducedMotion() {
+319:   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+320: }
+321: 
+322: function byId(id) {
+323:   return document.getElementById(id);
+324: }
+325: 
+326: function getSupabaseClient() {
+327:   return window.hilltopSupabase || null;
+328: }
+329: 
+330: function showStatus(message, type) {
+331:   var status = byId('siteStatus');
+332:   if (!status) return;
+333:   status.textContent = message;
+334:   status.className = 'site-status' + (type ? ' ' + type : '');
+335: }
+336: 
+337: function hideStatus() {
+338:   var status = byId('siteStatus');
+339:   if (status) status.className = 'site-status hidden';
+340: }
+341: 
+342: function escapeHtml(value) {
+343:   return String(value || '').replace(/[&<>"']/g, function (ch) {
+344:     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+345:   });
+346: }
+347: 
+348: function safeCssUrl(value) {
+349:   var url = String(value || '').trim();
+350:   if (!url) return '';
+351:   if (!/^(https?:\/\/|assets\/|\/)/i.test(url)) return '';
+
+--- MATCH: homepage_hero | LINES 292-352 ---
+292:     message: 'The team helped me understand the available options before making a decision.',
+293:     background_type: 'solid',
+294:     background_color: '#132c46'
+295:   },
+296:   {
+297:     client_name: 'Client Testimonial',
+298:     client_role: 'Property Client',
+299:     message: 'The branch support made it easier to connect with the right person.',
+300:     background_type: 'solid',
+301:     background_color: '#0b1f2f'
+302:   }
+303: ];
+304: 
+305: var enquirySubmitting = false;
+306: var activeEnquiryProperty = null;
+307: var PUBLIC_SETTING_KEYS = [
+308:   'company_profile',
+309:   'website_preferences',
+310:   'seo_metadata',
+311:   'homepage_hero_video_url',
+312:   'homepage_hero_poster_url',
+313:   'homepage_hero_video_updated_at',
+314:   'homepage_why_hero_video_url',
+315:   'homepage_why_hero_poster_url'
+316: ];
+317: 
+318: function prefersReducedMotion() {
+319:   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+320: }
+321: 
+322: function byId(id) {
+323:   return document.getElementById(id);
+324: }
+325: 
+326: function getSupabaseClient() {
+327:   return window.hilltopSupabase || null;
+328: }
+329: 
+330: function showStatus(message, type) {
+331:   var status = byId('siteStatus');
+332:   if (!status) return;
+333:   status.textContent = message;
+334:   status.className = 'site-status' + (type ? ' ' + type : '');
+335: }
+336: 
+337: function hideStatus() {
+338:   var status = byId('siteStatus');
+339:   if (status) status.className = 'site-status hidden';
+340: }
+341: 
+342: function escapeHtml(value) {
+343:   return String(value || '').replace(/[&<>"']/g, function (ch) {
+344:     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+345:   });
+346: }
+347: 
+348: function safeCssUrl(value) {
+349:   var url = String(value || '').trim();
+350:   if (!url) return '';
+351:   if (!/^(https?:\/\/|assets\/|\/)/i.test(url)) return '';
+352:   return url.replace(/["'\\()\n\r]/g, '');
+
+--- MATCH: homepage_hero | LINES 293-353 ---
+293:     background_type: 'solid',
+294:     background_color: '#132c46'
+295:   },
+296:   {
+297:     client_name: 'Client Testimonial',
+298:     client_role: 'Property Client',
+299:     message: 'The branch support made it easier to connect with the right person.',
+300:     background_type: 'solid',
+301:     background_color: '#0b1f2f'
+302:   }
+303: ];
+304: 
+305: var enquirySubmitting = false;
+306: var activeEnquiryProperty = null;
+307: var PUBLIC_SETTING_KEYS = [
+308:   'company_profile',
+309:   'website_preferences',
+310:   'seo_metadata',
+311:   'homepage_hero_video_url',
+312:   'homepage_hero_poster_url',
+313:   'homepage_hero_video_updated_at',
+314:   'homepage_why_hero_video_url',
+315:   'homepage_why_hero_poster_url'
+316: ];
+317: 
+318: function prefersReducedMotion() {
+319:   return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+320: }
+321: 
+322: function byId(id) {
+323:   return document.getElementById(id);
+324: }
+325: 
+326: function getSupabaseClient() {
+327:   return window.hilltopSupabase || null;
+328: }
+329: 
+330: function showStatus(message, type) {
+331:   var status = byId('siteStatus');
+332:   if (!status) return;
+333:   status.textContent = message;
+334:   status.className = 'site-status' + (type ? ' ' + type : '');
+335: }
+336: 
+337: function hideStatus() {
+338:   var status = byId('siteStatus');
+339:   if (status) status.className = 'site-status hidden';
+340: }
+341: 
+342: function escapeHtml(value) {
+343:   return String(value || '').replace(/[&<>"']/g, function (ch) {
+344:     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+345:   });
+346: }
+347: 
+348: function safeCssUrl(value) {
+349:   var url = String(value || '').trim();
+350:   if (!url) return '';
+351:   if (!/^(https?:\/\/|assets\/|\/)/i.test(url)) return '';
+352:   return url.replace(/["'\\()\n\r]/g, '');
+353: }
+
+--- MATCH: app_settings | LINES 527-587 ---
+527:         .select('id, hero_title, hero_subtitle, hero_button_text, hero_button_link, about_title, about_content, contact_phone, contact_email, contact_address, updated_at')
+528:         .order('updated_at', { ascending: false })
+529:         .limit(1);
+530:     }),
+531:     safeSelect('CMS banners', function () {
+532:       return supabase
+533:         .from('cms_banners')
+534:         .select('id, title, subtitle, image_url, button_text, button_link, display_order, is_active')
+535:         .eq('is_active', true)
+536:         .order('display_order', { ascending: true });
+537:     }),
+538:     safeSelect('CMS testimonials', function () {
+539:       return supabase
+540:         .from('cms_testimonials')
+541:         .select('id, client_name, client_role, message, rating, display_order, is_visible, background_type, background_image_url, background_color')
+542:         .eq('is_visible', true)
+543:         .order('display_order', { ascending: true });
+544:     }),
+545:     safeSelect('app settings', function () {
+546:       return supabase
+547:         .from('app_settings')
+548:         .select('setting_key, setting_value')
+549:         .in('setting_key', PUBLIC_SETTING_KEYS);
+550:     }),
+551:     loadPublicPropertyServices(supabase),
+552:     safeSelect('exclusive properties', function () {
+553:       return supabase
+554:         .from('properties')
+555:         .select('id, reference_number, title, property_type, area, status, exclusive_property, branch_id, created_at')
+556:         .eq('exclusive_property', true)
+557:         .eq('status', 'Active')
+558:         .order('created_at', { ascending: false });
+559:     }),
+560:     safeSelect('provinces', function () {
+561:       return supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order');
+562:     }),
+563:     safeSelect('cities', function () {
+564:       return supabase.from('cities').select('id, province_id, name, slug').order('name');
+565:     })
+566:   ]);
+567: 
+568:   publicState.listingsLoaded = propertiesLoaded;
+569:   publicState.properties = results[0];
+570:   publicState.images = results[1];
+571:   publicState.branches = results[2];
+572:   publicState.homepage = results[3] && results[3].length ? results[3][0] : null;
+573:   publicState.banners = results[4];
+574:   publicState.testimonials = results[5];
+575:   publicState.appSettings = {};
+576:   (results[6] || []).forEach(function (row) {
+577:     publicState.appSettings[row.setting_key] = row.setting_value || {};
+578:   });
+579:   publicState.propertyServices = results[7];
+580:   publicState.exclusiveProperties = results[8] || [];
+581:   publicState.provinces = results[9] || [];
+582:   publicState.cities = results[10] || [];
+583: 
+584:   renderWebsite();
+585:   hideStatus();
+586: 
+587:   if (!publicState.properties.length) {
+
+--- MATCH: PUBLIC_SETTING_KEYS | LINES 529-589 ---
+529:         .limit(1);
+530:     }),
+531:     safeSelect('CMS banners', function () {
+532:       return supabase
+533:         .from('cms_banners')
+534:         .select('id, title, subtitle, image_url, button_text, button_link, display_order, is_active')
+535:         .eq('is_active', true)
+536:         .order('display_order', { ascending: true });
+537:     }),
+538:     safeSelect('CMS testimonials', function () {
+539:       return supabase
+540:         .from('cms_testimonials')
+541:         .select('id, client_name, client_role, message, rating, display_order, is_visible, background_type, background_image_url, background_color')
+542:         .eq('is_visible', true)
+543:         .order('display_order', { ascending: true });
+544:     }),
+545:     safeSelect('app settings', function () {
+546:       return supabase
+547:         .from('app_settings')
+548:         .select('setting_key, setting_value')
+549:         .in('setting_key', PUBLIC_SETTING_KEYS);
+550:     }),
+551:     loadPublicPropertyServices(supabase),
+552:     safeSelect('exclusive properties', function () {
+553:       return supabase
+554:         .from('properties')
+555:         .select('id, reference_number, title, property_type, area, status, exclusive_property, branch_id, created_at')
+556:         .eq('exclusive_property', true)
+557:         .eq('status', 'Active')
+558:         .order('created_at', { ascending: false });
+559:     }),
+560:     safeSelect('provinces', function () {
+561:       return supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order');
+562:     }),
+563:     safeSelect('cities', function () {
+564:       return supabase.from('cities').select('id, province_id, name, slug').order('name');
+565:     })
+566:   ]);
+567: 
+568:   publicState.listingsLoaded = propertiesLoaded;
+569:   publicState.properties = results[0];
+570:   publicState.images = results[1];
+571:   publicState.branches = results[2];
+572:   publicState.homepage = results[3] && results[3].length ? results[3][0] : null;
+573:   publicState.banners = results[4];
+574:   publicState.testimonials = results[5];
+575:   publicState.appSettings = {};
+576:   (results[6] || []).forEach(function (row) {
+577:     publicState.appSettings[row.setting_key] = row.setting_value || {};
+578:   });
+579:   publicState.propertyServices = results[7];
+580:   publicState.exclusiveProperties = results[8] || [];
+581:   publicState.provinces = results[9] || [];
+582:   publicState.cities = results[10] || [];
+583: 
+584:   renderWebsite();
+585:   hideStatus();
+586: 
+587:   if (!publicState.properties.length) {
+588:     showStatus('No active public properties are available yet. Please check back soon or contact Hilltop Properties for current listings.', 'error');
+589:   }
+
+--- MATCH: app_settings | LINES 588-648 ---
+588:     showStatus('No active public properties are available yet. Please check back soon or contact Hilltop Properties for current listings.', 'error');
+589:   }
+590: }
+591: 
+592: async function loadSharedPublicData() {
+593:   var supabase = getSupabaseClient();
+594:   if (!supabase) {
+595:     renderContact();
+596:     return;
+597:   }
+598: 
+599:   var results = await Promise.all([
+600:     safeSelect('branches', function () {
+601:       return supabase
+602:         .from('branches')
+603:         .select('id, name, address, contact_number')
+604:         .order('name', { ascending: true });
+605:     }),
+606:     safeSelect('app settings', function () {
+607:       return supabase
+608:         .from('app_settings')
+609:         .select('setting_key, setting_value')
+610:         .in('setting_key', PUBLIC_SETTING_KEYS);
+611:     })
+612:   ]);
+613: 
+614:   publicState.branches = results[0];
+615:   publicState.appSettings = {};
+616:   (results[1] || []).forEach(function (row) {
+617:     publicState.appSettings[row.setting_key] = row.setting_value || {};
+618:   });
+619: 
+620:   renderContact();
+621: }
+622: 
+623: async function loadListingsData() {
+624:   var supabase = getSupabaseClient();
+625:   publicState.listingsLoaded = false;
+626:   setListingsViewState('loading');
+627: 
+628:   if (!supabase) {
+629:     renderListingsTypeFilter();
+630:     setListingsViewState('error', 'Supabase is not configured. Listings cannot be loaded right now.');
+631:     return;
+632:   }
+633: 
+634:   try {
+635:     var metadata = await Promise.all([
+636:       supabase
+637:         .from('branches')
+638:         .select('id, name, address, contact_number')
+639:         .order('name', { ascending: true }),
+640:       supabase
+641:         .from('app_settings')
+642:         .select('setting_key, setting_value')
+643:         .in('setting_key', PUBLIC_SETTING_KEYS),
+644:       supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order'),
+645:       supabase.from('cities').select('id, province_id, name, slug').order('name')
+646:     ]);
+647: 
+648:     metadata.forEach(function (result) {
+
+--- MATCH: PUBLIC_SETTING_KEYS | LINES 590-650 ---
+590: }
+591: 
+592: async function loadSharedPublicData() {
+593:   var supabase = getSupabaseClient();
+594:   if (!supabase) {
+595:     renderContact();
+596:     return;
+597:   }
+598: 
+599:   var results = await Promise.all([
+600:     safeSelect('branches', function () {
+601:       return supabase
+602:         .from('branches')
+603:         .select('id, name, address, contact_number')
+604:         .order('name', { ascending: true });
+605:     }),
+606:     safeSelect('app settings', function () {
+607:       return supabase
+608:         .from('app_settings')
+609:         .select('setting_key, setting_value')
+610:         .in('setting_key', PUBLIC_SETTING_KEYS);
+611:     })
+612:   ]);
+613: 
+614:   publicState.branches = results[0];
+615:   publicState.appSettings = {};
+616:   (results[1] || []).forEach(function (row) {
+617:     publicState.appSettings[row.setting_key] = row.setting_value || {};
+618:   });
+619: 
+620:   renderContact();
+621: }
+622: 
+623: async function loadListingsData() {
+624:   var supabase = getSupabaseClient();
+625:   publicState.listingsLoaded = false;
+626:   setListingsViewState('loading');
+627: 
+628:   if (!supabase) {
+629:     renderListingsTypeFilter();
+630:     setListingsViewState('error', 'Supabase is not configured. Listings cannot be loaded right now.');
+631:     return;
+632:   }
+633: 
+634:   try {
+635:     var metadata = await Promise.all([
+636:       supabase
+637:         .from('branches')
+638:         .select('id, name, address, contact_number')
+639:         .order('name', { ascending: true }),
+640:       supabase
+641:         .from('app_settings')
+642:         .select('setting_key, setting_value')
+643:         .in('setting_key', PUBLIC_SETTING_KEYS),
+644:       supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order'),
+645:       supabase.from('cities').select('id, province_id, name, slug').order('name')
+646:     ]);
+647: 
+648:     metadata.forEach(function (result) {
+649:       if (result.error) throw result.error;
+650:     });
+
+--- MATCH: app_settings | LINES 621-681 ---
+621: }
+622: 
+623: async function loadListingsData() {
+624:   var supabase = getSupabaseClient();
+625:   publicState.listingsLoaded = false;
+626:   setListingsViewState('loading');
+627: 
+628:   if (!supabase) {
+629:     renderListingsTypeFilter();
+630:     setListingsViewState('error', 'Supabase is not configured. Listings cannot be loaded right now.');
+631:     return;
+632:   }
+633: 
+634:   try {
+635:     var metadata = await Promise.all([
+636:       supabase
+637:         .from('branches')
+638:         .select('id, name, address, contact_number')
+639:         .order('name', { ascending: true }),
+640:       supabase
+641:         .from('app_settings')
+642:         .select('setting_key, setting_value')
+643:         .in('setting_key', PUBLIC_SETTING_KEYS),
+644:       supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order'),
+645:       supabase.from('cities').select('id, province_id, name, slug').order('name')
+646:     ]);
+647: 
+648:     metadata.forEach(function (result) {
+649:       if (result.error) throw result.error;
+650:     });
+651: 
+652:     publicState.branches = metadata[0].data || [];
+653:     publicState.provinces = metadata[2].data || [];
+654:     publicState.cities = metadata[3].data || [];
+655: 
+656:     publicState.appSettings = {};
+657:     (metadata[1].data || []).forEach(function (row) {
+658:       publicState.appSettings[row.setting_key] = row.setting_value || {};
+659:     });
+660: 
+661:     var route = parseListingRoute(window.location.pathname);
+662:     var routeLocation = route.invalid ? null : await resolveListingLocationPath(supabase, route.locationPath);
+663:     publicState.invalidLocationPath = Boolean(route.invalid || (route.locationPath && !routeLocation));
+664:     publicState.selectedLocation = routeLocation;
+665:     publicState.routeLocationPath = route.locationPath;
+666:     var locationFilters = propertyLocationQueryFilters(routeLocation);
+667:     locationFilters.purpose = route.purpose;
+668:     var inventory = await Promise.all([
+669:       publicState.invalidLocationPath
+670:         ? Promise.resolve({data: [], error: null})
+671:         : buildPublicPropertyQuery(
+672:           supabase,
+673:           PUBLIC_PROPERTY_FIELDS + ', province_id, city_id, suburb_id, area_slug',
+674:           locationFilters
+675:         ),
+676:       supabase
+677:         .from('property_images')
+678:         .select('property_id, image_url, display_order, is_cover')
+679:         .order('display_order', { ascending: true })
+680:     ]);
+681:     inventory.forEach(function (result) {
+
+--- MATCH: PUBLIC_SETTING_KEYS | LINES 623-683 ---
+623: async function loadListingsData() {
+624:   var supabase = getSupabaseClient();
+625:   publicState.listingsLoaded = false;
+626:   setListingsViewState('loading');
+627: 
+628:   if (!supabase) {
+629:     renderListingsTypeFilter();
+630:     setListingsViewState('error', 'Supabase is not configured. Listings cannot be loaded right now.');
+631:     return;
+632:   }
+633: 
+634:   try {
+635:     var metadata = await Promise.all([
+636:       supabase
+637:         .from('branches')
+638:         .select('id, name, address, contact_number')
+639:         .order('name', { ascending: true }),
+640:       supabase
+641:         .from('app_settings')
+642:         .select('setting_key, setting_value')
+643:         .in('setting_key', PUBLIC_SETTING_KEYS),
+644:       supabase.from('provinces').select('id, name, slug, map_key, sort_order').order('sort_order'),
+645:       supabase.from('cities').select('id, province_id, name, slug').order('name')
+646:     ]);
+647: 
+648:     metadata.forEach(function (result) {
+649:       if (result.error) throw result.error;
+650:     });
+651: 
+652:     publicState.branches = metadata[0].data || [];
+653:     publicState.provinces = metadata[2].data || [];
+654:     publicState.cities = metadata[3].data || [];
+655: 
+656:     publicState.appSettings = {};
+657:     (metadata[1].data || []).forEach(function (row) {
+658:       publicState.appSettings[row.setting_key] = row.setting_value || {};
+659:     });
+660: 
+661:     var route = parseListingRoute(window.location.pathname);
+662:     var routeLocation = route.invalid ? null : await resolveListingLocationPath(supabase, route.locationPath);
+663:     publicState.invalidLocationPath = Boolean(route.invalid || (route.locationPath && !routeLocation));
+664:     publicState.selectedLocation = routeLocation;
+665:     publicState.routeLocationPath = route.locationPath;
+666:     var locationFilters = propertyLocationQueryFilters(routeLocation);
+667:     locationFilters.purpose = route.purpose;
+668:     var inventory = await Promise.all([
+669:       publicState.invalidLocationPath
+670:         ? Promise.resolve({data: [], error: null})
+671:         : buildPublicPropertyQuery(
+672:           supabase,
+673:           PUBLIC_PROPERTY_FIELDS + ', province_id, city_id, suburb_id, area_slug',
+674:           locationFilters
+675:         ),
+676:       supabase
+677:         .from('property_images')
+678:         .select('property_id, image_url, display_order, is_cover')
+679:         .order('display_order', { ascending: true })
+680:     ]);
+681:     inventory.forEach(function (result) {
+682:       if (result.error) throw result.error;
+683:     });
+
+--- MATCH: configureHeroVideo | LINES 772-832 ---
+772:   if (!value) return '';
+773:   if (typeof value === 'string') return value;
+774:   return value.url || value.value || '';
+775: }
+776: 
+777: function setHeroPoster(hero, video, posterUrl, fallbackImageUrl) {
+778:   if (posterUrl && video) {
+779:     video.setAttribute('poster', posterUrl);
+780:   } else if (video) {
+781:     video.removeAttribute('poster');
+782:   }
+783: 
+784:   var backgroundUrl = posterUrl || fallbackImageUrl || '';
+785:   if (backgroundUrl && hero) {
+786:     hero.style.backgroundImage = 'url("' + backgroundUrl + '")';
+787:   } else if (hero) {
+788:     hero.style.backgroundImage = '';
+789:   }
+790: }
+791: 
+792: function configureHeroVideo(videoUrl, posterUrl, fallbackImageUrl) {
+793:   var hero = byId('home');
+794:   var video = byId('heroVideo');
+795:   if (!hero || !video) return;
+796: 
+797:   setHeroPoster(hero, video, posterUrl, fallbackImageUrl);
+798: 
+799:   if (!videoUrl || prefersReducedMotion()) {
+800:     video.removeAttribute('src');
+801:     video.load();
+802:     video.classList.remove('is-visible');
+803:     return;
+804:   }
+805: 
+806:   if (video.getAttribute('src') !== videoUrl) {
+807:     video.setAttribute('src', videoUrl);
+808:   }
+809: 
+810:   video.muted = true;
+811:   video.loop = true;
+812:   video.playsInline = true;
+813:   video.autoplay = true;
+814:   video.onerror = function () {
+815:     console.warn('Hero video failed to load. Falling back to poster/static background.');
+816:     video.classList.remove('is-visible');
+817:   };
+818:   video.classList.add('is-visible');
+819: 
+820:   var playPromise = video.play();
+821:   if (playPromise && typeof playPromise.catch === 'function') {
+822:     playPromise.catch(function (error) {
+823:       console.warn('Hero video autoplay was blocked or failed. Falling back to poster/static background.', error);
+824:       video.classList.remove('is-visible');
+825:     });
+826:   }
+827: }
+828: 
+829: function configureWhyHeroVideo() {
+830:   var section = document.querySelector('.why-video-hero');
+831:   var video = byId('whyHeroVideo');
+832:   if (!section || !video) return;
+
+--- MATCH: heroVideo | LINES 774-834 ---
+774:   return value.url || value.value || '';
+775: }
+776: 
+777: function setHeroPoster(hero, video, posterUrl, fallbackImageUrl) {
+778:   if (posterUrl && video) {
+779:     video.setAttribute('poster', posterUrl);
+780:   } else if (video) {
+781:     video.removeAttribute('poster');
+782:   }
+783: 
+784:   var backgroundUrl = posterUrl || fallbackImageUrl || '';
+785:   if (backgroundUrl && hero) {
+786:     hero.style.backgroundImage = 'url("' + backgroundUrl + '")';
+787:   } else if (hero) {
+788:     hero.style.backgroundImage = '';
+789:   }
+790: }
+791: 
+792: function configureHeroVideo(videoUrl, posterUrl, fallbackImageUrl) {
+793:   var hero = byId('home');
+794:   var video = byId('heroVideo');
+795:   if (!hero || !video) return;
+796: 
+797:   setHeroPoster(hero, video, posterUrl, fallbackImageUrl);
+798: 
+799:   if (!videoUrl || prefersReducedMotion()) {
+800:     video.removeAttribute('src');
+801:     video.load();
+802:     video.classList.remove('is-visible');
+803:     return;
+804:   }
+805: 
+806:   if (video.getAttribute('src') !== videoUrl) {
+807:     video.setAttribute('src', videoUrl);
+808:   }
+809: 
+810:   video.muted = true;
+811:   video.loop = true;
+812:   video.playsInline = true;
+813:   video.autoplay = true;
+814:   video.onerror = function () {
+815:     console.warn('Hero video failed to load. Falling back to poster/static background.');
+816:     video.classList.remove('is-visible');
+817:   };
+818:   video.classList.add('is-visible');
+819: 
+820:   var playPromise = video.play();
+821:   if (playPromise && typeof playPromise.catch === 'function') {
+822:     playPromise.catch(function (error) {
+823:       console.warn('Hero video autoplay was blocked or failed. Falling back to poster/static background.', error);
+824:       video.classList.remove('is-visible');
+825:     });
+826:   }
+827: }
+828: 
+829: function configureWhyHeroVideo() {
+830:   var section = document.querySelector('.why-video-hero');
+831:   var video = byId('whyHeroVideo');
+832:   if (!section || !video) return;
+833: 
+834:   var videoUrl = settingUrl('homepage_why_hero_video_url');
+
+--- MATCH: heroVideo | LINES 809-869 ---
+809: 
+810:   video.muted = true;
+811:   video.loop = true;
+812:   video.playsInline = true;
+813:   video.autoplay = true;
+814:   video.onerror = function () {
+815:     console.warn('Hero video failed to load. Falling back to poster/static background.');
+816:     video.classList.remove('is-visible');
+817:   };
+818:   video.classList.add('is-visible');
+819: 
+820:   var playPromise = video.play();
+821:   if (playPromise && typeof playPromise.catch === 'function') {
+822:     playPromise.catch(function (error) {
+823:       console.warn('Hero video autoplay was blocked or failed. Falling back to poster/static background.', error);
+824:       video.classList.remove('is-visible');
+825:     });
+826:   }
+827: }
+828: 
+829: function configureWhyHeroVideo() {
+830:   var section = document.querySelector('.why-video-hero');
+831:   var video = byId('whyHeroVideo');
+832:   if (!section || !video) return;
+833: 
+834:   var videoUrl = settingUrl('homepage_why_hero_video_url');
+835:   var posterUrl = settingUrl('homepage_why_hero_poster_url');
+836: 
+837:   if (posterUrl) {
+838:     video.setAttribute('poster', posterUrl);
+839:     section.style.backgroundImage = 'url("' + posterUrl + '")';
+840:   } else {
+841:     video.removeAttribute('poster');
+842:     section.style.backgroundImage = '';
+843:   }
+844: 
+845:   if (!videoUrl || prefersReducedMotion()) {
+846:     video.pause();
+847:     video.removeAttribute('src');
+848:     video.load();
+849:     video.classList.remove('is-visible');
+850:     return;
+851:   }
+852: 
+853:   if (video.getAttribute('src') !== videoUrl) {
+854:     video.setAttribute('src', videoUrl);
+855:   }
+856: 
+857:   video.muted = true;
+858:   video.loop = true;
+859:   video.playsInline = true;
+860:   video.autoplay = true;
+861: 
+862:   video.onloadeddata = function () {
+863:     video.classList.add('is-visible');
+864:   };
+865: 
+866:   video.onerror = function () {
+867:     console.warn('Why Hilltop video failed to load. Falling back to poster/static background.');
+868:     video.classList.remove('is-visible');
+869:   };
+
+--- MATCH: heroVideo | LINES 811-871 ---
+811:   video.loop = true;
+812:   video.playsInline = true;
+813:   video.autoplay = true;
+814:   video.onerror = function () {
+815:     console.warn('Hero video failed to load. Falling back to poster/static background.');
+816:     video.classList.remove('is-visible');
+817:   };
+818:   video.classList.add('is-visible');
+819: 
+820:   var playPromise = video.play();
+821:   if (playPromise && typeof playPromise.catch === 'function') {
+822:     playPromise.catch(function (error) {
+823:       console.warn('Hero video autoplay was blocked or failed. Falling back to poster/static background.', error);
+824:       video.classList.remove('is-visible');
+825:     });
+826:   }
+827: }
+828: 
+829: function configureWhyHeroVideo() {
+830:   var section = document.querySelector('.why-video-hero');
+831:   var video = byId('whyHeroVideo');
+832:   if (!section || !video) return;
+833: 
+834:   var videoUrl = settingUrl('homepage_why_hero_video_url');
+835:   var posterUrl = settingUrl('homepage_why_hero_poster_url');
+836: 
+837:   if (posterUrl) {
+838:     video.setAttribute('poster', posterUrl);
+839:     section.style.backgroundImage = 'url("' + posterUrl + '")';
+840:   } else {
+841:     video.removeAttribute('poster');
+842:     section.style.backgroundImage = '';
+843:   }
+844: 
+845:   if (!videoUrl || prefersReducedMotion()) {
+846:     video.pause();
+847:     video.removeAttribute('src');
+848:     video.load();
+849:     video.classList.remove('is-visible');
+850:     return;
+851:   }
+852: 
+853:   if (video.getAttribute('src') !== videoUrl) {
+854:     video.setAttribute('src', videoUrl);
+855:   }
+856: 
+857:   video.muted = true;
+858:   video.loop = true;
+859:   video.playsInline = true;
+860:   video.autoplay = true;
+861: 
+862:   video.onloadeddata = function () {
+863:     video.classList.add('is-visible');
+864:   };
+865: 
+866:   video.onerror = function () {
+867:     console.warn('Why Hilltop video failed to load. Falling back to poster/static background.');
+868:     video.classList.remove('is-visible');
+869:   };
+870: 
+871:   var playPromise = video.play();
+
+--- MATCH: renderHero | LINES 860-920 ---
+860:   video.autoplay = true;
+861: 
+862:   video.onloadeddata = function () {
+863:     video.classList.add('is-visible');
+864:   };
+865: 
+866:   video.onerror = function () {
+867:     console.warn('Why Hilltop video failed to load. Falling back to poster/static background.');
+868:     video.classList.remove('is-visible');
+869:   };
+870: 
+871:   var playPromise = video.play();
+872:   if (playPromise && typeof playPromise.catch === 'function') {
+873:     playPromise.catch(function (error) {
+874:       console.warn('Why Hilltop video autoplay was blocked or failed. Falling back to poster/static background.', error);
+875:       video.classList.remove('is-visible');
+876:     });
+877:   }
+878: }
+879: 
+880: function renderHero() {
+881:   var homepage = publicState.homepage || {};
+882:   var banner = publicState.banners.length ? publicState.banners[0] : null;
+883:   var title = homepage.hero_title || (banner && banner.title) || 'Find Verified Properties Across Zambia';
+884:   var subtitle = homepage.hero_subtitle || (banner && banner.subtitle) || 'Buy, rent, and enquire about trusted properties through Hilltop Properties Zambia.';
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+
+--- MATCH: heroMedia | LINES 879-939 ---
+879: 
+880: function renderHero() {
+881:   var homepage = publicState.homepage || {};
+882:   var banner = publicState.banners.length ? publicState.banners[0] : null;
+883:   var title = homepage.hero_title || (banner && banner.title) || 'Find Verified Properties Across Zambia';
+884:   var subtitle = homepage.hero_subtitle || (banner && banner.subtitle) || 'Buy, rent, and enquire about trusted properties through Hilltop Properties Zambia.';
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+
+--- MATCH: heroMedia | LINES 881-941 ---
+881:   var homepage = publicState.homepage || {};
+882:   var banner = publicState.banners.length ? publicState.banners[0] : null;
+883:   var title = homepage.hero_title || (banner && banner.title) || 'Find Verified Properties Across Zambia';
+884:   var subtitle = homepage.hero_subtitle || (banner && banner.subtitle) || 'Buy, rent, and enquire about trusted properties through Hilltop Properties Zambia.';
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+
+--- MATCH: heroMedia | LINES 882-942 ---
+882:   var banner = publicState.banners.length ? publicState.banners[0] : null;
+883:   var title = homepage.hero_title || (banner && banner.title) || 'Find Verified Properties Across Zambia';
+884:   var subtitle = homepage.hero_subtitle || (banner && banner.subtitle) || 'Buy, rent, and enquire about trusted properties through Hilltop Properties Zambia.';
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+942:     via: true,
+
+--- MATCH: heroMedia | LINES 883-943 ---
+883:   var title = homepage.hero_title || (banner && banner.title) || 'Find Verified Properties Across Zambia';
+884:   var subtitle = homepage.hero_subtitle || (banner && banner.subtitle) || 'Buy, rent, and enquire about trusted properties through Hilltop Properties Zambia.';
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+942:     via: true,
+943:     with: true
+
+--- MATCH: configureHeroVideo | LINES 885-945 ---
+885:   var buttonText = homepage.hero_button_text || (banner && banner.button_text) || 'View Listings';
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+942:     via: true,
+943:     with: true
+944:   };
+945:   var acronyms = {
+
+--- MATCH: homepage_hero | LINES 886-946 ---
+886:   var buttonLink = canonicalCollectionHref(homepage.hero_button_link || (banner && banner.button_link) || 'listings.html');
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+942:     via: true,
+943:     with: true
+944:   };
+945:   var acronyms = {
+946:     cbd: 'CBD',
+
+--- MATCH: homepage_hero | LINES 887-947 ---
+887: 
+888:   var titleEl = byId('heroTitle');
+889:   var subtitleEl = byId('heroSubtitle');
+890:   var buttonEl = byId('heroButton');
+891: 
+892:   if (titleEl) titleEl.textContent = title;
+893:   if (subtitleEl) subtitleEl.textContent = subtitle;
+894:   if (buttonEl) {
+895:     buttonEl.textContent = buttonText;
+896:     buttonEl.setAttribute('href', buttonLink || '#properties');
+897:   }
+898: 
+899:   var heroMedia = byId('heroMedia');
+900:   var imageUrl = banner && banner.image_url;
+901:   if (heroMedia) {
+902:     heroMedia.className = 'hero-overlay';
+903:     heroMedia.style.backgroundImage = '';
+904:   }
+905:   configureHeroVideo(
+906:     settingUrl('homepage_hero_video_url'),
+907:     settingUrl('homepage_hero_poster_url'),
+908:     imageUrl
+909:   );
+910: }
+911: 
+912: function propertyStatusClass(status) {
+913:   var value = String(status || '').toLowerCase();
+914:   if (value === 'active') return 'status-active';
+915:   if (value === 'under offer') return 'status-offer';
+916:   if (value === 'sold' || value === 'let / rented') return 'status-closed';
+917:   return 'status-default';
+918: }
+919: 
+920: function propertyTitleForDisplay(value) {
+921:   var title = String(value || '').replace(/\s+/g, ' ').trim();
+922:   var letters = title.match(/[A-Za-z]/g);
+923: 
+924:   // Preserve titles that already contain intentional mixed-case formatting.
+925:   if (!letters || title !== title.toUpperCase()) return title;
+926: 
+927:   var minorWords = {
+928:     a: true,
+929:     an: true,
+930:     and: true,
+931:     as: true,
+932:     at: true,
+933:     by: true,
+934:     for: true,
+935:     from: true,
+936:     in: true,
+937:     of: true,
+938:     on: true,
+939:     or: true,
+940:     the: true,
+941:     to: true,
+942:     via: true,
+943:     with: true
+944:   };
+945:   var acronyms = {
+946:     cbd: 'CBD',
+947:     mls: 'MLS',
+
+--- MATCH: renderHero | LINES 4820-4880 ---
+4820:   document.addEventListener('pointerdown', function (event) {
+4821:     if (!event.target.closest('.discovery-location-field')) {
+4822:       invalidatePendingSearch();
+4823:       closeMenu();
+4824:     }
+4825:   });
+4826:   document.addEventListener('discovery-menu-opening', function (event) {
+4827:     if (event.detail !== menu.id) {
+4828:       invalidatePendingSearch();
+4829:       closeMenu();
+4830:     }
+4831:   });
+4832:   window.addEventListener('resize', function () {
+4833:     if (input.getAttribute('aria-expanded') === 'true') positionMenu();
+4834:   }, {passive: true});
+4835:   syncDiscoveryLocationMenu();
+4836: }
+4837: 
+4838: function renderWebsite() {
+4839:   applySeoSettings();
+4840:   renderHero();
+4841:   configureWhyHeroVideo();
+4842:   renderFilters();
+4843:   if (byId('discoveryForm')) renderHomepageInventory();
+4844:   else if (byId('homePropertySections')) renderPropertySections(byId('homePropertySections'), publicState.properties);
+4845:   renderMoreProperties();
+4846:   renderProperties();
+4847:   renderAbout();
+4848:   renderTestimonials();
+4849:   renderPropertyServices();
+4850:   renderContact();
+4851:   initZambiaMapInteraction();
+4852:   initAboutNetworkCountUp();
+4853:   initCtaImageReveal();
+4854:   initTestimonialCarousel();
+4855: }
+4856: 
+4857: document.addEventListener('DOMContentLoaded', function () {
+4858:   var year = byId('year');
+4859:   if (year) year.textContent = new Date().getFullYear();
+4860:   initMobileNavigation();
+4861:   initHeaderBehavior();
+4862:   initSmoothScroll();
+4863:   initTeamHoldTrigger();
+4864:   initPremiumEnquiryForm();
+4865:   bindEvents();
+4866:   if (byId('listingsGrid')) {
+4867:     loadListingsData();
+4868:   } else if (byId('homePropertySections')) {
+4869:     bindDiscoveryControls();
+4870:     renderMorePropertiesLoading();
+4871:     loadPublicData();
+4872:   } else {
+4873:     loadSharedPublicData();
+4874:   }
+4875: });
+4876: 
+4877: /* ============================================================
+4878:    TEAM HOLD TRIGGER FUNCTIONALITY
+4879:    ============================================================ */
+4880: 
+
+--- MATCH: heroVideo | LINES 4821-4881 ---
+4821:     if (!event.target.closest('.discovery-location-field')) {
+4822:       invalidatePendingSearch();
+4823:       closeMenu();
+4824:     }
+4825:   });
+4826:   document.addEventListener('discovery-menu-opening', function (event) {
+4827:     if (event.detail !== menu.id) {
+4828:       invalidatePendingSearch();
+4829:       closeMenu();
+4830:     }
+4831:   });
+4832:   window.addEventListener('resize', function () {
+4833:     if (input.getAttribute('aria-expanded') === 'true') positionMenu();
+4834:   }, {passive: true});
+4835:   syncDiscoveryLocationMenu();
+4836: }
+4837: 
+4838: function renderWebsite() {
+4839:   applySeoSettings();
+4840:   renderHero();
+4841:   configureWhyHeroVideo();
+4842:   renderFilters();
+4843:   if (byId('discoveryForm')) renderHomepageInventory();
+4844:   else if (byId('homePropertySections')) renderPropertySections(byId('homePropertySections'), publicState.properties);
+4845:   renderMoreProperties();
+4846:   renderProperties();
+4847:   renderAbout();
+4848:   renderTestimonials();
+4849:   renderPropertyServices();
+4850:   renderContact();
+4851:   initZambiaMapInteraction();
+4852:   initAboutNetworkCountUp();
+4853:   initCtaImageReveal();
+4854:   initTestimonialCarousel();
+4855: }
+4856: 
+4857: document.addEventListener('DOMContentLoaded', function () {
+4858:   var year = byId('year');
+4859:   if (year) year.textContent = new Date().getFullYear();
+4860:   initMobileNavigation();
+4861:   initHeaderBehavior();
+4862:   initSmoothScroll();
+4863:   initTeamHoldTrigger();
+4864:   initPremiumEnquiryForm();
+4865:   bindEvents();
+4866:   if (byId('listingsGrid')) {
+4867:     loadListingsData();
+4868:   } else if (byId('homePropertySections')) {
+4869:     bindDiscoveryControls();
+4870:     renderMorePropertiesLoading();
+4871:     loadPublicData();
+4872:   } else {
+4873:     loadSharedPublicData();
+4874:   }
+4875: });
+4876: 
+4877: /* ============================================================
+4878:    TEAM HOLD TRIGGER FUNCTIONALITY
+4879:    ============================================================ */
+4880: 
+4881: // Temporary hardcoded default team members as last-resort fallback
+
+============================================================
+FILE: website.html
+============================================================
+
+--- MATCH: heroVideo | LINES 25-85 ---
+25:       <a href="#about">About</a>
+26:       <a href="#contact">Contact</a>
+27:     </nav>
+28:     <a class="brand" href="#home" aria-label="Hilltop Properties Zambia home">
+29:       HILLTOP
+30:     </a>
+31:     <div class="header-actions">
+32:       <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+33:       <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+34:         aria-label="Open menu">
+35:         <span class="hamburger-line"></span>
+36:         <span class="hamburger-line"></span>
+37:         <span class="hamburger-line"></span>
+38:       </button>
+39:     </div>
+40:     <div class="nav-overlay" id="navOverlay"></div>
+41:   </header>
+42: 
+43:   <main>
+44:     <section class="hero" id="home">
+45:       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+46:         aria-hidden="true"></video>
+47:       <div class="hero-overlay" id="heroMedia"></div>
+48:     </section>
+49: 
+50:     <nav class="division-switcher" aria-label="Hilltop divisions">
+51:       <a class="division-switcher__link is-active" href="index.html" aria-current="page"><span>Real Estate</span></a>
+52:       <a class="division-switcher__link" href="construction/"><span>Construction</span></a>
+53:     </nav>
+54: 
+55:     <div class="site-status" id="siteStatus">Loading website content...</div>
+56: 
+57:     <section class="property-discovery" aria-labelledby="discoveryTitle">
+58:       <div class="property-discovery__inner">
+59:         <form id="discoveryForm" class="discovery-filter">
+60:         <div class="discovery-header">
+61:           <h2 id="discoveryTitle">Find a Property</h2>
+62:           <div class="discovery-badge" id="discoveryBadge" aria-hidden="true"><span class="discovery-count" id="discoveryCount"></span></div>
+63:         </div>
+64:         <div class="discovery-transactions" role="group" aria-label="Transaction type">
+65:           <button type="button" data-discovery-purpose="For Sale" aria-pressed="true">For Sale</button>
+66:           <button type="button" data-discovery-purpose="For Rent" aria-pressed="false">For Rent</button>
+67:         </div>
+68:         <div class="discovery-field-group discovery-location-field">
+69:           <label class="field-label" for="discoveryLocationTrigger">Location</label>
+70:           <div class="discovery-control discovery-location-trigger">
+71:             <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21L16.65 16.65"/></svg></span>
+72:             <input class="discovery-location-input" id="discoveryLocationTrigger" type="search" placeholder="Search location" autocomplete="off" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="discoveryLocationMenu" aria-expanded="false" aria-describedby="discoveryLocationStatus">
+73:             <span class="field-chevron discovery-location-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+74:           </div>
+75:           <input id="discoveryLocation" type="hidden" value="">
+76:           <div class="discovery-location-menu" id="discoveryLocationMenu" role="listbox" aria-label="Location suggestions" hidden></div>
+77:           <span class="sr-only" id="discoveryLocationStatus" role="status" aria-live="polite"></span>
+78:         </div>
+79:         <div class="discovery-fields">
+80:           <div class="discovery-field-group discovery-popup-field">
+81:             <label class="field-label" for="discoveryTypeTrigger">Property Type</label>
+82:             <button class="discovery-control discovery-select-trigger" id="discoveryTypeTrigger" type="button" aria-haspopup="listbox" aria-controls="discoveryTypeMenu" aria-expanded="false"><span class="field-row">
+83:               <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/><path d="M9 21V12h6v9"/></svg></span>
+84:               <span class="discovery-select-value" id="discoveryTypeValue">All property types</span>
+85:               <span class="field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+
+--- MATCH: heroMedia | LINES 27-87 ---
+27:     </nav>
+28:     <a class="brand" href="#home" aria-label="Hilltop Properties Zambia home">
+29:       HILLTOP
+30:     </a>
+31:     <div class="header-actions">
+32:       <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+33:       <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+34:         aria-label="Open menu">
+35:         <span class="hamburger-line"></span>
+36:         <span class="hamburger-line"></span>
+37:         <span class="hamburger-line"></span>
+38:       </button>
+39:     </div>
+40:     <div class="nav-overlay" id="navOverlay"></div>
+41:   </header>
+42: 
+43:   <main>
+44:     <section class="hero" id="home">
+45:       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+46:         aria-hidden="true"></video>
+47:       <div class="hero-overlay" id="heroMedia"></div>
+48:     </section>
+49: 
+50:     <nav class="division-switcher" aria-label="Hilltop divisions">
+51:       <a class="division-switcher__link is-active" href="index.html" aria-current="page"><span>Real Estate</span></a>
+52:       <a class="division-switcher__link" href="construction/"><span>Construction</span></a>
+53:     </nav>
+54: 
+55:     <div class="site-status" id="siteStatus">Loading website content...</div>
+56: 
+57:     <section class="property-discovery" aria-labelledby="discoveryTitle">
+58:       <div class="property-discovery__inner">
+59:         <form id="discoveryForm" class="discovery-filter">
+60:         <div class="discovery-header">
+61:           <h2 id="discoveryTitle">Find a Property</h2>
+62:           <div class="discovery-badge" id="discoveryBadge" aria-hidden="true"><span class="discovery-count" id="discoveryCount"></span></div>
+63:         </div>
+64:         <div class="discovery-transactions" role="group" aria-label="Transaction type">
+65:           <button type="button" data-discovery-purpose="For Sale" aria-pressed="true">For Sale</button>
+66:           <button type="button" data-discovery-purpose="For Rent" aria-pressed="false">For Rent</button>
+67:         </div>
+68:         <div class="discovery-field-group discovery-location-field">
+69:           <label class="field-label" for="discoveryLocationTrigger">Location</label>
+70:           <div class="discovery-control discovery-location-trigger">
+71:             <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21L16.65 16.65"/></svg></span>
+72:             <input class="discovery-location-input" id="discoveryLocationTrigger" type="search" placeholder="Search location" autocomplete="off" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="discoveryLocationMenu" aria-expanded="false" aria-describedby="discoveryLocationStatus">
+73:             <span class="field-chevron discovery-location-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+74:           </div>
+75:           <input id="discoveryLocation" type="hidden" value="">
+76:           <div class="discovery-location-menu" id="discoveryLocationMenu" role="listbox" aria-label="Location suggestions" hidden></div>
+77:           <span class="sr-only" id="discoveryLocationStatus" role="status" aria-live="polite"></span>
+78:         </div>
+79:         <div class="discovery-fields">
+80:           <div class="discovery-field-group discovery-popup-field">
+81:             <label class="field-label" for="discoveryTypeTrigger">Property Type</label>
+82:             <button class="discovery-control discovery-select-trigger" id="discoveryTypeTrigger" type="button" aria-haspopup="listbox" aria-controls="discoveryTypeMenu" aria-expanded="false"><span class="field-row">
+83:               <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/><path d="M9 21V12h6v9"/></svg></span>
+84:               <span class="discovery-select-value" id="discoveryTypeValue">All property types</span>
+85:               <span class="field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+86:             </span></button>
+87:             <select id="discoveryType" aria-label="Property Type" hidden><option value="all">All property types</option></select>
+
+--- MATCH: heroVideo | LINES 172-232 ---
+172:                 <img src="assets/images/service-rent-property.svg" alt="Illustration representing finding and renting a property" class="service-choice-card__image" />
+173:               </div>
+174:               <h3 class="service-choice-card__title">Rent a Property</h3>
+175:               <p class="service-choice-card__description">Find houses and apartments available for rent in Lusaka, Livingstone, and other listed locations.</p>
+176:               <a class="service-choice-card__action" href="/properties-for-rent">Explore Rentals</a>
+177:             </article>
+178: 
+179:             <article class="service-choice-card" data-service-card-slug="list-property">
+180:               <div class="service-choice-card__visual">
+181:                 <img src="assets/images/service-list-property.svg" alt="Illustration representing listing a property for sale or rent" class="service-choice-card__image" />
+182:               </div>
+183:               <h3 class="service-choice-card__title">Sell or List a Property</h3>
+184:               <p class="service-choice-card__description">List your property with Hilltop and connect with interested buyers or tenants through our branch network.</p>
+185:               <a class="service-choice-card__action" href="#contact" data-enquiry-type="List a Property">List Your Property</a>
+186:             </article>
+187:           </div>
+188:         </div>
+189:       </section>
+190: 
+191:     <section class="why-video-hero" id="why">
+192:       <video class="why-hero-video" id="whyHeroVideo" autoplay muted loop playsinline preload="metadata"
+193:         aria-hidden="true"></video>
+194:       <div class="why-hero-overlay"></div>
+195: 
+196:       <div class="why-hero-content">
+197:         <div class="why-hero-header">
+198:           <p class="eyebrow why-eyebrow" data-why-field="eyebrow">WHY HILLTOP</p>
+199:           <h2 class="why-title" data-why-field="title">The Hilltop Advantage</h2>
+200:         </div>
+201: 
+202:         <div class="why-cards-container" aria-label="Hilltop trust points">
+203:           <!-- Card 1: Verified Listings -->
+204:           <div class="why-card" tabindex="0">
+205:             <div class="why-card-inner">
+206:               <h3 class="why-card-title" data-why-field="card-1-title">Verified Listings</h3>
+207:               <p class="why-card-desc-default" data-why-field="card-1-short">Public listings are presented with clear
+208:                 status, branch, and property details.</p>
+209:               <div class="why-card-expanded">
+210:                 <p class="why-card-desc-expanded" data-why-field="card-1-expanded">Hilltop reviews property details,
+211:                   location, ownership information, pricing, and status before presenting listings to clients.</p>
+212:               </div>
+213:             </div>
+214:           </div>
+215: 
+216:           <!-- Card 2: Branch Support -->
+217:           <div class="why-card" tabindex="0">
+218:             <div class="why-card-inner">
+219:               <h3 class="why-card-title" data-why-field="card-2-title">Branch Support</h3>
+220:               <p class="why-card-desc-default" data-why-field="card-2-short">Lusaka and Livingstone teams help route
+221:                 enquiries to the right office.</p>
+222:               <div class="why-card-expanded">
+223:                 <p class="why-card-desc-expanded" data-why-field="card-2-expanded">Branch teams help coordinate
+224:                   enquiries, viewings, follow-ups, and client support across Hilltop’s operating locations.</p>
+225:               </div>
+226:             </div>
+227:           </div>
+228: 
+229:           <!-- Card 3: Trusted Agents -->
+230:           <div class="why-card why-card--trusted-agents" tabindex="0">
+231:             <div class="why-card-inner">
+232:               <h3 class="why-card-title" data-why-field="card-3-title">Trusted Agents</h3>
+
+============================================================
+FILE: index.html
+============================================================
+
+--- MATCH: heroVideo | LINES 25-85 ---
+25:       <a href="#about">About</a>
+26:       <a href="#contact">Contact</a>
+27:     </nav>
+28:     <a class="brand" href="#home" aria-label="Hilltop Properties Zambia home">
+29:       HILLTOP
+30:     </a>
+31:     <div class="header-actions">
+32:       <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+33:       <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+34:         aria-label="Open menu">
+35:         <span class="hamburger-line"></span>
+36:         <span class="hamburger-line"></span>
+37:         <span class="hamburger-line"></span>
+38:       </button>
+39:     </div>
+40:     <div class="nav-overlay" id="navOverlay"></div>
+41:   </header>
+42: 
+43:   <main>
+44:     <section class="hero" id="home">
+45:       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+46:         aria-hidden="true"></video>
+47:       <div class="hero-overlay" id="heroMedia"></div>
+48:     </section>
+49: 
+50:     <nav class="division-switcher" aria-label="Hilltop divisions">
+51:       <a class="division-switcher__link is-active" href="index.html" aria-current="page"><span>Real Estate</span></a>
+52:       <a class="division-switcher__link" href="construction/"><span>Construction</span></a>
+53:     </nav>
+54: 
+55:     <div class="site-status" id="siteStatus">Loading website content...</div>
+56: 
+57:     <section class="property-discovery" aria-labelledby="discoveryTitle">
+58:       <div class="property-discovery__inner">
+59:         <form id="discoveryForm" class="discovery-filter">
+60:         <div class="discovery-header">
+61:           <h2 id="discoveryTitle">Find a Property</h2>
+62:           <div class="discovery-badge" id="discoveryBadge" aria-hidden="true"><span class="discovery-count" id="discoveryCount"></span></div>
+63:         </div>
+64:         <div class="discovery-transactions" role="group" aria-label="Transaction type">
+65:           <button type="button" data-discovery-purpose="For Sale" aria-pressed="true">For Sale</button>
+66:           <button type="button" data-discovery-purpose="For Rent" aria-pressed="false">For Rent</button>
+67:         </div>
+68:         <div class="discovery-field-group discovery-location-field">
+69:           <label class="field-label" for="discoveryLocationTrigger">Location</label>
+70:           <div class="discovery-control discovery-location-trigger">
+71:             <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21L16.65 16.65"/></svg></span>
+72:             <input class="discovery-location-input" id="discoveryLocationTrigger" type="search" placeholder="Search location" autocomplete="off" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="discoveryLocationMenu" aria-expanded="false" aria-describedby="discoveryLocationStatus">
+73:             <span class="field-chevron discovery-location-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+74:           </div>
+75:           <input id="discoveryLocation" type="hidden" value="">
+76:           <div class="discovery-location-menu" id="discoveryLocationMenu" role="listbox" aria-label="Location suggestions" hidden></div>
+77:           <span class="sr-only" id="discoveryLocationStatus" role="status" aria-live="polite"></span>
+78:         </div>
+79:         <div class="discovery-fields">
+80:           <div class="discovery-field-group discovery-popup-field">
+81:             <label class="field-label" for="discoveryTypeTrigger">Property Type</label>
+82:             <button class="discovery-control discovery-select-trigger" id="discoveryTypeTrigger" type="button" aria-haspopup="listbox" aria-controls="discoveryTypeMenu" aria-expanded="false"><span class="field-row">
+83:               <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/><path d="M9 21V12h6v9"/></svg></span>
+84:               <span class="discovery-select-value" id="discoveryTypeValue">All property types</span>
+85:               <span class="field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+
+--- MATCH: heroMedia | LINES 27-87 ---
+27:     </nav>
+28:     <a class="brand" href="#home" aria-label="Hilltop Properties Zambia home">
+29:       HILLTOP
+30:     </a>
+31:     <div class="header-actions">
+32:       <button class="btn header-enquiry-btn" type="button" id="headerEnquiryButton">Enquire</button>
+33:       <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false"
+34:         aria-label="Open menu">
+35:         <span class="hamburger-line"></span>
+36:         <span class="hamburger-line"></span>
+37:         <span class="hamburger-line"></span>
+38:       </button>
+39:     </div>
+40:     <div class="nav-overlay" id="navOverlay"></div>
+41:   </header>
+42: 
+43:   <main>
+44:     <section class="hero" id="home">
+45:       <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+46:         aria-hidden="true"></video>
+47:       <div class="hero-overlay" id="heroMedia"></div>
+48:     </section>
+49: 
+50:     <nav class="division-switcher" aria-label="Hilltop divisions">
+51:       <a class="division-switcher__link is-active" href="index.html" aria-current="page"><span>Real Estate</span></a>
+52:       <a class="division-switcher__link" href="construction/"><span>Construction</span></a>
+53:     </nav>
+54: 
+55:     <div class="site-status" id="siteStatus">Loading website content...</div>
+56: 
+57:     <section class="property-discovery" aria-labelledby="discoveryTitle">
+58:       <div class="property-discovery__inner">
+59:         <form id="discoveryForm" class="discovery-filter">
+60:         <div class="discovery-header">
+61:           <h2 id="discoveryTitle">Find a Property</h2>
+62:           <div class="discovery-badge" id="discoveryBadge" aria-hidden="true"><span class="discovery-count" id="discoveryCount"></span></div>
+63:         </div>
+64:         <div class="discovery-transactions" role="group" aria-label="Transaction type">
+65:           <button type="button" data-discovery-purpose="For Sale" aria-pressed="true">For Sale</button>
+66:           <button type="button" data-discovery-purpose="For Rent" aria-pressed="false">For Rent</button>
+67:         </div>
+68:         <div class="discovery-field-group discovery-location-field">
+69:           <label class="field-label" for="discoveryLocationTrigger">Location</label>
+70:           <div class="discovery-control discovery-location-trigger">
+71:             <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21L16.65 16.65"/></svg></span>
+72:             <input class="discovery-location-input" id="discoveryLocationTrigger" type="search" placeholder="Search location" autocomplete="off" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-controls="discoveryLocationMenu" aria-expanded="false" aria-describedby="discoveryLocationStatus">
+73:             <span class="field-chevron discovery-location-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+74:           </div>
+75:           <input id="discoveryLocation" type="hidden" value="">
+76:           <div class="discovery-location-menu" id="discoveryLocationMenu" role="listbox" aria-label="Location suggestions" hidden></div>
+77:           <span class="sr-only" id="discoveryLocationStatus" role="status" aria-live="polite"></span>
+78:         </div>
+79:         <div class="discovery-fields">
+80:           <div class="discovery-field-group discovery-popup-field">
+81:             <label class="field-label" for="discoveryTypeTrigger">Property Type</label>
+82:             <button class="discovery-control discovery-select-trigger" id="discoveryTypeTrigger" type="button" aria-haspopup="listbox" aria-controls="discoveryTypeMenu" aria-expanded="false"><span class="field-row">
+83:               <span class="field-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/><path d="M9 21V12h6v9"/></svg></span>
+84:               <span class="discovery-select-value" id="discoveryTypeValue">All property types</span>
+85:               <span class="field-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9L12 15L18 9"/></svg></span>
+86:             </span></button>
+87:             <select id="discoveryType" aria-label="Property Type" hidden><option value="all">All property types</option></select>
+
+--- MATCH: heroVideo | LINES 172-232 ---
+172:                 <img src="assets/images/service-rent-property.svg" alt="Illustration representing finding and renting a property" class="service-choice-card__image" />
+173:               </div>
+174:               <h3 class="service-choice-card__title">Rent a Property</h3>
+175:               <p class="service-choice-card__description">Find houses and apartments available for rent in Lusaka, Livingstone, and other listed locations.</p>
+176:               <a class="service-choice-card__action" href="/properties-for-rent">Explore Rentals</a>
+177:             </article>
+178: 
+179:             <article class="service-choice-card" data-service-card-slug="list-property">
+180:               <div class="service-choice-card__visual">
+181:                 <img src="assets/images/service-list-property.svg" alt="Illustration representing listing a property for sale or rent" class="service-choice-card__image" />
+182:               </div>
+183:               <h3 class="service-choice-card__title">Sell or List a Property</h3>
+184:               <p class="service-choice-card__description">List your property with Hilltop and connect with interested buyers or tenants through our branch network.</p>
+185:               <a class="service-choice-card__action" href="#contact" data-enquiry-type="List a Property">List Your Property</a>
+186:             </article>
+187:           </div>
+188:         </div>
+189:       </section>
+190: 
+191:     <section class="why-video-hero" id="why">
+192:       <video class="why-hero-video" id="whyHeroVideo" autoplay muted loop playsinline preload="metadata"
+193:         aria-hidden="true"></video>
+194:       <div class="why-hero-overlay"></div>
+195: 
+196:       <div class="why-hero-content">
+197:         <div class="why-hero-header">
+198:           <p class="eyebrow why-eyebrow" data-why-field="eyebrow">WHY HILLTOP</p>
+199:           <h2 class="why-title" data-why-field="title">The Hilltop Advantage</h2>
+200:         </div>
+201: 
+202:         <div class="why-cards-container" aria-label="Hilltop trust points">
+203:           <!-- Card 1: Verified Listings -->
+204:           <div class="why-card" tabindex="0">
+205:             <div class="why-card-inner">
+206:               <h3 class="why-card-title" data-why-field="card-1-title">Verified Listings</h3>
+207:               <p class="why-card-desc-default" data-why-field="card-1-short">Public listings are presented with clear
+208:                 status, branch, and property details.</p>
+209:               <div class="why-card-expanded">
+210:                 <p class="why-card-desc-expanded" data-why-field="card-1-expanded">Hilltop reviews property details,
+211:                   location, ownership information, pricing, and status before presenting listings to clients.</p>
+212:               </div>
+213:             </div>
+214:           </div>
+215: 
+216:           <!-- Card 2: Branch Support -->
+217:           <div class="why-card" tabindex="0">
+218:             <div class="why-card-inner">
+219:               <h3 class="why-card-title" data-why-field="card-2-title">Branch Support</h3>
+220:               <p class="why-card-desc-default" data-why-field="card-2-short">Lusaka and Livingstone teams help route
+221:                 enquiries to the right office.</p>
+222:               <div class="why-card-expanded">
+223:                 <p class="why-card-desc-expanded" data-why-field="card-2-expanded">Branch teams help coordinate
+224:                   enquiries, viewings, follow-ups, and client support across Hilltop’s operating locations.</p>
+225:               </div>
+226:             </div>
+227:           </div>
+228: 
+229:           <!-- Card 3: Trusted Agents -->
+230:           <div class="why-card why-card--trusted-agents" tabindex="0">
+231:             <div class="why-card-inner">
+232:               <h3 class="why-card-title" data-why-field="card-3-title">Trusted Agents</h3>
+
+============================================================
+FILE: styles.css
+============================================================
+
+============================================================
+FILE: supabase/settings-foundation.sql
+============================================================
+
+--- MATCH: app_settings | LINES 1-51 ---
+1: -- ============================================================
+2: -- HILLTOP PROPERTIES ZAMBIA - SETTINGS FOUNDATION
+3: -- Phase 7A: flexible app settings table for read-only loading.
+4: --
+5: -- Run this manually in Supabase SQL Editor before testing
+6: -- settings persistence from settings.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+
+--- MATCH: app_settings | LINES 1-60 ---
+1: -- ============================================================
+2: -- HILLTOP PROPERTIES ZAMBIA - SETTINGS FOUNDATION
+3: -- Phase 7A: flexible app settings table for read-only loading.
+4: --
+5: -- Run this manually in Supabase SQL Editor before testing
+6: -- settings persistence from settings.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 2-60 ---
+2: -- HILLTOP PROPERTIES ZAMBIA - SETTINGS FOUNDATION
+3: -- Phase 7A: flexible app settings table for read-only loading.
+4: --
+5: -- Run this manually in Supabase SQL Editor before testing
+6: -- settings persistence from settings.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 4-60 ---
+4: --
+5: -- Run this manually in Supabase SQL Editor before testing
+6: -- settings persistence from settings.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 5-60 ---
+5: -- Run this manually in Supabase SQL Editor before testing
+6: -- settings persistence from settings.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 7-60 ---
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 8-60 ---
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 9-60 ---
+9: -- ============================================================
+10: 
+11: create table if not exists public.app_settings (
+12:   id uuid primary key default gen_random_uuid(),
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 13-60 ---
+13:   setting_key text not null unique,
+14:   setting_category text not null,
+15:   setting_value jsonb not null default '{}'::jsonb,
+16:   updated_by uuid references public.staff_users(id) on delete set null,
+17:   created_at timestamptz not null default now(),
+18:   updated_at timestamptz not null default now()
+19: );
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 20-60 ---
+20: 
+21: create index if not exists idx_app_settings_setting_key
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 22-60 ---
+22: on public.app_settings(setting_key);
+23: 
+24: create index if not exists idx_app_settings_setting_category
+25: on public.app_settings(setting_category);
+26: 
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 27-60 ---
+27: drop trigger if exists trg_app_settings_set_updated_at on public.app_settings;
+28: create trigger trg_app_settings_set_updated_at
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 29-60 ---
+29: before update on public.app_settings
+30: for each row
+31: execute function public.set_updated_at();
+32: 
+33: alter table public.app_settings enable row level security;
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 34-60 ---
+34: 
+35: -- Starter authenticated-user policies only.
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+--- MATCH: app_settings | LINES 36-60 ---
+36: -- Later: replace these with stricter role and branch-based policies
+37: -- using auth.uid() linked to public.staff_users.auth_user_id.
+38: -- No anonymous access and no delete policy are created here.
+39: 
+40: drop policy if exists "Authenticated users can read app settings" on public.app_settings;
+41: create policy "Authenticated users can read app settings"
+42: on public.app_settings
+43: for select
+44: to authenticated
+45: using (true);
+46: 
+47: drop policy if exists "Authenticated users can insert app settings" on public.app_settings;
+48: create policy "Authenticated users can insert app settings"
+49: on public.app_settings
+50: for insert
+51: to authenticated
+52: with check (true);
+53: 
+54: drop policy if exists "Authenticated users can update app settings" on public.app_settings;
+55: create policy "Authenticated users can update app settings"
+56: on public.app_settings
+57: for update
+58: to authenticated
+59: using (true)
+60: with check (true);
+
+============================================================
+FILE: supabase/storage-setup.sql
+============================================================
+
+--- MATCH: storage.buckets | LINES 1-51 ---
+1: -- ============================================================
+2: -- HILLTOP PROPERTIES ZAMBIA - STORAGE SETUP
+3: -- Phase 3C: property images and private property documents.
+4: --
+5: -- Run this manually in the Supabase SQL Editor before testing
+6: -- image/document uploads from properties.html.
+7: --
+8: -- No service_role key is required in frontend code.
+9: -- ============================================================
+10: 
+11: insert into storage.buckets (id, name, public)
+12: values
+13:   ('property-images', 'property-images', true),
+14:   ('property-documents', 'property-documents', false)
+15: on conflict (id) do update
+16: set public = excluded.public;
+17: 
+18: -- ============================================================
+19: -- PROPERTY IMAGES
+20: -- Public read is allowed because property listing photos may
+21: -- appear on the public website later.
+22: -- Authenticated users can upload and update objects.
+23: -- Delete is intentionally not added in this slice.
+24: -- ============================================================
+25: 
+26: drop policy if exists "Public can read property images" on storage.objects;
+27: create policy "Public can read property images"
+28: on storage.objects
+29: for select
+30: to public
+31: using (bucket_id = 'property-images');
+32: 
+33: drop policy if exists "Authenticated users can upload property images" on storage.objects;
+34: create policy "Authenticated users can upload property images"
+35: on storage.objects
+36: for insert
+37: to authenticated
+38: with check (bucket_id = 'property-images');
+39: 
+40: drop policy if exists "Authenticated users can update property images" on storage.objects;
+41: create policy "Authenticated users can update property images"
+42: on storage.objects
+43: for update
+44: to authenticated
+45: using (bucket_id = 'property-images')
+46: with check (bucket_id = 'property-images');
+47: 
+48: -- ============================================================
+49: -- PROPERTY DOCUMENTS
+50: -- Private bucket. Public users must not read legal/ownership docs.
+51: -- Authenticated users can upload/read/update documents.

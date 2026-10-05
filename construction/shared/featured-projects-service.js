@@ -1,0 +1,21 @@
+import { getSupabaseClient } from './supabase-client.js';
+import { getMediaAsset, getMediaPublicUrl } from './homepage-media-service.js';
+
+const COLUMNS='id,project_key,record_type,title,description,image_asset_id,image_alt,button_label,button_url,layout,sort_order,is_visible,published_at,created_by,updated_by,created_at,updated_at';
+
+async function normalize(record) {
+  const imageAsset=await getMediaAsset(record.image_asset_id);
+  return { id:record.project_key,projectKey:record.project_key,rowId:record.id,title:record.title||'',description:record.description||'',imageAssetId:record.image_asset_id||'',image:await getMediaPublicUrl(imageAsset),imageAsset,imageAlt:record.image_alt||'',buttonLabel:record.button_label||'',buttonUrl:record.button_url||'',layout:record.layout==='image_right'?'image-right':'image-left',order:record.sort_order+1,visible:record.is_visible,status:record.record_type,publishedAt:record.published_at,updatedAt:record.updated_at };
+}
+function payload(data,key) { return {project_key:key,record_type:'draft',title:data.title?.trim()||'',description:data.description?.trim()||null,image_asset_id:data.imageAssetId||null,image_alt:data.imageAlt?.trim()||null,button_label:data.buttonLabel?.trim()||null,button_url:data.buttonUrl?.trim()||null,layout:data.layout==='image-right'?'image_right':'image_left',sort_order:Math.max(0,Number(data.order||1)-1),is_visible:Boolean(data.visible)}; }
+async function all(type,visibleOnly=false){const client=await getSupabaseClient();let q=client.from('featured_projects').select(COLUMNS).eq('record_type',type).order('sort_order',{ascending:true});if(visibleOnly)q=q.eq('is_visible',true);const{data,error}=await q;if(error)throw error;return Promise.all(data.map(normalize));}
+export async function getFeaturedProjectDrafts(){const[drafts,published]=await Promise.all([all('draft'),all('published')]);const live=new Set(published.map(x=>x.projectKey));return drafts.map(x=>({...x,status:live.has(x.projectKey)?'published':'draft',isPublished:live.has(x.projectKey)}));}
+export const getPublishedFeaturedProjects=()=>all('published',true);
+export async function createFeaturedProjectDraft(data){const key=data.projectKey||crypto.randomUUID();const client=await getSupabaseClient();const{data:row,error}=await client.from('featured_projects').insert(payload(data,key)).select(COLUMNS).single();if(error)throw error;return normalize(row);}
+export async function updateFeaturedProjectDraft(projectKey,data){const client=await getSupabaseClient();const{data:row,error}=await client.from('featured_projects').upsert(payload(data,projectKey),{onConflict:'project_key,record_type'}).select(COLUMNS).single();if(error)throw error;return normalize(row);}
+export async function duplicateFeaturedProjectDraft(projectKey){const items=await getFeaturedProjectDrafts(),source=items.find(x=>x.projectKey===projectKey);if(!source)throw new Error('Project draft not found.');return createFeaturedProjectDraft({...source,projectKey:crypto.randomUUID(),title:`${source.title} (copy)`,order:items.length+1,status:'draft'});}
+export async function deleteFeaturedProjectDraft(projectKey){const client=await getSupabaseClient();const{error}=await client.from('featured_projects').delete().eq('project_key',projectKey).eq('record_type','draft');if(error)throw error;}
+export async function deleteFeaturedProjectCompletely(projectKey){const client=await getSupabaseClient();const{error}=await client.from('featured_projects').delete().eq('project_key',projectKey);if(error)throw error;}
+export async function reorderFeaturedProjectDrafts(projectKeys){const client=await getSupabaseClient();for(let index=0;index<projectKeys.length;index++){const{error}=await client.from('featured_projects').update({sort_order:index}).eq('project_key',projectKeys[index]).eq('record_type','draft');if(error)throw error;}return getFeaturedProjectDrafts();}
+export async function publishFeaturedProjects(){const client=await getSupabaseClient();const{data,error}=await client.rpc('publish_featured_projects');if(error)throw error;return Promise.all((data||[]).map(normalize));}
+export async function unpublishFeaturedProjects(){const client=await getSupabaseClient();const{error}=await client.rpc('unpublish_featured_projects');if(error)throw error;}

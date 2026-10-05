@@ -1,0 +1,24 @@
+/*
+Font: 		YWFT Brooklyn SemBd
+Style: 		Regular Demo
+URL: 		https://youworkforthem.com/font/T34294/ywft-brooklyn
+Foundry: 	YouWorkForThem
+Foundry: 	https://youworkforthem.com/designer/1/youworkforthem
+Copyright:	
+Version: 	18
+Created:	July 27, 2026
+License: 	https://www.youworkforthem.com/font-license 
+License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
+			WebFont license rules. All other parties are strictly restricted 
+			from using the WebFonts(s) listed without a purchased license. 
+			All details above must always remain unaltered and visible in your CSS.
+*/
+
+@font-face {
+	font-family: 'YWFTBrooklynSemBd-RegularDemo';
+	src: url('ywft-brooklyn-semi-bold-regular-demo.woff2') format('woff2'),
+	     url('ywft-brooklyn-semi-bold-regular-demo.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
